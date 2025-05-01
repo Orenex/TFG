@@ -4,7 +4,7 @@ using UnityEngine;
 public class ScriptableCartas : ScriptableObject
 {
     [field: SerializeField] public string nombreCarta { get; private set; }
-    [field: SerializeField] public string descripcion { get; private set; }
+    [field: SerializeField, TextArea] public string descripcion { get; private set; }
     [field: SerializeField] public int coste { get; private set; }
     [field: SerializeField] public Sprite imagen { get; private set; }
     [field: SerializeField] public string efecto { get; private set; }

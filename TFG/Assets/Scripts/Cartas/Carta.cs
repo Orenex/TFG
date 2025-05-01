@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(CartaUi))]
 public class Carta : MonoBehaviour
 {
     #region Fields and Properties
