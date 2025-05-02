@@ -33,9 +33,9 @@ public class CartaUi : MonoBehaviour
     {
         Awake();
     }
-    private void SetCardUI()
+    public void SetCardUI()
     {
-        if (carta != null && carta.InfoCarta != null)
+        if (carta != null && carta.DataCarta != null)
         {
             SetCardText();
         }
@@ -43,15 +43,15 @@ public class CartaUi : MonoBehaviour
     private void SetCardText()
     {
         SetCardEffectTypeText();
-        Nombre.text = carta.InfoCarta.nombreCarta;
-        Descripcion.text = carta.InfoCarta.descripcion;
-        Efecto.text = carta.InfoCarta.efecto;
-        Coste.text = carta.InfoCarta.coste.ToString();
-        ImagenCarta.sprite = carta.InfoCarta.imagen;
+        Nombre.text = carta.DataCarta.nombreCarta;
+        Descripcion.text = carta.DataCarta.descripcion;
+        Efecto.text = carta.DataCarta.efecto;
+        Coste.text = carta.DataCarta.coste.ToString();
+        ImagenCarta.sprite = carta.DataCarta.imagen;
     }
     private void SetCardEffectTypeText()
     {
-        switch (carta.InfoCarta.tipo)
+        switch (carta.DataCarta.tipo)
         {
             case TipoCarta.Ataque:
                 Tipo.text = EFFECTTYPE_ATAQUE;

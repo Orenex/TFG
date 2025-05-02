@@ -828,4 +828,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edce86d8688fbf148be2d14f4097b246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <InfoCarta>k__BackingField: {fileID: 11400000, guid: ca212b205539fe041bb35daf80d9e7fb, type: 2}
+  <DataCarta>k__BackingField: {fileID: 0}

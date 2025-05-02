@@ -15,7 +15,7 @@ MonoBehaviour:
   <nombreCarta>k__BackingField: Ataque
   <descripcion>k__BackingField: Pum Pim Pam
   <coste>k__BackingField: 1
-  <imagen>k__BackingField: {fileID: 21300000, guid: b11f013298975d44ab3bcc05c6cc18d3, type: 3}
+  <imagen>k__BackingField: {fileID: 21300000, guid: 86e0434b2c41135458b44d62f0e0df42, type: 3}
   <efecto>k__BackingField: -1 HP
   <tipo>k__BackingField: 0
   <colores>k__BackingField: 0
