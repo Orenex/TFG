@@ -766,9 +766,11 @@ GameObject:
   - component: {fileID: 7498420356465740941}
   - component: {fileID: 4546134814037466481}
   - component: {fileID: 5570587888800559622}
+  - component: {fileID: 496993496843285908}
+  - component: {fileID: 1883520866102717807}
   m_Layer: 5
   m_Name: Cartas
-  m_TagString: Untagged
+  m_TagString: Carta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -829,3 +831,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <DataCarta>k__BackingField: {fileID: 0}
+--- !u!114 &496993496843285908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7784855428456594595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d775e34e0f06e954fa46b933838254c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _posAnclas: []
+  crecimientoAlSeleccionar: {x: 0.2, y: 0.2, z: 0.2}
+--- !u!222 &1883520866102717807
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7784855428456594595}
+  m_CullTransparentMesh: 1

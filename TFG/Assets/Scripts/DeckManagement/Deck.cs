@@ -28,6 +28,7 @@ public class Deck : MonoBehaviour
 
     [field: SerializeField]public List<Carta> CartasMano { get; private set; } = new();
 
+
     #endregion
 
     #region Methods
@@ -97,11 +98,17 @@ public class Deck : MonoBehaviour
 
     public void DescartarCarta(Carta carta)
     {
+        
         if (CartasMano.Contains(carta))
         {
             CartasMano.Remove(carta);
+            _descartePila.Add(carta);
+            carta.gameObject.SetActive(false);
         }
+        
     }
+
+
 
     #endregion
 

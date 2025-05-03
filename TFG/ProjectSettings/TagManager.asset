@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CardCanvas
   - AnclaMano
+  - Carta
   layers:
   - Default
   - TransparentFX
