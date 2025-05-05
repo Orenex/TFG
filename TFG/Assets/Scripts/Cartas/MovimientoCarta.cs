@@ -21,6 +21,9 @@ public class MovimientoCarta : MonoBehaviour, IPointerClickHandler, IPointerEnte
     //tamaño que una carta crece y decrece al ser seleccionada
     public Vector3 crecimientoAlSeleccionar;
 
+    //se registrará en que posicion esta la carta
+    [SerializeField] private int _miPosicion;
+
     #endregion
 
 
@@ -49,6 +52,7 @@ public class MovimientoCarta : MonoBehaviour, IPointerClickHandler, IPointerEnte
                 _rectTransform.position = _posAnclas[i].position;
                 _rectTransform.rotation = _posAnclas[i].rotation;
                 Mano.posLibre[i] = false;
+                _miPosicion = i;
                 break; //el break hace que el loop se detenga en caso de encontrar un espacio libre, sin esto la misma carta viajaría por cada uno de los espacios ocupándolos todos
             }
             else
@@ -56,7 +60,6 @@ public class MovimientoCarta : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
             }
         }
-       
 
     }
 
@@ -100,11 +103,12 @@ public class MovimientoCarta : MonoBehaviour, IPointerClickHandler, IPointerEnte
         if (_isSelected == true)
         {
             Deck.Instance.DescartarCarta(_card);
-            Debug.Log("Descarto");
+            Debug.Log("Posicion " + _miPosicion + " esta libre");
+            Mano.posLibre[_miPosicion] = true; //vuelvo a establecer que la posicion de esta carta esta libre
         }
         else
         {
-            Debug.Log("no descarto");
+
         }
     }
 

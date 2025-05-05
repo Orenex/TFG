@@ -84,14 +84,19 @@ public class Deck : MonoBehaviour
         {
             if(_deckPila.Count <= 0)
             {
+                //_deckPila = _descartePila;
                 _descartePila = _deckPila;
                 _descartePila.Clear();
                 BarajarDeck();
             }
 
-            CartasMano.Add(_deckPila[0]);
-            _deckPila[0].gameObject.SetActive(true);
-            _deckPila.RemoveAt(0);
+            if(_deckPila.Count > 0)
+            {
+                CartasMano.Add(_deckPila[0]);
+                _deckPila[0].gameObject.SetActive(true);
+                _deckPila.RemoveAt(0);
+            }
+            
         }
     }
 
