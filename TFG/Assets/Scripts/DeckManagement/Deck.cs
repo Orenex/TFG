@@ -82,15 +82,16 @@ public class Deck : MonoBehaviour
     {
         for(int i = 0; i < amount; i++)
         {
-            if(_deckPila.Count <= 0)
+            if (_deckPila.Count <= 0 && _descartePila.Count > 0)
             {
-                //_deckPila = _descartePila;
-                _descartePila = _deckPila;
+                Debug.Log($"Reponiendo mazo con {_descartePila.Count} cartas del descarte.");
+
+                _deckPila.AddRange(_descartePila);
                 _descartePila.Clear();
                 BarajarDeck();
             }
 
-            if(_deckPila.Count > 0)
+            if (_deckPila.Count > 0)
             {
                 CartasMano.Add(_deckPila[0]);
                 _deckPila[0].gameObject.SetActive(true);
