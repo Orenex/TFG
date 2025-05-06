@@ -63,6 +63,28 @@ public class MovimientoCarta : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
     }
 
+    private void OnEnable()
+    {
+        if(_cardCanvas != null) //el enable no hará nada la primera vez, una vez se ejecute el start (y por lo tanto el cardcanvas no sea null) es que será libre de coger posicion a cada activacion del objeto
+        {
+            for (int i = 0; i < Mano._anclas.Length; i++)
+            {
+                if (Mano.posLibre[i] == true)
+                {
+                    _rectTransform.position = _posAnclas[i].position;
+                    _rectTransform.rotation = _posAnclas[i].rotation;
+                    Mano.posLibre[i] = false;
+                    _miPosicion = i;
+                    break; //el break hace que el loop se detenga en caso de encontrar un espacio libre, sin esto la misma carta viajaría por cada uno de los espacios ocupándolos todos
+                }
+                else
+                {
+
+                }
+            }
+        }
+    }
+
     //detectar raton
     public void OnPointerEnter(PointerEventData eventData)
     {
