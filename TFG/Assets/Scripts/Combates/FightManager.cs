@@ -58,6 +58,11 @@ public class FightManager : MonoBehaviour
 
                 if (luchador.sigueVivo)
                 {
+                    //TODA ESTA PARTE ES SUSCEPTIBLE A CAMBIO, PORQUE ESTO LO HACE EL TIO DLE TUTORIAL BAJO LA REALIDAD DE QUE UN MISMO BOTON
+                    //SERVIRA PARA VARIOS ATAQUES DEPENDIENDO DEL PERSONAJE ACTIVO, PERO EN NUESTRO CASO NO ES ASI, CADA CARTA TIENE UN BOTON
+                    //ESPECIFICO QUE EJECUTARÁ AL SER CLICADO LA ACCION ESPECÍFICA DEL PERSONAJE ASI QUE NO SE SI HABRIA QUE AÑADIR LOS LISTENERS
+                    //DURANTE EL PROPIO JUEGO O SE PODRÍA TENER HECHO DE ANTES (SUPONGO QUE NO PORQUE ANTES DE EJECUTAR LA ESCENA EL MAZO NO EXISTE AUN
+                    //A VER COMO HACEMOS ESO
                     if (luchador.aliado)
                     {
                         foreach (var accion in luchador.Acciones)
@@ -68,17 +73,16 @@ public class FightManager : MonoBehaviour
                                 Debug.Log("HOALAA");
                                 if (!poolBotones[i].gameObject.activeInHierarchy)
                                 {
-                                    b = botonesCartas[i].GetComponent<Button>();
+                                    b = poolBotones[i];
                                 }
                             }
 
-                            b = GetComponentInChildren<Button>();
+                            b = botonesCartas[i].GetComponent<Button>();
 
 
                             poolBotones.Add(b);
 
                             b.gameObject.SetActive(true);
-                            b.onClick.RemoveAllListeners();
                             if (luchador.mana < accion.costoMana)
                             {
                                 b.interactable = false;
