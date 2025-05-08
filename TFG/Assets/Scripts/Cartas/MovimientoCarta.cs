@@ -51,6 +51,7 @@ public class MovimientoCarta : MonoBehaviour, IPointerClickHandler, IPointerEnte
             {
                 _rectTransform.position = _posAnclas[i].position;
                 _rectTransform.rotation = _posAnclas[i].rotation;
+                _rectTransform.localScale = _posAnclas[i].localScale;
                 Mano.posLibre[i] = false;
                 _miPosicion = i;
                 break; //el break hace que el loop se detenga en caso de encontrar un espacio libre, sin esto la misma carta viajaría por cada uno de los espacios ocupándolos todos

@@ -25,16 +25,23 @@ public class Mano : MonoBehaviour
     public GameObject _botonConfirm; //boton de confirmar descarte que esconderemos cuando no estemos descartando
 
     //pillamos las propias cartas desde el scrip de movimiento (cuya funcion es la que llamaremos)
-    [SerializeField]private GameObject[] _cardGO;
+    [SerializeField]public GameObject[] _cardGO;
     public MovimientoCarta[] _card; 
     private readonly string CARTAS = "Carta";
+
+
+    //robo automatico, para ello tenemos que acceder al deck
+    [SerializeField] private Deck _deck;
+    private readonly string DECK = "Deck";
+
     #endregion
 
 
     #region Methods
     private void Awake()
     {     
-        _anclas = GameObject.FindGameObjectsWithTag(ANCLA_MANO);       
+        _anclas = GameObject.FindGameObjectsWithTag(ANCLA_MANO);
+        _deck = GameObject.FindGameObjectWithTag(DECK).GetComponent<Deck>();
 
         posLibre = new bool[_anclas.Length];
 
@@ -43,6 +50,8 @@ public class Mano : MonoBehaviour
         {
            posLibre[i] = true;
         }
+
+        StartCoroutine("RoboAutomatico");
     }
 
     public void IsDiscarting()
@@ -85,5 +94,25 @@ public class Mano : MonoBehaviour
         }
         
     }
+
+
+    IEnumerator RoboAutomatico()
+    {
+        while (true)
+        {
+            for (int i = 0; i < _anclas.Length; i++)
+            {
+                if (posLibre[i] == true)
+                {
+                    yield return new WaitForSeconds(0.2f);
+                    _deck.DrawMano(1);
+                }
+            }
+            yield return null;
+        }
+       
+
+    }
+
     #endregion
 }
