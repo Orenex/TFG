@@ -65,22 +65,28 @@ public class FightManager : MonoBehaviour
                     //A VER COMO HACEMOS ESO
                     if (luchador.aliado)
                     {
-                        foreach (var accion in luchador.Acciones)
+                        foreach (var cardGO in scriptMano._cardGO)
                         {
-                            Button b = null;
+                            Button b = GetComponent<Button>();
+                            poolBotones.Add(b);
+
+                            cardGO.GetComponentInChildren<Text>();
+
                             for (int i = 0; i < poolBotones.Count; i++)
                             {
+
+
                                 Debug.Log("HOALAA");
-                                if (!poolBotones[i].gameObject.activeInHierarchy)
+                                if (cardGO. == "Ataque")
                                 {
                                     b = poolBotones[i];
                                 }
                             }
 
-                            b = botonesCartas[i].GetComponent<Button>();
+                            b = botonesCartas[1].GetComponent<Button>();
 
 
-                            poolBotones.Add(b);
+                            
 
                             b.gameObject.SetActive(true);
                             if (luchador.mana < accion.costoMana)
@@ -105,7 +111,9 @@ public class FightManager : MonoBehaviour
                     }
                     else
                     {
-                        luchador.EjecutarAccion(luchador.Acciones[Random.Range(0, luchador.Acciones.Count)], luchadores[Random.Range(0, luchadores.Count)].transform);
+                        Debug.Log(luchador);
+                        luchador.MatameCojones(luchador.Acciones[0], luchadores[1].gameObject);
+                        
                     }
 
                     while (c == null)

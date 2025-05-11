@@ -35,13 +35,14 @@ public class Luchador : MonoBehaviour
     public bool sigueVivo = true;
 
     Animator anim;
-    NavMeshAgent nv;
+    public NavMeshAgent nv;
     #endregion
 
 
     #region Methods
     void CambiarVida(int cant)
     {
+        Debug.Log("Vida" + cant);
         vida += cant;
     }
     void CambiarMana(int cant)
@@ -53,51 +54,60 @@ public class Luchador : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        nv = GetComponent<NavMeshAgent>();
+        //añadir el navAgent directamente desde el inspector pls
+        nv = gameObject.GetComponent<NavMeshAgent>();
 
         nv.updateRotation = false;
     }
 
-    public IEnumerator EjecutarAccion(Accion accion, Transform objetivo)
+    public void MatameCojones(Accion accion, GameObject objetivo)
     {
+        StartCoroutine(EjecutarAccion(accion, objetivo.GetComponent<Luchador>()));
+    }
+
+    public IEnumerator EjecutarAccion(Accion accion, Luchador objetivo)
+    {
+        Debug.Log("accion " + accion.nombre + " ejecutada");
         CambiarMana(-accion.costoMana);
         if (accion.objetivoEsElEquipo)
         {
-            objetivo = transform;
+            
+            objetivo = gameObject.GetComponent<Luchador>();
         }
         if (accion.estatico)
         {
-            anim.SetTrigger(accion.animacionTrigger);
+            //anim.SetTrigger(accion.animacionTrigger);
             objetivo.SendMessage(accion.mensaje, accion.argumento);
         }
         else
         {
-            //si la accion no es estatica vamos a por el objetivo
-            Vector3 posInicial = transform.position;
+             //si la accion no es estatica vamos a por el objetivo
+             Vector3 posInicial = transform.position;
 
-            transform.LookAt(objetivo.transform.position);
-            nv.SetDestination(objetivo.position);
-            anim.SetFloat("Speed", 1);
+             transform.LookAt(objetivo.transform.position);
+             nv.SetDestination(objetivo.gameObject.transform.position);
+            Debug.Log(objetivo.gameObject.transform.position);
+            //anim.SetFloat("Speed", 1);
 
-            while (Vector3.Distance(transform.position, objetivo.position) > 2)
-            {
-                yield return null;
-            }
-            anim.SetFloat("Speed", 0);
+            while (Vector3.Distance(transform.position, objetivo.gameObject.transform.position) > 2)
+             {
+                 yield return null;
+             }
+             //anim.SetFloat("Speed", 0);
 
-            anim.SetTrigger(accion.animacionTrigger);
-            objetivo.SendMessage(accion.mensaje, accion.argumento);
+             //anim.SetTrigger(accion.animacionTrigger);
+             objetivo.SendMessage(accion.mensaje, accion.argumento);
 
-            //y volvemos a la posicion inicial
-            transform.LookAt(posInicial);
-            nv.SetDestination(posInicial);
-            anim.SetFloat("Speed", 1);
+             //y volvemos a la posicion inicial
+             transform.LookAt(posInicial);
+             nv.SetDestination(posInicial);
+             //anim.SetFloat("Speed", 1);
 
-            while (Vector3.Distance(transform.position, posInicial) > 0.1f)
-            {
-                yield return null;
-            }
-            anim.SetFloat("Speed", 0);
+             while (Vector3.Distance(transform.position, posInicial) > 0.1f)
+             {
+                 yield return null;
+             }
+             //anim.SetFloat("Speed", 0);
         }
     }
     #endregion

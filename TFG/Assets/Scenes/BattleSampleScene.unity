@@ -1121,7 +1121,7 @@ GameObject:
   - component: {fileID: 1489431645}
   - component: {fileID: 1489431646}
   m_Layer: 0
-  m_Name: R
+  m_Name: Glen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1269,22 +1269,6 @@ MonoBehaviour:
     animacionTrigger: 
     efectoSecundario: 
     costoMana: 2
-  - nombre: 
-    estatico: 0
-    objetivoEsElEquipo: 0
-    mensaje: 
-    argumento: 0
-    animacionTrigger: 
-    efectoSecundario: 
-    costoMana: 0
-  - nombre: 
-    estatico: 0
-    objetivoEsElEquipo: 0
-    mensaje: 
-    argumento: 0
-    animacionTrigger: 
-    efectoSecundario: 
-    costoMana: 0
   nombre: Glen
   vida: 100
   mana: 5
@@ -1542,14 +1526,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luchadores:
-  - {fileID: 1489431646}
   - {fileID: 1687238844}
+  - {fileID: 1489431646}
   prefab: {fileID: 1922685898517238422, guid: 2e513a1d9e4c38e45b6939bdff1b04e2, type: 3}
   textoEstado: {fileID: 0}
   panel: {fileID: 1438601422}
   scriptMano: {fileID: 1438601423}
   botonesCartas: []
-  poolBotones: []
 --- !u!1 &1687238843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1601,22 +1584,6 @@ MonoBehaviour:
     animacionTrigger: 
     efectoSecundario: 
     costoMana: 2
-  - nombre: 
-    estatico: 0
-    objetivoEsElEquipo: 0
-    mensaje: 
-    argumento: 0
-    animacionTrigger: 
-    efectoSecundario: 
-    costoMana: 0
-  - nombre: 
-    estatico: 0
-    objetivoEsElEquipo: 0
-    mensaje: 
-    argumento: 0
-    animacionTrigger: 
-    efectoSecundario: 
-    costoMana: 0
   nombre: Enemigo
   vida: 100
   mana: 5
