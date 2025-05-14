@@ -65,7 +65,7 @@ public class FightManager : MonoBehaviour
                     //A VER COMO HACEMOS ESO
                     if (luchador.aliado)
                     {
-                        foreach (var cardGO in scriptMano._cardGO)
+                        /*foreach (var cardGO in scriptMano._cardGO)
                         {
                             Button b = GetComponent<Button>();
                             poolBotones.Add(b);
@@ -107,7 +107,7 @@ public class FightManager : MonoBehaviour
 
                                 });
                             }
-                        }
+                        }*/
                     }
                     else
                     {
