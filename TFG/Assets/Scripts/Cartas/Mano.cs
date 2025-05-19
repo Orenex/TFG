@@ -1,118 +1,121 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-/// <summary>
-/// Este Script va en el CardCanvas
-/// </summary>
 public class Mano : MonoBehaviour
 {
-    #region Fields and Properties
+    [Header("Anclas visuales para cartas")]
+    [SerializeField] private Transform[] anclas;
+    private bool[] posicionesLibres;
 
-    //la variable anclas determina lo grande que es la mano (por ahora nos comformamos con 5)
-    public static GameObject[] _anclas;
+    [Header("Interfaz")]
+    [SerializeField] private GameObject botonConfirmar;
+    [SerializeField] private Deck deck;
 
-    //la var posLibre es una buleana que indica si la posicion esta siendo ocupada, en cuyo caso no permitirá otra carta en la misma pos
-    [SerializeField] public static bool[] posLibre;
+    private List<MovimientoCarta> cartasEnMano = new();
 
-    private readonly string ANCLA_MANO = "AnclaMano";
+    public static bool IsDiscarding { get; private set; }
 
-
-    //toggle para descartar cartas
-    public static bool isDiscarting;
-    public GameObject _botonConfirm; //boton de confirmar descarte que esconderemos cuando no estemos descartando
-
-    //pillamos las propias cartas desde el scrip de movimiento (cuya funcion es la que llamaremos)
-    [SerializeField]public GameObject[] _cardGO;
-    public MovimientoCarta[] _card; 
-    private readonly string CARTAS = "Carta";
-
-
-    //robo automatico, para ello tenemos que acceder al deck
-    [SerializeField] private Deck _deck;
-    private readonly string DECK = "Deck";
-
-    #endregion
-
-
-    #region Methods
+    
     private void Awake()
-    {     
-        _anclas = GameObject.FindGameObjectsWithTag(ANCLA_MANO);
-        _deck = GameObject.FindGameObjectWithTag(DECK).GetComponent<Deck>();
-
-        posLibre = new bool[_anclas.Length];
-
-        //nada más crear el mazo establezco todos los espacios de carta libres
-        for (int i = 0; i <_anclas.Length; i++)
-        {
-           posLibre[i] = true;
-        }
-
-        StartCoroutine("RoboAutomatico");
-    }
-
-    public void IsDiscarting()
     {
-        isDiscarting = !isDiscarting;
-        Debug.Log("isdiscarting = " + isDiscarting);
-
-        _card = new MovimientoCarta[_cardGO.Length];
-
-        for (int i = 0; i <_cardGO.Length; i++)
+        posicionesLibres = new bool[anclas.Length];
+        for (int i = 0; i < posicionesLibres.Length; i++)
         {
-            _card[i] = _cardGO[i].GetComponent<MovimientoCarta>();
+            posicionesLibres[i] = true;
         }
-    }
 
-    public void DescartarSeleccion() //funcion que tendra el boton de confirmar descarte para descartar todas las cartas al unisono
-    {
-        for (int i = 0; i < _cardGO.Length; i++)
-        {
-            _card[i].PuedoDescartar();
-        }
-        isDiscarting = false;
+        StartCoroutine(RoboAutomatico());
     }
 
     private void Update()
     {
-        if(isDiscarting == true)
-        {
-            _botonConfirm.SetActive(true);
-            
-        }
-        else
-        {
-            _botonConfirm.SetActive(false);
-        }
-
-        if(_cardGO != null)
-        {
-            _cardGO = GameObject.FindGameObjectsWithTag(CARTAS);
-        }
-        
+        botonConfirmar.SetActive(IsDiscarding);
     }
 
+    public void AlternarDescartar()
+    {
+        IsDiscarding = !IsDiscarding;
+        cartasEnMano.Clear();
 
-    IEnumerator RoboAutomatico()
+        MovimientoCarta[] cartas = FindObjectsOfType<MovimientoCarta>();
+        foreach (var c in cartas)
+        {
+            cartasEnMano.Add(c);
+        }
+    }
+
+    public Transform ObtenerSiguienteAncla(out int index)
+    {
+        for (int i = 0; i < posicionesLibres.Length; i++)
+        {
+            if (posicionesLibres[i])
+            {
+                posicionesLibres[i] = false;
+                index = i;
+                return anclas[i];
+            }
+        }
+
+        index = -1;
+        return null;
+    }
+
+    public void LiberarPosicion(int index)
+    {
+        if (index >= 0 && index < posicionesLibres.Length)
+            posicionesLibres[index] = true;
+    }
+
+    private IEnumerator RoboAutomatico()
     {
         while (true)
         {
-            for (int i = 0; i < _anclas.Length; i++)
+            for (int i = 0; i < posicionesLibres.Length; i++)
             {
-                if (posLibre[i] == true)
+                if (posicionesLibres[i])
                 {
                     yield return new WaitForSeconds(0.2f);
-                    _deck.DrawMano(1);
+                    deck.RobarCartas(1);
                 }
             }
             yield return null;
         }
-       
+    }
+    public void ConfirmarJugada()
+    {
+        var seleccionada = MovimientoCarta.ObtenerCartaSeleccionada();
+        if (seleccionada == null)
+        {
+            Debug.LogWarning("No hay carta seleccionada.");
+            return;
+        }
 
+        var objetivo = SeleccionDeObjetivo.Instance.ObtenerObjetivoActual();
+        if (objetivo == null)
+        {
+            Debug.LogWarning("Selecciona un objetivo.");
+            return;
+        }
+
+        CardActionExecutor.Instance.JugarCarta(seleccionada.CartaData, objetivo);
+        seleccionada.gameObject.SetActive(false);
     }
 
-    #endregion
+    public void ConfirmarDescarte()
+    {
+        var seleccionada = MovimientoCarta.ObtenerCartaSeleccionada();
+        if (seleccionada == null)
+        {
+            Debug.LogWarning("No hay carta seleccionada para descartar.");
+            return;
+        }
+
+        deck.DescartarCarta(seleccionada.CartaData);
+        seleccionada.gameObject.SetActive(false);
+        deck.RobarCartas(1);
+    }
+
+
+
 }

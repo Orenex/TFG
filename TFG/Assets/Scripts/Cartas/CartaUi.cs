@@ -1,68 +1,60 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 public class CartaUi : MonoBehaviour
 {
-    #region Fields and Properties
-    private Carta carta;
+    #region References
 
-    [Header("Prefab elements")]
-    [SerializeField] private Image ImagenCarta;
-    [SerializeField] private TextMeshProUGUI Coste;
-    [SerializeField] private TextMeshProUGUI Nombre;
-    [SerializeField] private TextMeshProUGUI Tipo;
-    [SerializeField] private TextMeshProUGUI Efecto;
-    [SerializeField] private TextMeshProUGUI Descripcion;
-
-    [Header("Sprite Assets")]
-
-    private readonly string EFFECTTYPE_ATAQUE = "Ataque";
-    private readonly string EFFECTTYPE_HABILIDAD = "Habilidad";
-    private readonly string EFFECTTYPE_ETERNA = "Eterna";
+    [Header("Elementos UI")]
+    [SerializeField] private Image imagenCarta;
+    [SerializeField] private TextMeshProUGUI textoCoste;
+    [SerializeField] private TextMeshProUGUI textoNombre;
+    [SerializeField] private TextMeshProUGUI textoTipo;
+    [SerializeField] private TextMeshProUGUI textoEfecto;
+    [SerializeField] private TextMeshProUGUI textoDescripcion;
 
     #endregion
 
-    #region Methods
-    private void Awake()
+    #region Public Methods
+
+    public void ActualizarUI(ScriptableCartas data)
     {
-        carta = GetComponent<Carta>();
-        SetCardUI();
+        if (data == null)
+        {
+            Debug.LogError("¡ScriptableCartas en CartaUI es null!");
+            return;
+        }
+
+        if (textoNombre == null || textoCoste == null || textoDescripcion == null)
+        {
+            Debug.LogError("Faltan referencias en CartaUi");
+            return;
+        }
+
+        textoNombre.text = data.nombreCarta;
+        textoDescripcion.text = data.descripcion;
+        textoEfecto.text = data.efecto;
+        textoCoste.text = data.coste.ToString();
+        textoTipo.text = ObtenerTextoTipo(data.tipo);
+        imagenCarta.sprite = data.imagen;
     }
 
-    private void OnValidate()
+
+    #endregion
+
+    #region Helpers
+
+    private string ObtenerTextoTipo(TipoCarta tipo)
     {
-        Awake();
-    }
-    public void SetCardUI()
-    {
-        if (carta != null && carta.DataCarta != null)
+        return tipo switch
         {
-            SetCardText();
-        }
+            TipoCarta.Ataque => "Ataque",
+            TipoCarta.Habilidad => "Habilidad",
+            TipoCarta.Eterna => "Eterna",
+            _ => "Desconocido"
+        };
     }
-    private void SetCardText()
-    {
-        SetCardEffectTypeText();
-        Nombre.text = carta.DataCarta.nombreCarta;
-        Descripcion.text = carta.DataCarta.descripcion;
-        Efecto.text = carta.DataCarta.efecto;
-        Coste.text = carta.DataCarta.coste.ToString();
-        ImagenCarta.sprite = carta.DataCarta.imagen;
-    }
-    private void SetCardEffectTypeText()
-    {
-        switch (carta.DataCarta.tipo)
-        {
-            case TipoCarta.Ataque:
-                Tipo.text = EFFECTTYPE_ATAQUE;
-                break;
-            case TipoCarta.Habilidad:
-                Tipo.text = EFFECTTYPE_HABILIDAD;
-                break;
-            case TipoCarta.Eterna:
-                Tipo.text = EFFECTTYPE_ETERNA;
-                break;
-        }
-    }
+
     #endregion
 }

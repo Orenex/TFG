@@ -1,134 +1,187 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class FightManager : MonoBehaviour
 {
-    #region Fields and Properties
+    public static FightManager Instance { get; private set; }
 
-    public List<Luchador> luchadores;
+    [Header("Participantes")]
+    [SerializeField] private List<Luchador> luchadores = new();
 
-    public static FightManager singleton;
+    [Header("Turnos")]
+    private Queue<Luchador> ordenTurnos = new();
+    private Luchador luchadorActual;
 
+    [Header("Control jugador")]
+    [SerializeField] private Mano manoJugador;
+    [SerializeField] private Deck deck;
 
-    public Button prefab;
-    public Text textoEstado;
-    public Transform panel;
-
-    //usare el script de la mano para pedir prestada la lista de las cartas presentes en el momento, y así sacar sus botones
-    public Mano scriptMano;
-    public GameObject[] botonesCartas;
-
-
-    #endregion
-
-    #region Methods
-    void Awake()
+    private enum EstadoCombate
     {
-        //otra declaracion del singleton, más compleja
-        if (singleton != null)
-        {
+        EsperandoTurno,
+        EjecutandoAccion,
+        FinTurno
+    }
+
+    private EstadoCombate estado = EstadoCombate.EsperandoTurno;
+
+    private void Awake()
+    {
+        if (Instance != null)
             Destroy(gameObject);
-            return;
-        }
-        singleton = this;
+        else
+            Instance = this;
     }
 
     private void Start()
     {
-        StartCoroutine("Bucle");
+        InicializarOrdenTurnos();
+        if (ordenTurnos.Count > 0)
+            luchadorActual = ordenTurnos.Dequeue();
+        StartCoroutine(GestionarTurnos());
     }
 
-    List<Button> poolBotones = new List<Button>();
-
-    IEnumerator Bucle()
+    private void InicializarOrdenTurnos()
     {
-        while (true)
+        ordenTurnos.Clear();
+
+        foreach (var luchador in luchadores)
         {
-            foreach (var luchador in luchadores)
+            if (luchador != null && luchador.sigueVivo)
             {
-
-                IEnumerator c = null;
-
-                for (int i = 0; i < poolBotones.Count; i++)
-                {
-                    poolBotones[i].gameObject.SetActive(false);
-                }
-
-                if (luchador.sigueVivo)
-                {
-                    //TODA ESTA PARTE ES SUSCEPTIBLE A CAMBIO, PORQUE ESTO LO HACE EL TIO DLE TUTORIAL BAJO LA REALIDAD DE QUE UN MISMO BOTON
-                    //SERVIRA PARA VARIOS ATAQUES DEPENDIENDO DEL PERSONAJE ACTIVO, PERO EN NUESTRO CASO NO ES ASI, CADA CARTA TIENE UN BOTON
-                    //ESPECIFICO QUE EJECUTARÁ AL SER CLICADO LA ACCION ESPECÍFICA DEL PERSONAJE ASI QUE NO SE SI HABRIA QUE AÑADIR LOS LISTENERS
-                    //DURANTE EL PROPIO JUEGO O SE PODRÍA TENER HECHO DE ANTES (SUPONGO QUE NO PORQUE ANTES DE EJECUTAR LA ESCENA EL MAZO NO EXISTE AUN
-                    //A VER COMO HACEMOS ESO
-                    if (luchador.aliado)
-                    {
-                        /*foreach (var cardGO in scriptMano._cardGO)
-                        {
-                            Button b = GetComponent<Button>();
-                            poolBotones.Add(b);
-
-                            cardGO.GetComponentInChildren<Text>();
-
-                            for (int i = 0; i < poolBotones.Count; i++)
-                            {
-
-
-                                Debug.Log("HOALAA");
-                                if (cardGO. == "Ataque")
-                                {
-                                    b = poolBotones[i];
-                                }
-                            }
-
-                            b = botonesCartas[1].GetComponent<Button>();
-
-
-                            
-
-                            b.gameObject.SetActive(true);
-                            if (luchador.mana < accion.costoMana)
-                            {
-                                b.interactable = false;
-                            }
-                            else
-                            {
-                                b.interactable = true;
-                                b.onClick.AddListener(() =>
-                                {
-                                    for (int j = 0; j < poolBotones.Count; j++)
-                                    {
-                                        poolBotones[j].gameObject.SetActive(false);
-                                    }
-
-                                    c = luchador.EjecutarAccion(accion, luchadores[Random.Range(0, luchadores.Count)].transform);
-
-                                });
-                            }
-                        }*/
-                    }
-                    else
-                    {
-                        Debug.Log(luchador);
-                        luchador.MatameCojones(luchador.Acciones[0], luchadores[1].gameObject);
-                        
-                    }
-
-                    while (c == null)
-                    {
-                        yield return null;
-                    }
-                    StartCoroutine(c);
-                }
+                ordenTurnos.Enqueue(luchador);
             }
         }
     }
 
-    void Update()
+    private IEnumerator GestionarTurnos()
     {
-        botonesCartas = scriptMano._cardGO;
+        if (luchadorActual.Aliado)
+        {
+            deck.ActivarVisual(true); // Mostrar mazo
+            deck.SetCardCollection(luchadorActual.cartasDisponibles);
+            deck.RobarCartas(5);
+
+            estado = EstadoCombate.EsperandoTurno;
+
+            // Espera a que el jugador juegue su turno
+            yield return new WaitUntil(() => estado == EstadoCombate.FinTurno);
+        }
+        else
+        {
+            deck.ActivarVisual(false); // Ocultar mazo
+            estado = EstadoCombate.EjecutandoAccion;
+
+            yield return new WaitForSeconds(1f); // Pequeña pausa opcional
+
+            var aliado = BuscarAliadoAleatorio();
+            if (aliado == null)
+            {
+                estado = EstadoCombate.FinTurno;
+                yield break;
+            }
+
+            if (luchadorActual.cartasDisponibles.CartasEnLaColeccion.Count > 0)
+            {
+                var carta = luchadorActual.cartasDisponibles.CartasEnLaColeccion[0];
+
+                if (carta?.accion != null)
+                {
+                    carta.accion.Aplicar(luchadorActual, aliado);
+                    yield return new WaitForSeconds(0.5f); // Pausa opcional tras aplicar
+                }
+            }
+
+            estado = EstadoCombate.FinTurno;
+
+        }
+
+        while (true)
+         {
+             if (ordenTurnos.Count == 0)
+             {
+                 InicializarOrdenTurnos();
+                 yield return null;
+             }
+
+             luchadorActual = ordenTurnos.Dequeue();
+
+             if (luchadorActual == null || !luchadorActual.sigueVivo)
+                 continue;
+
+             Debug.Log($"Turno de: {luchadorActual.nombre}");
+
+             if (luchadorActual.cartasDisponibles != null)
+             {
+                 deck.SetCardCollection(luchadorActual.cartasDisponibles);
+                 deck.RobarCartas(5);
+             }
+
+             if (luchadorActual.Aliado)
+             {
+                 estado = EstadoCombate.EsperandoTurno;
+                 yield return new WaitUntil(() => estado == EstadoCombate.FinTurno);
+             }
+             else
+             {
+                 estado = EstadoCombate.EjecutandoAccion;
+
+                 if (luchadorActual.Acciones.Count > 0)
+                 {
+                     Luchador objetivo = BuscarObjetivoAleatorio();
+
+                     if (objetivo != null)
+                     {
+                         yield return luchadorActual.EjecutarAccion(luchadorActual.Acciones[0], objetivo);
+                     }
+                     else
+                     {
+                         Debug.LogWarning("No se encontró objetivo válido para el enemigo.");
+                     }
+                 }
+
+                 estado = EstadoCombate.FinTurno;
+             }
+
+            ordenTurnos.Enqueue(luchadorActual);
+            luchadorActual = null; // limpia para el siguiente turno
+            yield return null;
+        }
+
+       
+
     }
-    #endregion
+
+    public void EjecutarAccionJugador(Accion accion, Luchador objetivo)
+    {
+        if (estado != EstadoCombate.EsperandoTurno)
+            return;
+
+        estado = EstadoCombate.EjecutandoAccion;
+        StartCoroutine(EjecutarAccion(accion, objetivo));
+    }
+
+    private IEnumerator EjecutarAccion(Accion accion, Luchador objetivo)
+    {
+        yield return luchadorActual.EjecutarAccion(accion, objetivo);
+        estado = EstadoCombate.FinTurno;
+    }
+
+    private Luchador BuscarObjetivoAleatorio()
+    {
+        var posibles = luchadores.FindAll(l => l.Aliado && l.sigueVivo);
+        return posibles.Count > 0 ? posibles[Random.Range(0, posibles.Count)] : null;
+    }
+
+    public Luchador GetLuchadorActual()
+    {
+        return luchadorActual;
+    }
+    private Luchador BuscarAliadoAleatorio()
+    {
+        var aliados = luchadores.FindAll(l => l.Aliado && l.sigueVivo);
+        return aliados.Count > 0 ? aliados[Random.Range(0, aliados.Count)] : null;
+    }
+
 }

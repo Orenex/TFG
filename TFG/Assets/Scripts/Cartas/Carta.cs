@@ -1,21 +1,37 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CartaUi))] //pone automaticamente el script CartaUi a cualquier objeto que sea una carta
+[RequireComponent(typeof(CartaUi))]
 [RequireComponent(typeof(MovimientoCarta))]
 public class Carta : MonoBehaviour
 {
-    #region Fields and Properties
-    [field: SerializeField] public ScriptableCartas DataCarta { get;private set; }
+    #region Properties
+
+    public ScriptableCartas DataCarta { get; private set; }
 
     #endregion
 
-    #region Metodos
-    //establecer data de la carta al ejecutar
+    #region Methods
+
     public void SetUp(ScriptableCartas data)
     {
+        if (data == null)
+        {
+            Debug.LogError("¡SetUp() recibió un ScriptableCartas null!");
+            return;
+        }
+
         DataCarta = data;
-        GetComponent<CartaUi>().SetCardUI();
+
+        var ui = GetComponent<CartaUi>();
+        if (ui == null)
+        {
+            Debug.LogError("CartaUi no encontrado en el prefab.");
+            return;
+        }
+
+        ui.ActualizarUI(data);
     }
-    
+
+
     #endregion
 }
