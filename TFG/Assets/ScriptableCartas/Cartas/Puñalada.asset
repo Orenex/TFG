@@ -21,7 +21,7 @@ MonoBehaviour:
   <colores>k__BackingField: 2
   <accion>k__BackingField:
     nombre: "Pu\xF1alada"
-    estatico: 1
+    estatico: 0
     objetivoEsElEquipo: 0
     mensaje: '"CambiaVida"'
     argumento: -5

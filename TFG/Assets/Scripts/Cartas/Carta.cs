@@ -8,6 +8,7 @@ public class Carta : MonoBehaviour
 
     public ScriptableCartas DataCarta { get; private set; }
 
+
     #endregion
 
     #region Methods

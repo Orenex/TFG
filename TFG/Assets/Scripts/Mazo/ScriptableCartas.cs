@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 [CreateAssetMenu(fileName = "Carta", menuName = "Scriptable Objects/Carta")]
 public class ScriptableCartas : ScriptableObject
@@ -15,7 +16,7 @@ public class ScriptableCartas : ScriptableObject
     [field: SerializeField] public CartaColor colores { get; private set; }
 
     [Header("Acción que ejecuta")]
-    [field: SerializeField] public Accion accion { get; private set; }  // NUEVO
+    [field: SerializeField] public Accion accion { get; private set; }
 }
 
 public enum TipoCarta

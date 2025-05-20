@@ -57,101 +57,62 @@ public class FightManager : MonoBehaviour
 
     private IEnumerator GestionarTurnos()
     {
-        if (luchadorActual.Aliado)
-        {
-            deck.ActivarVisual(true); // Mostrar mazo
-            deck.SetCardCollection(luchadorActual.cartasDisponibles);
-            deck.RobarCartas(5);
-
-            estado = EstadoCombate.EsperandoTurno;
-
-            // Espera a que el jugador juegue su turno
-            yield return new WaitUntil(() => estado == EstadoCombate.FinTurno);
-        }
-        else
-        {
-            deck.ActivarVisual(false); // Ocultar mazo
-            estado = EstadoCombate.EjecutandoAccion;
-
-            yield return new WaitForSeconds(1f); // Pequeña pausa opcional
-
-            var aliado = BuscarAliadoAleatorio();
-            if (aliado == null)
-            {
-                estado = EstadoCombate.FinTurno;
-                yield break;
-            }
-
-            if (luchadorActual.cartasDisponibles.CartasEnLaColeccion.Count > 0)
-            {
-                var carta = luchadorActual.cartasDisponibles.CartasEnLaColeccion[0];
-
-                if (carta?.accion != null)
-                {
-                    carta.accion.Aplicar(luchadorActual, aliado);
-                    yield return new WaitForSeconds(0.5f); // Pausa opcional tras aplicar
-                }
-            }
-
-            estado = EstadoCombate.FinTurno;
-
-        }
-
         while (true)
-         {
-             if (ordenTurnos.Count == 0)
-             {
-                 InicializarOrdenTurnos();
-                 yield return null;
-             }
+        {
+            if (ordenTurnos.Count == 0)
+            {
+                InicializarOrdenTurnos();
+                yield return null;
+            }
 
-             luchadorActual = ordenTurnos.Dequeue();
+            luchadorActual = ordenTurnos.Dequeue();
 
-             if (luchadorActual == null || !luchadorActual.sigueVivo)
-                 continue;
+            if (luchadorActual == null || !luchadorActual.sigueVivo)
+                continue;
 
-             Debug.Log($"Turno de: {luchadorActual.nombre}");
+            Debug.Log($"Turno de: {luchadorActual.nombre}");
 
-             if (luchadorActual.cartasDisponibles != null)
-             {
-                 deck.SetCardCollection(luchadorActual.cartasDisponibles);
-                 deck.RobarCartas(5);
-             }
+            if (luchadorActual.Aliado)
+            {
+                deck.ActivarVisual(true);
+                deck.SetCardCollection(luchadorActual.cartasDisponibles); // esto limpia y reinicia el mazo
+                deck.RobarCartas(5); // las nuevas cartas ya se colocan tras limpiar
 
-             if (luchadorActual.Aliado)
-             {
-                 estado = EstadoCombate.EsperandoTurno;
-                 yield return new WaitUntil(() => estado == EstadoCombate.FinTurno);
-             }
-             else
-             {
-                 estado = EstadoCombate.EjecutandoAccion;
+                estado = EstadoCombate.EsperandoTurno;
+                yield return new WaitUntil(() => estado == EstadoCombate.FinTurno);
+            }
 
-                 if (luchadorActual.Acciones.Count > 0)
-                 {
-                     Luchador objetivo = BuscarObjetivoAleatorio();
+            else
+            {
+                // Ocultar mazo y ejecutar acción automática
+                deck.ActivarVisual(false);
+                estado = EstadoCombate.EjecutandoAccion;
 
-                     if (objetivo != null)
-                     {
-                         yield return luchadorActual.EjecutarAccion(luchadorActual.Acciones[0], objetivo);
-                     }
-                     else
-                     {
-                         Debug.LogWarning("No se encontró objetivo válido para el enemigo.");
-                     }
-                 }
+                yield return new WaitForSeconds(1f);
 
-                 estado = EstadoCombate.FinTurno;
-             }
+                var aliado = BuscarAliadoAleatorio();
+                if (aliado != null)
+                {
+                    if (luchadorActual.cartasDisponibles.CartasEnLaColeccion.Count > 0)
+                    {
+                        var carta = luchadorActual.cartasDisponibles.CartasEnLaColeccion[0];
+                        if (carta?.accion != null)
+                        {
+                            carta.accion.Aplicar(luchadorActual, aliado);
+                            yield return new WaitForSeconds(0.5f);
+                        }
+                    }
+                }
+
+                estado = EstadoCombate.FinTurno;
+            }
 
             ordenTurnos.Enqueue(luchadorActual);
-            luchadorActual = null; // limpia para el siguiente turno
+            luchadorActual = null;
             yield return null;
         }
-
-       
-
     }
+
 
     public void EjecutarAccionJugador(Accion accion, Luchador objetivo)
     {

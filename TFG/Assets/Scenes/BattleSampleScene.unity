@@ -1087,7 +1087,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86aac3f9df865e0499b9006b4a7a7f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coleccionBase: {fileID: 11400000, guid: cc76023cb8f267245ab7ea6e63097d6b, type: 2}
   prefabCarta: {fileID: 5570587888800559622, guid: 2e513a1d9e4c38e45b6939bdff1b04e2, type: 3}
   canvasCartas: {fileID: 1121058461}
   mano: {fileID: 2029324260}
@@ -2629,11 +2628,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luchadores:
+  - {fileID: 1687238850}
   - {fileID: 1489431645}
   - {fileID: 1323463328}
   - {fileID: 23868590}
   - {fileID: 1623621483}
-  - {fileID: 1687238850}
   manoJugador: {fileID: 2029324260}
   deck: {fileID: 1273488904}
 --- !u!4 &1807752037

@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b6d4f9b96275b419ac724268a707ee, type: 3}
   m_Name: Truco Sombrero
   m_EditorClassIdentifier: 
-  <nombreCarta>k__BackingField: 
-  <descripcion>k__BackingField: 
-  <coste>k__BackingField: 0
-  <imagen>k__BackingField: {fileID: 0}
-  <efecto>k__BackingField: 
+  <nombreCarta>k__BackingField: Truco Sombrero
+  <descripcion>k__BackingField: Saco un conejo y te abofeteo con el
+  <coste>k__BackingField: 1
+  <imagen>k__BackingField: {fileID: 21300000, guid: 4a9e8740b217fbe4580704226318043a, type: 3}
+  <efecto>k__BackingField: -5 hp
   <tipo>k__BackingField: 0
-  <colores>k__BackingField: 0
+  <colores>k__BackingField: 1
   <accion>k__BackingField:
-    nombre: 
+    nombre: Truco Sombrero
     estatico: 0
     objetivoEsElEquipo: 0
-    mensaje: 
-    argumento: 0
+    mensaje: '"CambiaVida"'
+    argumento: -5
     animacionTrigger: 
     efectoSecundario: 
-    costoMana: 0
+    costoMana: 1

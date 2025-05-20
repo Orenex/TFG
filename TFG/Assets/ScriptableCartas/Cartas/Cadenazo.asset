@@ -21,7 +21,7 @@ MonoBehaviour:
   <colores>k__BackingField: 1
   <accion>k__BackingField:
     nombre: Cadenazo
-    estatico: 1
+    estatico: 0
     objetivoEsElEquipo: 0
     mensaje: '"CambiaVida"'
     argumento: -5

@@ -47,7 +47,7 @@ public class Mano : MonoBehaviour
 
     public Transform ObtenerSiguienteAncla(out int index)
     {
-        for (int i = 0; i < posicionesLibres.Length; i++)
+        for (int i = 0; i < anclas.Length; i++)
         {
             if (posicionesLibres[i])
             {
@@ -64,7 +64,9 @@ public class Mano : MonoBehaviour
     public void LiberarPosicion(int index)
     {
         if (index >= 0 && index < posicionesLibres.Length)
+        {
             posicionesLibres[index] = true;
+        }
     }
 
     private IEnumerator RoboAutomatico()
@@ -115,7 +117,23 @@ public class Mano : MonoBehaviour
         seleccionada.gameObject.SetActive(false);
         deck.RobarCartas(1);
     }
+    public bool NoHayEspacioDisponible()
+    {
+        return ObtenerSiguienteAncla(out _) == null;
+    }
 
-
-
+    public void ReiniciarAnclas()
+    {
+        for (int i = 0; i < posicionesLibres.Length; i++)
+        {
+            posicionesLibres[i] = true;
+        }
+    }
+    public void LiberarTodasLasPosiciones()
+    {
+        for (int i = 0; i < posicionesLibres.Length; i++)
+        {
+            posicionesLibres[i] = true;
+        }
+    }
 }

@@ -7,20 +7,73 @@ using UnityEngine;
 public class Deck : MonoBehaviour
 {
     [Header("Configuración")]
-    [SerializeField] private CardCollection coleccionBase;
     [SerializeField] private Carta prefabCarta;
     [SerializeField] private Canvas canvasCartas;
 
     [Header("Referencias externas")]
     [SerializeField] private Mano mano;
 
+    private CardCollection coleccionBase;
     private readonly List<Carta> pilaMazo = new();
     private readonly List<Carta> pilaDescarte = new();
     public List<Carta> CartasEnMano { get; private set; } = new();
 
-    private void Start()
+    // Muestra u oculta visualmente el mazo
+    public void ActivarVisual(bool activo)
     {
+        if (canvasCartas != null)
+            canvasCartas.gameObject.SetActive(activo);
+    }
+
+    public void SetCardCollection(CardCollection nuevaColeccion)
+    {
+        coleccionBase = nuevaColeccion;
+        ReiniciarMazo();
+    }
+
+    public void ReiniciarMazo()
+    {
+        mano.LiberarTodasLasPosiciones();
+
+        foreach (var carta in CartasEnMano)
+        {
+            if (carta != null)
+                DestroyImmediate(carta.gameObject);
+        }
+
+        foreach (var carta in pilaMazo)
+        {
+            if (carta != null)
+                DestroyImmediate(carta.gameObject);
+        }
+
+        pilaMazo.Clear();
+        pilaDescarte.Clear();
+        CartasEnMano.Clear();
+
         InicializarMazo();
+    }
+
+
+    private void InicializarMazo()
+    {
+        if (coleccionBase == null || prefabCarta == null || canvasCartas == null)
+        {
+            Debug.LogWarning("Deck: Falta asignar referencias necesarias.");
+            return;
+        }
+
+        foreach (var data in coleccionBase.CartasEnLaColeccion)
+        {
+            if (data == null) continue;
+
+            var carta = Instantiate(prefabCarta, canvasCartas.transform);
+            carta.SetUp(data);
+            carta.gameObject.SetActive(false);
+            pilaMazo.Add(carta);
+        }
+
+        BarajarCartas(pilaMazo);
     }
 
     public void RobarCartas(int cantidad)
@@ -45,15 +98,13 @@ public class Deck : MonoBehaviour
             pilaMazo.RemoveAt(0);
             CartasEnMano.Add(carta);
 
-            // Asignar solo si hay ancla
+            // Posicionar en la mano
             Transform ancla = mano.ObtenerSiguienteAncla(out int index);
             if (ancla != null)
             {
                 carta.transform.SetParent(ancla, false);
                 carta.transform.localPosition = Vector3.zero;
                 carta.transform.localRotation = Quaternion.identity;
-
-                Debug.Log(ancla);
             }
             else
             {
@@ -65,7 +116,6 @@ public class Deck : MonoBehaviour
         }
     }
 
-
     public void DescartarCarta(Carta carta)
     {
         if (CartasEnMano.Contains(carta))
@@ -74,21 +124,6 @@ public class Deck : MonoBehaviour
             pilaDescarte.Add(carta);
             carta.gameObject.SetActive(false);
         }
-    }
-
-    private void InicializarMazo()
-    {
-        foreach (var data in coleccionBase.CartasEnLaColeccion)
-        {
-            if (data == null) continue;
-
-            var carta = Instantiate(prefabCarta, canvasCartas.transform);
-            carta.SetUp(data);
-            carta.gameObject.SetActive(false);
-            pilaMazo.Add(carta);
-        }
-
-        BarajarCartas(pilaMazo);
     }
 
     private void MezclarDescarteEnMazo()
@@ -107,28 +142,4 @@ public class Deck : MonoBehaviour
             (lista[i], lista[j]) = (lista[j], lista[i]);
         }
     }
-    public void SetCardCollection(CardCollection nuevaColeccion)
-    {
-        coleccionBase = nuevaColeccion;
-        ReiniciarMazo();
-    }
-
-    public void ReiniciarMazo()
-    {
-        // Elimina cartas existentes
-        foreach (var carta in pilaMazo)
-            Destroy(carta.gameObject);
-
-        pilaMazo.Clear();
-        pilaDescarte.Clear();
-        CartasEnMano.Clear();
-
-        InicializarMazo();
-    }
-    public void ActivarVisual(bool activo)
-    {
-        if (canvasCartas != null)
-            canvasCartas.gameObject.SetActive(activo);
-    }
-
 }
