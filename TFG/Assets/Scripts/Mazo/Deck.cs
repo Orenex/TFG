@@ -142,4 +142,45 @@ public class Deck : MonoBehaviour
             (lista[i], lista[j]) = (lista[j], lista[i]);
         }
     }
+
+    public void RobarCartaEnPosicion(int index)
+    {
+        if (pilaMazo.Count == 0)
+        {
+            if (pilaDescarte.Count > 0)
+            {
+                MezclarDescarteEnMazo();
+            }
+
+            if (pilaMazo.Count == 0)
+            {
+                Debug.LogWarning("No hay cartas disponibles para robar.");
+                return;
+            }
+        }
+
+        var carta = pilaMazo[0];
+        pilaMazo.RemoveAt(0);
+        CartasEnMano.Add(carta);
+
+        Transform ancla = mano.ObtenerAnclaEnIndice(index);
+        if (ancla != null)
+        {
+            carta.transform.SetParent(ancla, false);
+            carta.transform.localPosition = Vector3.zero;
+            carta.transform.localRotation = Quaternion.identity;
+
+            carta.indiceAncla = index; // Asegura que la carta sepa en qué posición está
+            carta.gameObject.SetActive(true);
+
+            Debug.Log($"Robada carta colocada en índice: {index}");
+        }
+        else
+        {
+            Debug.LogWarning("No se pudo colocar la carta en la posición especificada.");
+        }
+    }
+
+
+
 }

@@ -11,6 +11,8 @@ public class MovimientoCarta : MonoBehaviour, IPointerClickHandler, IPointerEnte
 
     public Carta CartaData { get; private set; }
 
+    public int indiceAncla { get; set; }
+
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();

@@ -75,8 +75,10 @@ public class FightManager : MonoBehaviour
             if (luchadorActual.Aliado)
             {
                 deck.ActivarVisual(true);
-                deck.SetCardCollection(luchadorActual.cartasDisponibles); // esto limpia y reinicia el mazo
-                deck.RobarCartas(5); // las nuevas cartas ya se colocan tras limpiar
+                deck.SetCardCollection(luchadorActual.cartasDisponibles);
+                deck.RobarCartas(5);
+
+                manoJugador.ReiniciarDescartesDelTurno();
 
                 estado = EstadoCombate.EsperandoTurno;
                 yield return new WaitUntil(() => estado == EstadoCombate.FinTurno);

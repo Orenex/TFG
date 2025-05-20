@@ -7,6 +7,7 @@ public class Carta : MonoBehaviour
     #region Properties
 
     public ScriptableCartas DataCarta { get; private set; }
+    public int indiceAncla { get; internal set; }
 
 
     #endregion

@@ -16,7 +16,8 @@ public class Mano : MonoBehaviour
 
     public static bool IsDiscarding { get; private set; }
 
-    
+    private bool descarteUsadoEsteTurno = false;
+
     private void Awake()
     {
         posicionesLibres = new bool[anclas.Length];
@@ -25,12 +26,7 @@ public class Mano : MonoBehaviour
             posicionesLibres[i] = true;
         }
 
-        StartCoroutine(RoboAutomatico());
-    }
-
-    private void Update()
-    {
-        botonConfirmar.SetActive(IsDiscarding);
+        
     }
 
     public void AlternarDescartar()
@@ -69,21 +65,6 @@ public class Mano : MonoBehaviour
         }
     }
 
-    private IEnumerator RoboAutomatico()
-    {
-        while (true)
-        {
-            for (int i = 0; i < posicionesLibres.Length; i++)
-            {
-                if (posicionesLibres[i])
-                {
-                    yield return new WaitForSeconds(0.2f);
-                    deck.RobarCartas(1);
-                }
-            }
-            yield return null;
-        }
-    }
     public void ConfirmarJugada()
     {
         var seleccionada = MovimientoCarta.ObtenerCartaSeleccionada();
@@ -106,6 +87,12 @@ public class Mano : MonoBehaviour
 
     public void ConfirmarDescarte()
     {
+        if (descarteUsadoEsteTurno)
+        {
+            Debug.LogWarning("Ya usaste tu descarte este turno.");
+            return;
+        }
+
         var seleccionada = MovimientoCarta.ObtenerCartaSeleccionada();
         if (seleccionada == null)
         {
@@ -113,10 +100,19 @@ public class Mano : MonoBehaviour
             return;
         }
 
+        int indice = seleccionada.indiceAncla;
+        Debug.Log($"Descartando carta en índice: {indice}");
+
+        LiberarPosicion(indice);
         deck.DescartarCarta(seleccionada.CartaData);
         seleccionada.gameObject.SetActive(false);
-        deck.RobarCartas(1);
+
+        deck.RobarCartaEnPosicion(indice);
+
+        descarteUsadoEsteTurno = true;
     }
+
+
     public bool NoHayEspacioDisponible()
     {
         return ObtenerSiguienteAncla(out _) == null;
@@ -136,4 +132,24 @@ public class Mano : MonoBehaviour
             posicionesLibres[i] = true;
         }
     }
+
+    public void ReiniciarDescartesDelTurno()
+    {
+        descarteUsadoEsteTurno = false;
+    }
+
+    public Transform ObtenerAnclaEnIndice(int index)
+    {
+        if (index >= 0 && index < anclas.Length)
+        {
+            posicionesLibres[index] = false;
+            return anclas[index];
+        }
+
+        return null;
+    }
+
+
+
+
 }
