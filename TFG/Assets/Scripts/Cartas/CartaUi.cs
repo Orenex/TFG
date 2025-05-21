@@ -13,6 +13,7 @@ public class CartaUi : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textoTipo;
     [SerializeField] private TextMeshProUGUI textoEfecto;
     [SerializeField] private TextMeshProUGUI textoDescripcion;
+    [SerializeField] private TextMeshProUGUI textoRecurso; // NUEVO
 
     #endregion
 
@@ -38,8 +39,12 @@ public class CartaUi : MonoBehaviour
         textoCoste.text = data.coste.ToString();
         textoTipo.text = ObtenerTextoTipo(data.tipo);
         imagenCarta.sprite = data.imagen;
-    }
 
+        if (textoRecurso != null)
+        {
+            textoRecurso.text = ObtenerTextoRecurso(data.tipoCoste);
+        }
+    }
 
     #endregion
 
@@ -51,8 +56,18 @@ public class CartaUi : MonoBehaviour
         {
             TipoCarta.Ataque => "Ataque",
             TipoCarta.Habilidad => "Habilidad",
-            TipoCarta.Eterna => "Eterna",
+            TipoCarta.Duplicadora => "Duplicadora",
             _ => "Desconocido"
+        };
+    }
+
+    private string ObtenerTextoRecurso(RecursoCoste recurso)
+    {
+        return recurso switch
+        {
+            RecursoCoste.Mana => "Usa Maná",
+            RecursoCoste.Sanidad => "Usa Sanidad",
+            _ => "Sin recurso"
         };
     }
 

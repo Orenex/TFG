@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,10 +9,9 @@ public class Mano : MonoBehaviour
 
     [Header("Interfaz")]
     [SerializeField] private GameObject botonConfirmar;
-    [SerializeField] private Deck deck;
+    [SerializeField] public Deck deck;
 
     private List<MovimientoCarta> cartasEnMano = new();
-
     public static bool IsDiscarding { get; private set; }
 
     private bool descarteUsadoEsteTurno = false;
@@ -25,20 +23,14 @@ public class Mano : MonoBehaviour
         {
             posicionesLibres[i] = true;
         }
-
-        
     }
 
     public void AlternarDescartar()
     {
         IsDiscarding = !IsDiscarding;
         cartasEnMano.Clear();
-
         MovimientoCarta[] cartas = FindObjectsOfType<MovimientoCarta>();
-        foreach (var c in cartas)
-        {
-            cartasEnMano.Add(c);
-        }
+        cartasEnMano.AddRange(cartas);
     }
 
     public Transform ObtenerSiguienteAncla(out int index)
@@ -100,18 +92,12 @@ public class Mano : MonoBehaviour
             return;
         }
 
-        int indice = seleccionada.indiceAncla;
-        Debug.Log($"Descartando carta en índice: {indice}");
-
-        LiberarPosicion(indice);
-        deck.DescartarCarta(seleccionada.CartaData);
+        deck.DescartarYReemplazarCarta(seleccionada.CartaData);
+        LiberarPosicion(seleccionada.indiceAncla);
         seleccionada.gameObject.SetActive(false);
-
-        deck.RobarCartaEnPosicion(indice);
 
         descarteUsadoEsteTurno = true;
     }
-
 
     public bool NoHayEspacioDisponible()
     {
@@ -125,6 +111,7 @@ public class Mano : MonoBehaviour
             posicionesLibres[i] = true;
         }
     }
+
     public void LiberarTodasLasPosiciones()
     {
         for (int i = 0; i < posicionesLibres.Length; i++)
@@ -148,8 +135,4 @@ public class Mano : MonoBehaviour
 
         return null;
     }
-
-
-
-
 }

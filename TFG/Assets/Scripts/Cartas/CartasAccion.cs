@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// ScriptableObject que representa una acción ejecutable por una carta.
+/// </summary>
 [CreateAssetMenu(fileName = "NuevaAccion", menuName = "Cartas/Accion")]
 public class CartasAccion : ScriptableObject
 {
@@ -23,7 +26,7 @@ public class CartasAccion : ScriptableObject
             return;
         }
 
-        objetivo.vida -= daño;
+        objetivo.CambiarVida(-daño);
         Debug.Log($"{lanzador.name} infligió {daño} daño a {objetivo.name}.");
 
         if (objetivo.vida <= 0)

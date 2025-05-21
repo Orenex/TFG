@@ -1,60 +1,82 @@
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SeleccionadorDeEnemigo3D : MonoBehaviour
 {
-    [SerializeField] private GameObject indicadorPrefab;
+    [Header("Configuración")]
+    [SerializeField] private LayerMask capaLuchadores;
+
+    [Header("Indicador Visual")]
+    [SerializeField] private GameObject indicadorSeleccionPrefab;
+
     private GameObject indicadorInstanciado;
-
-    private List<Luchador> enemigos = new();
-    private int indiceSeleccionado = 0;
-
-    public Luchador EnemigoSeleccionado => enemigos.Count > 0 ? enemigos[indiceSeleccionado] : null;
-
-    private void Start()
-    {
-        enemigos = new List<Luchador>(FindObjectsOfType<Luchador>());
-        enemigos.RemoveAll(e => e.Aliado); // Eliminar aliados
-
-        if (enemigos.Count == 0)
-        {
-            Debug.LogWarning("No se encontraron enemigos para seleccionar.");
-            return;
-        }
-
-        indicadorInstanciado = Instantiate(indicadorPrefab);
-        indicadorInstanciado.transform.SetParent(null);
-        indicadorInstanciado.SetActive(true);
-
-        ActualizarIndicador();
-        SeleccionDeObjetivo.Instance?.SeleccionarObjetivo(EnemigoSeleccionado); // Inicializar selección
-    }
 
     private void Update()
     {
-        if (enemigos.Count == 0) return;
-
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetMouseButtonDown(0))
         {
-            indiceSeleccionado = (indiceSeleccionado + 1) % enemigos.Count;
-            ActualizarIndicador();
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            indiceSeleccionado = (indiceSeleccionado - 1 + enemigos.Count) % enemigos.Count;
-            ActualizarIndicador();
+            SeleccionarConClick();
         }
     }
 
-    private void ActualizarIndicador()
+    private void SeleccionarConClick()
     {
-        if (indicadorInstanciado == null) return;
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            Debug.Log("Clic ignorado sobre la UI.");
+            return;
+        }
 
-        var enemigo = enemigos[indiceSeleccionado];
-        var posicion = enemigo.transform.position + Vector3.up * 2f;
-        indicadorInstanciado.transform.position = posicion;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        SeleccionDeObjetivo.Instance?.SeleccionarObjetivo(enemigo); // Actualiza el objetivo real
-        Debug.Log("Enemigo seleccionado: " + enemigo.name);
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, capaLuchadores))
+        {
+            Debug.Log($"Raycast HIT: {hit.collider.name}");
+
+            Luchador luchador = hit.collider.GetComponentInParent<Luchador>();
+            if (luchador != null && !luchador.Aliado && luchador.sigueVivo && luchador.gameObject.activeInHierarchy)
+            {
+                SeleccionDeObjetivo.Instance.SeleccionarObjetivo(luchador);
+                MostrarIndicadorSobre(luchador.transform);
+            }
+            else
+            {
+                Debug.Log("Objeto clicado no es un enemigo válido.");
+            }
+        }
+        else
+        {
+            Debug.Log("Raycast NO golpeó nada.");
+        }
+    }
+
+    private void MostrarIndicadorSobre(Transform objetivo)
+    {
+        if (indicadorSeleccionPrefab == null)
+        {
+            Debug.LogWarning("Prefab del indicador no asignado.");
+            return;
+        }
+
+        if (indicadorInstanciado == null)
+        {
+            indicadorInstanciado = Instantiate(indicadorSeleccionPrefab);
+            indicadorInstanciado.layer = LayerMask.NameToLayer("Indicador");
+
+            if (indicadorInstanciado.TryGetComponent<Collider>(out var col))
+                Destroy(col); //elimina el collider completamente
+        }
+
+        indicadorInstanciado.transform.SetParent(null); // no hereda del objetivo
+        indicadorInstanciado.transform.position = objetivo.position + Vector3.up * 2f;
+        indicadorInstanciado.SetActive(true);
+    }
+
+    public void OcultarIndicador()
+    {
+        if (indicadorInstanciado != null)
+        {
+            indicadorInstanciado.SetActive(false);
+        }
     }
 }

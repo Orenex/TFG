@@ -14,8 +14,8 @@ public class FightManager : MonoBehaviour
     private Luchador luchadorActual;
 
     [Header("Control jugador")]
-    [SerializeField] private Mano manoJugador;
-    [SerializeField] private Deck deck;
+    [SerializeField] public Mano manoJugador;
+    [SerializeField] public Deck deck;
 
     private enum EstadoCombate
     {
@@ -39,6 +39,7 @@ public class FightManager : MonoBehaviour
         InicializarOrdenTurnos();
         if (ordenTurnos.Count > 0)
             luchadorActual = ordenTurnos.Dequeue();
+
         StartCoroutine(GestionarTurnos());
     }
 
@@ -49,9 +50,7 @@ public class FightManager : MonoBehaviour
         foreach (var luchador in luchadores)
         {
             if (luchador != null && luchador.sigueVivo)
-            {
                 ordenTurnos.Enqueue(luchador);
-            }
         }
     }
 
@@ -70,6 +69,12 @@ public class FightManager : MonoBehaviour
             if (luchadorActual == null || !luchadorActual.sigueVivo)
                 continue;
 
+            
+            SeleccionDeObjetivo.Instance.LimpiarSeleccion();
+            ReiniciarSelectorDeEnemigos();
+
+            luchadorActual.AplicarEfectosPorTurno();
+
             Debug.Log($"Turno de: {luchadorActual.nombre}");
 
             if (luchadorActual.Aliado)
@@ -83,28 +88,14 @@ public class FightManager : MonoBehaviour
                 estado = EstadoCombate.EsperandoTurno;
                 yield return new WaitUntil(() => estado == EstadoCombate.FinTurno);
             }
-
             else
             {
-                // Ocultar mazo y ejecutar acción automática
                 deck.ActivarVisual(false);
                 estado = EstadoCombate.EjecutandoAccion;
-
                 yield return new WaitForSeconds(1f);
 
-                var aliado = BuscarAliadoAleatorio();
-                if (aliado != null)
-                {
-                    if (luchadorActual.cartasDisponibles.CartasEnLaColeccion.Count > 0)
-                    {
-                        var carta = luchadorActual.cartasDisponibles.CartasEnLaColeccion[0];
-                        if (carta?.accion != null)
-                        {
-                            carta.accion.Aplicar(luchadorActual, aliado);
-                            yield return new WaitForSeconds(0.5f);
-                        }
-                    }
-                }
+                EjecutarTurnoEnemigo(luchadorActual);
+                yield return new WaitForSeconds(1f);
 
                 estado = EstadoCombate.FinTurno;
             }
@@ -115,6 +106,85 @@ public class FightManager : MonoBehaviour
         }
     }
 
+    private void ReiniciarSelectorDeEnemigos()
+    {
+        var selector = FindObjectOfType<SeleccionadorDeEnemigo3D>();
+        if (selector != null)
+        {
+            if (!selector.gameObject.activeInHierarchy)
+            {
+                Debug.Log("Reactivando GameObject del selector.");
+                selector.gameObject.SetActive(true);
+            }
+
+            if (!selector.enabled)
+            {
+                Debug.Log("Reactivando script SeleccionadorDeEnemigo3D.");
+                selector.enabled = true;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró un objeto con SeleccionadorDeEnemigo3D.");
+        }
+    }
+
+    private void EjecutarTurnoEnemigo(Luchador enemigo)
+    {
+        var cartasDisponibles = enemigo.cartasDisponibles.CartasEnLaColeccion;
+
+        var jugables = cartasDisponibles.FindAll(c =>
+            c != null &&
+            ((c.accion.tipoCoste == RecursoCoste.Mana && enemigo.mana >= c.accion.costoMana) ||
+             (c.accion.tipoCoste == RecursoCoste.Sanidad && enemigo.sanidad >= c.accion.costoMana))
+        );
+
+        if (jugables.Count == 0) return;
+
+        ScriptableCartas cartaElegida = ElegirCartaInteligente(jugables, enemigo);
+        Luchador objetivo = ElegirObjetivoParaCarta(cartaElegida, enemigo);
+
+        if (objetivo != null)
+        {
+            StartCoroutine(enemigo.EjecutarAccion(cartaElegida.accion, objetivo));
+        }
+    }
+
+    private ScriptableCartas ElegirCartaInteligente(List<ScriptableCartas> cartas, Luchador lanzador)
+    {
+        if (lanzador.vida <= 10)
+        {
+            var curativas = cartas.FindAll(c => c.accion.mensaje == "CambiarVida" && c.accion.argumento > 0);
+            if (curativas.Count > 0)
+                return curativas[Random.Range(0, curativas.Count)];
+        }
+
+        var ofensivas = cartas.FindAll(c => c.accion.mensaje == "CambiarVida" && c.accion.argumento < 0);
+        if (ofensivas.Count > 0)
+            return ofensivas[Random.Range(0, ofensivas.Count)];
+
+        return cartas[Random.Range(0, cartas.Count)];
+    }
+
+    private Luchador ElegirObjetivoParaCarta(ScriptableCartas carta, Luchador lanzador)
+    {
+        if (carta.accion.objetivoEsElEquipo)
+            return lanzador;
+
+        if (carta.accion.mensaje == "CambiarVida" && carta.accion.argumento < 0)
+        {
+            var enemigos = luchadores.FindAll(l => l.Aliado && l.sigueVivo);
+            return enemigos.Count > 0 ? enemigos[Random.Range(0, enemigos.Count)] : null;
+        }
+
+        if (carta.accion.mensaje == "CambiarVida" && carta.accion.argumento > 0)
+        {
+            var aliadosHeridos = luchadores.FindAll(l => !l.Aliado && l.sigueVivo && l.vida < 15);
+            return aliadosHeridos.Count > 0 ? aliadosHeridos[Random.Range(0, aliadosHeridos.Count)] : lanzador;
+        }
+
+        return lanzador;
+    }
 
     public void EjecutarAccionJugador(Accion accion, Luchador objetivo)
     {
@@ -131,20 +201,13 @@ public class FightManager : MonoBehaviour
         estado = EstadoCombate.FinTurno;
     }
 
-    private Luchador BuscarObjetivoAleatorio()
-    {
-        var posibles = luchadores.FindAll(l => l.Aliado && l.sigueVivo);
-        return posibles.Count > 0 ? posibles[Random.Range(0, posibles.Count)] : null;
-    }
-
     public Luchador GetLuchadorActual()
     {
         return luchadorActual;
     }
-    private Luchador BuscarAliadoAleatorio()
-    {
-        var aliados = luchadores.FindAll(l => l.Aliado && l.sigueVivo);
-        return aliados.Count > 0 ? aliados[Random.Range(0, aliados.Count)] : null;
-    }
 
+    public void TerminarTurno()
+    {
+        estado = EstadoCombate.FinTurno;
+    }
 }

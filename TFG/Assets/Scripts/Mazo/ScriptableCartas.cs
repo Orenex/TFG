@@ -17,13 +17,16 @@ public class ScriptableCartas : ScriptableObject
 
     [Header("Acción que ejecuta")]
     [field: SerializeField] public Accion accion { get; private set; }
+
+    [Header("Coste")]
+    [field: SerializeField] public RecursoCoste tipoCoste = RecursoCoste.Mana;  // NUEVO
 }
 
 public enum TipoCarta
 {
     Ataque,
     Habilidad,
-    Eterna,
+    Duplicadora // NUEVO
 }
 
 public enum CartaColor
@@ -31,5 +34,11 @@ public enum CartaColor
     Rojo,
     Azul,
     Amarillo,
-    Verde,
+    Verde
+}
+
+public enum RecursoCostes
+{
+    Mana,
+    Sanidad
 }

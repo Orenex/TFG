@@ -11,14 +11,13 @@ public class Deck : MonoBehaviour
     [SerializeField] private Canvas canvasCartas;
 
     [Header("Referencias externas")]
-    [SerializeField] private Mano mano;
+    [SerializeField] public Mano mano;
 
     private CardCollection coleccionBase;
     private readonly List<Carta> pilaMazo = new();
     private readonly List<Carta> pilaDescarte = new();
     public List<Carta> CartasEnMano { get; private set; } = new();
 
-    // Muestra u oculta visualmente el mazo
     public void ActivarVisual(bool activo)
     {
         if (canvasCartas != null)
@@ -36,16 +35,10 @@ public class Deck : MonoBehaviour
         mano.LiberarTodasLasPosiciones();
 
         foreach (var carta in CartasEnMano)
-        {
-            if (carta != null)
-                DestroyImmediate(carta.gameObject);
-        }
+            if (carta != null) DestroyImmediate(carta.gameObject);
 
         foreach (var carta in pilaMazo)
-        {
-            if (carta != null)
-                DestroyImmediate(carta.gameObject);
-        }
+            if (carta != null) DestroyImmediate(carta.gameObject);
 
         pilaMazo.Clear();
         pilaDescarte.Clear();
@@ -53,7 +46,6 @@ public class Deck : MonoBehaviour
 
         InicializarMazo();
     }
-
 
     private void InicializarMazo()
     {
@@ -76,35 +68,33 @@ public class Deck : MonoBehaviour
         BarajarCartas(pilaMazo);
     }
 
+    /// <summary>
+    /// Roba X cartas nuevas y las coloca en la mano.
+    /// </summary>
     public void RobarCartas(int cantidad)
     {
         for (int i = 0; i < cantidad; i++)
         {
+            if (pilaMazo.Count == 0 && pilaDescarte.Count > 0)
+                MezclarDescarteEnMazo();
+
             if (pilaMazo.Count == 0)
             {
-                if (pilaDescarte.Count > 0)
-                {
-                    MezclarDescarteEnMazo();
-                }
-
-                if (pilaMazo.Count == 0)
-                {
-                    Debug.LogWarning("No hay cartas disponibles para robar.");
-                    return;
-                }
+                Debug.LogWarning("No hay cartas disponibles para robar.");
+                return;
             }
 
             var carta = pilaMazo[0];
             pilaMazo.RemoveAt(0);
             CartasEnMano.Add(carta);
 
-            // Posicionar en la mano
             Transform ancla = mano.ObtenerSiguienteAncla(out int index);
             if (ancla != null)
             {
                 carta.transform.SetParent(ancla, false);
                 carta.transform.localPosition = Vector3.zero;
                 carta.transform.localRotation = Quaternion.identity;
+                carta.indiceAncla = index;
             }
             else
             {
@@ -126,6 +116,40 @@ public class Deck : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Roba una nueva carta para la posición especificada (índice).
+    /// </summary>
+    public void RobarCartaEnPosicion(int index)
+    {
+        if (pilaMazo.Count == 0 && pilaDescarte.Count > 0)
+            MezclarDescarteEnMazo();
+
+        if (pilaMazo.Count == 0)
+        {
+            Debug.LogWarning("No hay cartas disponibles para robar.");
+            return;
+        }
+
+        var carta = pilaMazo[0];
+        pilaMazo.RemoveAt(0);
+        CartasEnMano.Add(carta);
+
+        Transform ancla = mano.ObtenerAnclaEnIndice(index);
+        if (ancla != null)
+        {
+            carta.transform.SetParent(ancla, false);
+            carta.transform.localPosition = Vector3.zero;
+            carta.transform.localRotation = Quaternion.identity;
+            carta.indiceAncla = index;
+            carta.gameObject.SetActive(true);
+            Debug.Log($"Robada carta colocada en índice: {index}");
+        }
+        else
+        {
+            Debug.LogWarning("No se pudo colocar la carta en la posición especificada.");
+        }
+    }
+
     private void MezclarDescarteEnMazo()
     {
         pilaMazo.AddRange(pilaDescarte);
@@ -143,44 +167,27 @@ public class Deck : MonoBehaviour
         }
     }
 
-    public void RobarCartaEnPosicion(int index)
+    /// <summary>
+    /// Descarta una carta y roba otra en su misma posición.
+    /// </summary>
+    public void DescartarYReemplazarCarta(Carta carta)
     {
-        if (pilaMazo.Count == 0)
+        if (!CartasEnMano.Contains(carta))
         {
-            if (pilaDescarte.Count > 0)
-            {
-                MezclarDescarteEnMazo();
-            }
-
-            if (pilaMazo.Count == 0)
-            {
-                Debug.LogWarning("No hay cartas disponibles para robar.");
-                return;
-            }
+            Debug.LogWarning("La carta no está en la mano.");
+            return;
         }
 
-        var carta = pilaMazo[0];
-        pilaMazo.RemoveAt(0);
-        CartasEnMano.Add(carta);
+        int index = carta.indiceAncla;
 
-        Transform ancla = mano.ObtenerAnclaEnIndice(index);
-        if (ancla != null)
-        {
-            carta.transform.SetParent(ancla, false);
-            carta.transform.localPosition = Vector3.zero;
-            carta.transform.localRotation = Quaternion.identity;
+        mano.LiberarPosicion(index);
 
-            carta.indiceAncla = index; // Asegura que la carta sepa en qué posición está
-            carta.gameObject.SetActive(true);
+        CartasEnMano.Remove(carta);
+        pilaDescarte.Add(carta);
+        carta.gameObject.SetActive(false);
 
-            Debug.Log($"Robada carta colocada en índice: {index}");
-        }
-        else
-        {
-            Debug.LogWarning("No se pudo colocar la carta en la posición especificada.");
-        }
+        RobarCartaEnPosicion(index);
+
+        Debug.Log($"Carta descartada en índice {index} y reemplazada.");
     }
-
-
-
 }

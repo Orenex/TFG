@@ -9,6 +9,7 @@ TagManager:
   - Carta
   - Deck
   - Enemigo
+  - Indicador
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Enemigo
-  - 
+  - Indicador
+  - Luchadores
   - 
   - 
   - 

@@ -1,23 +1,31 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Controla el comportamiento visual e interactivo de una carta individual.
+/// </summary>
 public class MovimientoCarta : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private float crecimientoAlSeleccionar = 1.2f;
+
     private Vector3 escalaOriginal;
     private RectTransform rectTransform;
     private bool seleccionada = false;
+
     private static MovimientoCarta cartaSeleccionada;
 
     public Carta CartaData { get; private set; }
-
     public int indiceAncla { get; set; }
+    public ScriptableCartas DataCarta { get; internal set; }
 
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
         escalaOriginal = rectTransform.localScale;
+
         CartaData = GetComponent<Carta>();
+        if (CartaData == null)
+            Debug.LogError("MovimientoCarta requiere un componente Carta.");
     }
 
     public void OnPointerClick(PointerEventData eventData)

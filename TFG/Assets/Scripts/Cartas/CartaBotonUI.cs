@@ -22,6 +22,22 @@ public class CartaBotonUI : MonoBehaviour
             return;
         }
 
+        var lanzador = FightManager.Instance.GetLuchadorActual();
+        var accion = carta.DataCarta.accion;
+
+        bool tieneRecursos = accion.tipoCoste switch
+        {
+            RecursoCoste.Mana => lanzador.mana >= accion.costoMana,
+            RecursoCoste.Sanidad => lanzador.sanidad >= accion.costoMana,
+            _ => false
+        };
+
+        if (!tieneRecursos)
+        {
+            Debug.LogWarning("No tienes recursos suficientes para usar esta carta.");
+            return;
+        }
+
         CardActionExecutor.Instance.JugarCarta(carta, objetivo);
     }
 }
