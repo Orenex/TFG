@@ -7,6 +7,9 @@ public class EnemyAIController : MonoBehaviour
     public static EnemyAIController Instance { get; private set; }
     public static bool TurnoFinalizado { get; set; }
 
+    // Memoria de objetivos para evitar repeticiones
+    private Dictionary<Luchador, Luchador> memoriaDeObjetivos = new();
+
     private void Awake()
     {
         if (Instance != null) Destroy(gameObject);
@@ -71,25 +74,47 @@ public class EnemyAIController : MonoBehaviour
             return null;
         }
 
-        // Si la carta cura o apoya, usa a sí mismo
         if (carta.accion.objetivoEsElEquipo)
             return lanzador;
 
-        // Si la carta hace daño, buscar al más débil
-        if (carta.accion.argumento < 0)
+        memoriaDeObjetivos.TryGetValue(lanzador, out var ultimoObjetivo);
+
+        if (posiblesObjetivos.Count > 1 && ultimoObjetivo != null && posiblesObjetivos.Contains(ultimoObjetivo))
         {
-            posiblesObjetivos.Sort((a, b) => a.vida.CompareTo(b.vida));
-            return posiblesObjetivos[0];
+            posiblesObjetivos.Remove(ultimoObjetivo);
         }
 
-        // Por defecto, primer enemigo válido
-        return posiblesObjetivos[0];
-    }
+        Luchador objetivoElegido;
 
+        if (carta.accion.argumento < 0) // daño
+        {
+            if (Random.value < 0.5f)
+            {
+                posiblesObjetivos.Sort((a, b) => a.vida.CompareTo(b.vida));
+                objetivoElegido = posiblesObjetivos[0];
+            }
+            else
+            {
+                objetivoElegido = posiblesObjetivos[Random.Range(0, posiblesObjetivos.Count)];
+            }
+        }
+        else
+        {
+            objetivoElegido = posiblesObjetivos[Random.Range(0, posiblesObjetivos.Count)];
+        }
+
+        memoriaDeObjetivos[lanzador] = objetivoElegido;
+        return objetivoElegido;
+    }
 
     private IEnumerator EjecutarAccion(Accion accion, Luchador lanzador, Luchador objetivo)
     {
         yield return lanzador.EjecutarAccion(accion, objetivo);
         TurnoFinalizado = true;
+    }
+
+    public void ReiniciarMemoriaDeObjetivos()
+    {
+        memoriaDeObjetivos.Clear();
     }
 }

@@ -56,6 +56,7 @@ public class TurnManager : MonoBehaviour
             if (actual.Aliado)
             {
                 CombatUI.Instance.MostrarCartas(actual.cartasDisponibles);
+                EnemyAIController.Instance.ReiniciarMemoriaDeObjetivos();
                 PlayerInputController.Instance.PrepararTurno();
                 yield return new WaitUntil(() => PlayerInputController.TurnoFinalizado);
             }
