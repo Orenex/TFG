@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class NodosMapas : MonoBehaviour
 {
+    public string nodeID; // Asegúrate de asignar un ID único desde el Inspector
     public Button zonas;
     public List<NodosMapas> nodosConectados;
-    public List<NodosMapas> caminosdesactivados;  // Nodos que deben desactivarse si este es elegido
+    public List<NodosMapas> caminosdesactivados;
     public bool isActive = false;
     public bool isVisited = false;
     public string escena;
@@ -15,6 +16,13 @@ public class NodosMapas : MonoBehaviour
     void Start()
     {
         zonas.onClick.AddListener(OnNodeClicked);
+
+        if (GameManager.Instance != null && GameManager.Instance.nodeStates.TryGetValue(nodeID, out var state))
+        {
+            isActive = state.isActive;
+            isVisited = state.isVisited;
+        }
+
         UpdateButtonState();
     }
 
@@ -30,21 +38,29 @@ public class NodosMapas : MonoBehaviour
         isVisited = true;
         zonas.interactable = false;
 
-        // Activar nodos conectados
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.lastNodeID = nodeID;
+            SaveState();
+        }
+
         foreach (NodosMapas node in nodosConectados)
         {
             node.ActivateNode();
+            node.SaveState();
         }
 
-        // Desactivar alternativas exclusivas
         foreach (NodosMapas alt in caminosdesactivados)
         {
             alt.DeactivateNode();
+            alt.SaveState();
         }
 
-        // Cargar la escena asociada
         if (!string.IsNullOrEmpty(escena))
         {
+            if (GameManager.Instance != null)
+                GameManager.Instance.lastScene = SceneManager.GetActiveScene().name;
+
             SceneManager.LoadScene(escena);
         }
     }
@@ -59,5 +75,17 @@ public class NodosMapas : MonoBehaviour
     {
         isActive = false;
         UpdateButtonState();
+    }
+
+    public void SaveState()
+    {
+        if (GameManager.Instance == null) return;
+
+        if (!GameManager.Instance.nodeStates.ContainsKey(nodeID))
+            GameManager.Instance.nodeStates[nodeID] = new GameManager.NodeState();
+
+        var state = GameManager.Instance.nodeStates[nodeID];
+        state.isActive = isActive;
+        state.isVisited = isVisited;
     }
 }

@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803fab1b7bec4684cb5aa86fc2e46fba, type: 3}
   m_Name: MazoAzul
   m_EditorClassIdentifier: 
-  <CartasEnLaColeccion>k__BackingField:
+  CartasEnLaColeccion:
   - {fileID: 11400000, guid: 3acf2d790c17cd843a22410c98195dd5, type: 2}
+  - {fileID: 11400000, guid: 3acf2d790c17cd843a22410c98195dd5, type: 2}
+  - {fileID: 11400000, guid: 3acf2d790c17cd843a22410c98195dd5, type: 2}
+  - {fileID: 11400000, guid: 3acf2d790c17cd843a22410c98195dd5, type: 2}
+  - {fileID: 11400000, guid: 32c7e4d993bdd9049b6ad710bca1f558, type: 2}
   - {fileID: 11400000, guid: 32c7e4d993bdd9049b6ad710bca1f558, type: 2}
-  - {fileID: 11400000, guid: 3acf2d790c17cd843a22410c98195dd5, type: 2}
-  - {fileID: 11400000, guid: 32c7e4d993bdd9049b6ad710bca1f558, type: 2}
-  - {fileID: 11400000, guid: 3acf2d790c17cd843a22410c98195dd5, type: 2}
-  - {fileID: 11400000, guid: 3acf2d790c17cd843a22410c98195dd5, type: 2}
-  - {fileID: 11400000, guid: 3acf2d790c17cd843a22410c98195dd5, type: 2}
   - {fileID: 11400000, guid: 32c7e4d993bdd9049b6ad710bca1f558, type: 2}

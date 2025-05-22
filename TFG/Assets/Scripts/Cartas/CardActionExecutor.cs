@@ -4,100 +4,43 @@ public class CardActionExecutor : MonoBehaviour
 {
     public static CardActionExecutor Instance { get; private set; }
 
-    [Header("Referencia de combate")]
-    [SerializeField] private FightManager fightManager;
-
     private void Awake()
     {
-        if (Instance != null)
-            Destroy(gameObject);
-        else
-            Instance = this;
-
-        if (fightManager == null)
-            fightManager = FindObjectOfType<FightManager>();
+        if (Instance != null) Destroy(gameObject);
+        else Instance = this;
     }
 
-    /// <summary>
-    /// Ejecuta la acción de la carta sobre el objetivo seleccionado.
-    /// </summary>
-    public void JugarCarta(Carta carta, Luchador objetivo)
+    public void EjecutarCarta(CardView carta, Luchador objetivo)
     {
-        if (carta == null || objetivo == null)
+        if (carta == null || carta.Data == null)
         {
-            Debug.LogWarning("CardActionExecutor: Carta u objetivo inválido.");
+            Debug.LogWarning("Carta inválida.");
             return;
         }
 
-        var tipo = carta.DataCarta.tipo;
+        var tipo = carta.Data.tipo;
 
-        // Carta duplicadora
         if (tipo == TipoCarta.Duplicadora)
         {
-            var cartaADuplicar = MovimientoCarta.ObtenerCartaSeleccionada();
-
-            if (cartaADuplicar == null || cartaADuplicar == carta)
-            {
-                Debug.LogWarning("CardActionExecutor: Selecciona otra carta válida para duplicar.");
-                return;
-            }
-
-            var duplicadoGO = Instantiate(cartaADuplicar.gameObject, cartaADuplicar.transform.parent);
-            var duplicado = duplicadoGO.GetComponent<Carta>();
-
-            if (duplicado == null)
-            {
-                Debug.LogError("CardActionExecutor: No se pudo obtener componente 'Carta' del duplicado.");
-                Destroy(duplicadoGO);
-                return;
-            }
-
-            duplicado.SetUp(cartaADuplicar.DataCarta);
-            duplicado.gameObject.SetActive(true);
-
-            Transform ancla = fightManager.deck.mano.ObtenerSiguienteAncla(out int index);
-            if (ancla != null)
-            {
-                duplicado.transform.SetParent(ancla, false);
-                duplicado.transform.localPosition = Vector3.zero;
-                duplicado.transform.localRotation = Quaternion.identity;
-                duplicado.indiceAncla = index;
-                fightManager.deck.CartasEnMano.Add(duplicado);
-            }
-            else
-            {
-                Debug.LogWarning("CardActionExecutor: No hay espacio para duplicar la carta.");
-                Destroy(duplicado.gameObject);
-            }
-
-            fightManager.deck.DescartarCarta(carta);
-            fightManager.manoJugador.LiberarPosicion(carta.indiceAncla);
-            carta.gameObject.SetActive(false);
-            fightManager.TerminarTurno();
+            CardDuplicator.Instance.DuplicarCarta(carta);
+            FinalizarCarta(carta);
             return;
         }
 
-        // Acción normal
-        Accion accion = carta.DataCarta.accion;
-        Luchador lanzador = fightManager.GetLuchadorActual();
-
-        bool tieneRecursos = accion.tipoCoste switch
+        if (objetivo == null || !objetivo.sigueVivo)
         {
-            RecursoCoste.Mana => lanzador.mana >= accion.costoMana,
-            RecursoCoste.Sanidad => lanzador.sanidad >= accion.costoMana,
-            _ => false
-        };
-
-        if (!tieneRecursos)
-        {
-            Debug.Log("CardActionExecutor: ¡No tienes recursos suficientes para usar esta carta!");
+            Debug.LogWarning("Objetivo inválido.");
             return;
         }
 
-        fightManager.EjecutarAccionJugador(accion, objetivo);
+        CombatManager.Instance.EjecutarAccionJugador(carta.Data.accion, objetivo);
+        FinalizarCarta(carta);
+    }
 
-        fightManager.deck.DescartarCarta(carta);
-        fightManager.manoJugador.LiberarPosicion(carta.indiceAncla);
+    private void FinalizarCarta(CardView carta)
+    {
+        HandManager.Instance.DescartarCarta(carta);
+        Deck.Instance.EnviarADescarte(carta.Data);
         carta.gameObject.SetActive(false);
     }
 }

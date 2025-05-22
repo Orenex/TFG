@@ -1,51 +1,90 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SeleccionDeObjetivo : MonoBehaviour
 {
     public static SeleccionDeObjetivo Instance { get; private set; }
 
+    [Header("Marcador de selección")]
+    [SerializeField] private GameObject marcadorPrefab;
+
+    private GameObject marcadorInstanciado;
     private Luchador objetivoActual;
+
+    private List<Luchador> enemigos = new();
+    private int indiceSeleccionado = 0;
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-            Destroy(gameObject);
-        else
-            Instance = this;
+        if (Instance != null) Destroy(gameObject);
+        else Instance = this;
     }
 
-    public void SeleccionarObjetivo(Luchador luchador)
+    private void Start()
     {
-        if (luchador == null || !luchador.sigueVivo)
-        {
-            Debug.LogWarning("Objetivo inválido.");
-            return;
-        }
+        enemigos = new List<Luchador>(FindObjectsOfType<Luchador>());
+        enemigos = enemigos.FindAll(e => !e.Aliado && e.sigueVivo);
 
-        if (objetivoActual == luchador)
-        {
-            Debug.Log("Reseleccionado mismo objetivo. Limpiando.");
-            LimpiarSeleccion();
-            return;
-        }
+        if (enemigos.Count > 0)
+            SeleccionarPorIndice(0);
+    }
 
-        objetivoActual = luchador;
-        Debug.Log("Nuevo objetivo seleccionado: " + luchador.nombre);
+    private void Update()
+    {
+        if (enemigos.Count == 0) return;
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            CambiarSeleccion(-1);
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            CambiarSeleccion(1);
+        }
+    }
+
+    private void CambiarSeleccion(int direccion)
+    {
+        if (enemigos.Count == 0) return;
+
+        indiceSeleccionado = (indiceSeleccionado - direccion + enemigos.Count) % enemigos.Count;
+        SeleccionarPorIndice(indiceSeleccionado);
+    }
+
+    private void SeleccionarPorIndice(int index)
+    {
+        var objetivo = enemigos[index];
+        SeleccionarObjetivo(objetivo);
+    }
+
+    public void SeleccionarObjetivo(Luchador objetivo)
+    {
+        if (objetivo == null || !objetivo.sigueVivo) return;
+
+        objetivoActual = objetivo;
+
+        if (marcadorInstanciado != null)
+            Destroy(marcadorInstanciado);
+
+        marcadorInstanciado = Instantiate(marcadorPrefab, objetivo.transform);
+        marcadorInstanciado.transform.localPosition = Vector3.up * 2.5f;
+
+        Debug.Log($"Objetivo seleccionado: {objetivo.nombre}");
     }
 
     public void LimpiarSeleccion()
     {
         objetivoActual = null;
-        var selector = FindObjectOfType<SeleccionadorDeEnemigo3D>();
-        if (selector != null)
-            selector.OcultarIndicador();
+
+        if (marcadorInstanciado != null)
+        {
+            Destroy(marcadorInstanciado);
+            marcadorInstanciado = null;
+        }
     }
 
     public Luchador ObtenerObjetivoActual()
     {
-        if (objetivoActual == null || !objetivoActual.sigueVivo)
-            return null;
-
         return objetivoActual;
     }
 }

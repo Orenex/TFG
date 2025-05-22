@@ -131,8 +131,8 @@ GameObject:
   - component: {fileID: 23868588}
   - component: {fileID: 23868587}
   - component: {fileID: 23868586}
-  - component: {fileID: 23868590}
   - component: {fileID: 23868591}
+  - component: {fileID: 23868592}
   m_Layer: 0
   m_Name: Y
   m_TagString: Untagged
@@ -231,29 +231,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &23868590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 23868585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cac930aadc3856749bd19817471f4976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nombre: Pagliacci
-  vida: 20
-  mana: 3
-  sanidad: 100
-  "bonusDa\xF1o": 0
-  Aliado: 1
-  sigueVivo: 1
-  cartasDisponibles: {fileID: 11400000, guid: 5a6eaaaf4d6a9d44e8a3ce76178f50db, type: 2}
-  Acciones: []
-  efectosActivos: []
-  nv: {fileID: 23868591}
 --- !u!195 &23868591
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -276,6 +253,33 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &23868592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23868585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac930aadc3856749bd19817471f4976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: Pagliacci
+  vida: 100
+  mana: 10
+  sanidad: 100
+  "bonusDa\xF1o": 0
+  Aliado: 1
+  sigueVivo: 1
+  cartasDisponibles: {fileID: 11400000, guid: 5a6eaaaf4d6a9d44e8a3ce76178f50db, type: 2}
+  Acciones: []
+  efectosActivos: []
+  estadoEspecial:
+    Asqueado: 0
+    "CompartirDa\xF1o": 0
+    Paralizado: 0
+  nv: {fileID: 0}
 --- !u!1 &128574785
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,6 +384,50 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3, y: 0.2, z: -3}
   m_LocalScale: {x: 1, y: 0.4, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &158218215
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 158218217}
+  - component: {fileID: 158218216}
+  m_Layer: 0
+  m_Name: CombatManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &158218216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158218215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f67c7da2248c5a49bdb3ca90225dcde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &158218217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158218215}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 695.1814, y: 266.44534, z: -126.15331}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -615,7 +663,7 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 636c0749b840e7e4da0db730ffe350aa, type: 2}
   m_BuildHeightMesh: 0
---- !u!1 &684129927
+--- !u!1 &677727420
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -623,41 +671,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 684129929}
-  - component: {fileID: 684129928}
+  - component: {fileID: 677727422}
+  - component: {fileID: 677727421}
   m_Layer: 0
-  m_Name: SelectorDeEnemigos
+  m_Name: EnemyAiController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &684129928
+--- !u!114 &677727421
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 684129927}
+  m_GameObject: {fileID: 677727420}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e8fdf65862d8b340addfb4b5651d17c, type: 3}
+  m_Script: {fileID: 11500000, guid: 699b5b5be3d07714b97af95aeb2c74eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capaLuchadores:
-    serializedVersion: 2
-    m_Bits: 128
-  indicadorSeleccionPrefab: {fileID: 5629460174186588954, guid: 34f78ea709839de4893f909976511c41, type: 3}
---- !u!4 &684129929
+--- !u!4 &677727422
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 684129927}
+  m_GameObject: {fileID: 677727420}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.087170094, y: 1.6173085, z: 1.1424932}
+  m_LocalPosition: {x: 695.1814, y: 266.44534, z: -126.15331}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -902,9 +946,9 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!223 &1121058461 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 7813616357217648839, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
+--- !u!1 &1124693849 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3549296167190721874, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
   m_PrefabInstance: {fileID: 1762369849}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1252745069
@@ -1090,12 +1134,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1273488901}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86aac3f9df865e0499b9006b4a7a7f8d, type: 3}
+  m_Script: {fileID: 11500000, guid: c39e6488d1621a741b0d32ef086f667a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabCarta: {fileID: 5570587888800559622, guid: 2e513a1d9e4c38e45b6939bdff1b04e2, type: 3}
-  canvasCartas: {fileID: 1121058461}
-  mano: {fileID: 2029324260}
+  coleccionBase: {fileID: 0}
 --- !u!1 &1323463323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,8 +1150,8 @@ GameObject:
   - component: {fileID: 1323463326}
   - component: {fileID: 1323463325}
   - component: {fileID: 1323463324}
-  - component: {fileID: 1323463328}
   - component: {fileID: 1323463329}
+  - component: {fileID: 1323463330}
   m_Layer: 0
   m_Name: B
   m_TagString: Untagged
@@ -1208,29 +1250,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1323463328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1323463323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cac930aadc3856749bd19817471f4976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nombre: Jack
-  vida: 20
-  mana: 3
-  sanidad: 100
-  "bonusDa\xF1o": 0
-  Aliado: 1
-  sigueVivo: 1
-  cartasDisponibles: {fileID: 11400000, guid: 496045eaac342e74e9069427238eebb2, type: 2}
-  Acciones: []
-  efectosActivos: []
-  nv: {fileID: 1323463329}
 --- !u!195 &1323463329
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1253,6 +1272,78 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1323463330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323463323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac930aadc3856749bd19817471f4976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: Jack
+  vida: 100
+  mana: 10
+  sanidad: 100
+  "bonusDa\xF1o": 0
+  Aliado: 1
+  sigueVivo: 1
+  cartasDisponibles: {fileID: 11400000, guid: 496045eaac342e74e9069427238eebb2, type: 2}
+  Acciones: []
+  efectosActivos: []
+  estadoEspecial:
+    Asqueado: 0
+    "CompartirDa\xF1o": 0
+    Paralizado: 0
+  nv: {fileID: 0}
+--- !u!1 &1364796337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1364796339}
+  - component: {fileID: 1364796338}
+  m_Layer: 0
+  m_Name: SeleccionDeObjetivo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1364796338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364796337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48be3375cc5d11c48a39066e200786b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  marcadorPrefab: {fileID: 5629460174186588954, guid: 34f78ea709839de4893f909976511c41, type: 3}
+--- !u!4 &1364796339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364796337}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.087170094, y: 1.6173085, z: 1.1424932}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1463201995 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7091458432407967319, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
@@ -1270,8 +1361,8 @@ GameObject:
   - component: {fileID: 1489431643}
   - component: {fileID: 1489431642}
   - component: {fileID: 1489431641}
-  - component: {fileID: 1489431645}
   - component: {fileID: 1489431646}
+  - component: {fileID: 1489431647}
   m_Layer: 0
   m_Name: Glen
   m_TagString: Untagged
@@ -1370,29 +1461,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1489431645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1489431640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cac930aadc3856749bd19817471f4976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nombre: Glen
-  vida: 50
-  mana: 10
-  sanidad: 100
-  "bonusDa\xF1o": 0
-  Aliado: 1
-  sigueVivo: 1
-  cartasDisponibles: {fileID: 11400000, guid: cc76023cb8f267245ab7ea6e63097d6b, type: 2}
-  Acciones: []
-  efectosActivos: []
-  nv: {fileID: 1489431646}
 --- !u!195 &1489431646
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1415,6 +1483,33 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1489431647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489431640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac930aadc3856749bd19817471f4976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: Glen
+  vida: 100
+  mana: 10
+  sanidad: 100
+  "bonusDa\xF1o": 0
+  Aliado: 1
+  sigueVivo: 1
+  cartasDisponibles: {fileID: 11400000, guid: cc76023cb8f267245ab7ea6e63097d6b, type: 2}
+  Acciones: []
+  efectosActivos: []
+  estadoEspecial:
+    Asqueado: 0
+    "CompartirDa\xF1o": 0
+    Paralizado: 0
+  nv: {fileID: 0}
 --- !u!1 &1623621478
 GameObject:
   m_ObjectHideFlags: 0
@@ -1427,8 +1522,8 @@ GameObject:
   - component: {fileID: 1623621481}
   - component: {fileID: 1623621480}
   - component: {fileID: 1623621479}
-  - component: {fileID: 1623621483}
   - component: {fileID: 1623621484}
+  - component: {fileID: 1623621485}
   m_Layer: 0
   m_Name: G
   m_TagString: Untagged
@@ -1527,29 +1622,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1623621483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623621478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cac930aadc3856749bd19817471f4976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nombre: Marceau
-  vida: 20
-  mana: 3
-  sanidad: 100
-  "bonusDa\xF1o": 0
-  Aliado: 1
-  sigueVivo: 1
-  cartasDisponibles: {fileID: 11400000, guid: 2319e50be4c1a8a4bb900846185489d5, type: 2}
-  Acciones: []
-  efectosActivos: []
-  nv: {fileID: 1623621484}
 --- !u!195 &1623621484
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1572,107 +1644,33 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!1 &1640804206
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1640804210}
-  - component: {fileID: 1640804209}
-  - component: {fileID: 1640804208}
-  - component: {fileID: 1640804207}
-  m_Layer: 5
-  m_Name: BattleCanvas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1640804207
+--- !u!114 &1623621485
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1640804206}
+  m_GameObject: {fileID: 1623621478}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Script: {fileID: 11500000, guid: cac930aadc3856749bd19817471f4976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &1640804208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1640804206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
---- !u!223 &1640804209
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1640804206}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
---- !u!224 &1640804210
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1640804206}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  nombre: Marceau
+  vida: 100
+  mana: 10
+  sanidad: 100
+  "bonusDa\xF1o": 0
+  Aliado: 1
+  sigueVivo: 1
+  cartasDisponibles: {fileID: 11400000, guid: 2319e50be4c1a8a4bb900846185489d5, type: 2}
+  Acciones: []
+  efectosActivos: []
+  estadoEspecial:
+    Asqueado: 0
+    "CompartirDa\xF1o": 0
+    Paralizado: 0
+  nv: {fileID: 0}
 --- !u!1 &1679492176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1685,9 +1683,9 @@ GameObject:
   - component: {fileID: 1679492182}
   - component: {fileID: 1679492181}
   - component: {fileID: 1679492180}
-  - component: {fileID: 1679492179}
   - component: {fileID: 1679492178}
   - component: {fileID: 1679492177}
+  - component: {fileID: 1679492184}
   m_Layer: 7
   m_Name: Enemigo (1)
   m_TagString: Enemigo
@@ -1744,29 +1742,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1679492179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679492176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cac930aadc3856749bd19817471f4976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nombre: Dummy
-  vida: 20
-  mana: 5
-  sanidad: 100
-  "bonusDa\xF1o": 0
-  Aliado: 0
-  sigueVivo: 1
-  cartasDisponibles: {fileID: 0}
-  Acciones: []
-  efectosActivos: []
-  nv: {fileID: 1679492177}
 --- !u!136 &1679492180
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1858,6 +1833,77 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1679492184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679492176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac930aadc3856749bd19817471f4976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: Dummy
+  vida: 10
+  mana: 0
+  sanidad: 100
+  "bonusDa\xF1o": 0
+  Aliado: 0
+  sigueVivo: 1
+  cartasDisponibles: {fileID: 11400000, guid: cc76023cb8f267245ab7ea6e63097d6b, type: 2}
+  Acciones: []
+  efectosActivos: []
+  estadoEspecial:
+    Asqueado: 0
+    "CompartirDa\xF1o": 0
+    Paralizado: 0
+  nv: {fileID: 0}
+--- !u!1 &1684504860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1684504862}
+  - component: {fileID: 1684504861}
+  m_Layer: 0
+  m_Name: PlayerInputController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1684504861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684504860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f92261da4d931fa438fa7eeb0d00cca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1684504862
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684504860}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1687238843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1870,9 +1916,9 @@ GameObject:
   - component: {fileID: 1687238848}
   - component: {fileID: 1687238847}
   - component: {fileID: 1687238846}
-  - component: {fileID: 1687238850}
   - component: {fileID: 1687238851}
   - component: {fileID: 1687238853}
+  - component: {fileID: 1687238854}
   m_Layer: 7
   m_Name: Enemigo
   m_TagString: Enemigo
@@ -1971,29 +2017,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1687238850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1687238843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cac930aadc3856749bd19817471f4976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nombre: Dummy
-  vida: 20
-  mana: 5
-  sanidad: 100
-  "bonusDa\xF1o": 0
-  Aliado: 0
-  sigueVivo: 1
-  cartasDisponibles: {fileID: 0}
-  Acciones: []
-  efectosActivos: []
-  nv: {fileID: 1687238853}
 --- !u!54 &1687238851
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2043,6 +2066,77 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1687238854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687238843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac930aadc3856749bd19817471f4976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: Dummy
+  vida: 10
+  mana: 0
+  sanidad: 100
+  "bonusDa\xF1o": 0
+  Aliado: 0
+  sigueVivo: 1
+  cartasDisponibles: {fileID: 11400000, guid: cc76023cb8f267245ab7ea6e63097d6b, type: 2}
+  Acciones: []
+  efectosActivos: []
+  estadoEspecial:
+    Asqueado: 0
+    "CompartirDa\xF1o": 0
+    Paralizado: 0
+  nv: {fileID: 0}
+--- !u!1 &1689714744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1689714746}
+  - component: {fileID: 1689714745}
+  m_Layer: 0
+  m_Name: CardActionExecutor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1689714745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689714744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f84888fa2f464e94eb420a58fa7dd77e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1689714746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689714744}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1733448328
 GameObject:
   m_ObjectHideFlags: 0
@@ -2360,12 +2454,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3233334686131744612, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233334686131744612, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2029324260}
+      objectReference: {fileID: 1684504861}
     - target: {fileID: 3233334686131744612, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ConfirmarJugada
+      value: ConfirmarUso
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233334686131744612, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerInputController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233334686131744612, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3233334686131744612, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3891870477571429627, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2440,12 +2550,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4830567140988662868, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830567140988662868, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830567140988662868, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2029324260}
     - target: {fileID: 4830567140988662868, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ConfirmarDescarte
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830567140988662868, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HandManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4830567140988662868, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5142123460446905073, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
       propertyPath: m_fontSize
@@ -2772,6 +2898,9 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4046641101977053239, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 2029324261}
+    - targetCorrespondingSourceObject: {fileID: 4046641101977053239, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2029324260}
   m_SourcePrefab: {fileID: 100100000, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
 --- !u!1 &1764553548
@@ -2786,9 +2915,9 @@ GameObject:
   - component: {fileID: 1764553554}
   - component: {fileID: 1764553553}
   - component: {fileID: 1764553552}
-  - component: {fileID: 1764553551}
   - component: {fileID: 1764553550}
   - component: {fileID: 1764553549}
+  - component: {fileID: 1764553556}
   m_Layer: 7
   m_Name: Enemigo (2)
   m_TagString: Enemigo
@@ -2845,29 +2974,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1764553551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1764553548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cac930aadc3856749bd19817471f4976, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nombre: Dummy
-  vida: 20
-  mana: 5
-  sanidad: 100
-  "bonusDa\xF1o": 0
-  Aliado: 0
-  sigueVivo: 1
-  cartasDisponibles: {fileID: 0}
-  Acciones: []
-  efectosActivos: []
-  nv: {fileID: 1764553549}
 --- !u!136 &1764553552
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2959,6 +3065,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1764553556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764553548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cac930aadc3856749bd19817471f4976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: Dummy
+  vida: 10
+  mana: 0
+  sanidad: 100
+  "bonusDa\xF1o": 0
+  Aliado: 0
+  sigueVivo: 1
+  cartasDisponibles: {fileID: 11400000, guid: cc76023cb8f267245ab7ea6e63097d6b, type: 2}
+  Acciones: []
+  efectosActivos: []
+  estadoEspecial:
+    Asqueado: 0
+    "CompartirDa\xF1o": 0
+    Paralizado: 0
+  nv: {fileID: 0}
 --- !u!1 &1807752033
 GameObject:
   m_ObjectHideFlags: 0
@@ -2968,61 +3101,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1807752037}
-  - component: {fileID: 1807752036}
-  - component: {fileID: 1807752035}
-  - component: {fileID: 1807752034}
+  - component: {fileID: 1807752038}
   m_Layer: 0
-  m_Name: FightManager
+  m_Name: TurnManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1807752034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807752033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a660ed34cb728a4394a679ca407ea46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fightManager: {fileID: 1807752036}
---- !u!114 &1807752035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807752033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48be3375cc5d11c48a39066e200786b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1807752036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807752033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7240e257e50afff4e95889b3c7872967, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  luchadores:
-  - {fileID: 1687238850}
-  - {fileID: 1489431645}
-  - {fileID: 1323463328}
-  - {fileID: 23868590}
-  - {fileID: 1623621483}
-  manoJugador: {fileID: 2029324260}
-  deck: {fileID: 1273488904}
 --- !u!4 &1807752037
 Transform:
   m_ObjectHideFlags: 0
@@ -3038,6 +3124,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1807752038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807752033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ebfac2a451033649b6e7eb73e0ed34a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  luchadoresEnCombate:
+  - {fileID: 1489431647}
+  - {fileID: 1323463330}
+  - {fileID: 23868592}
+  - {fileID: 1623621485}
+  - {fileID: 1679492184}
+  - {fileID: 1687238854}
+  - {fileID: 1764553556}
 --- !u!1 &1867683943
 GameObject:
   m_ObjectHideFlags: 0
@@ -3160,7 +3266,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2029324259}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f789c3f0d60128e4aa12345369ced209, type: 3}
+  m_Script: {fileID: 11500000, guid: 1dfd12c5370c1144c96cc3aef3b7d936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   anclas:
@@ -3169,18 +3275,82 @@ MonoBehaviour:
   - {fileID: 1463201995}
   - {fileID: 506230407}
   - {fileID: 1008299724}
-  botonConfirmar: {fileID: 1262247795}
-  deck: {fileID: 1273488904}
+  cartaPrefab: {fileID: 7784855428456594595, guid: 2e513a1d9e4c38e45b6939bdff1b04e2, type: 3}
+--- !u!114 &2029324261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029324259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f87547493964d174089d8f4f6a75d1a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelCartas: {fileID: 1124693849}
+  botonDescartar: {fileID: 1262247795}
+  botonConfirmar: {fileID: 2045025493}
+--- !u!1 &2045025493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5829125565948125018, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
+  m_PrefabInstance: {fileID: 1762369849}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2125197366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2125197368}
+  - component: {fileID: 2125197367}
+  m_Layer: 0
+  m_Name: CardDuplicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2125197367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125197366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99037bc529b3d1f4b80ccae30b92703a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2125197368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125197366}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 346908533}
   - {fileID: 1762369849}
   - {fileID: 1252745072}
   - {fileID: 1028339779}
   - {fileID: 590136971}
-  - {fileID: 1687238849}
   - {fileID: 1679492183}
+  - {fileID: 1687238849}
   - {fileID: 1764553555}
   - {fileID: 1489431644}
   - {fileID: 1323463327}
@@ -3191,7 +3361,10 @@ SceneRoots:
   - {fileID: 1867683947}
   - {fileID: 792592841}
   - {fileID: 1273488903}
-  - {fileID: 346908533}
-  - {fileID: 1640804210}
   - {fileID: 1807752037}
-  - {fileID: 684129929}
+  - {fileID: 677727422}
+  - {fileID: 158218217}
+  - {fileID: 1364796339}
+  - {fileID: 1689714746}
+  - {fileID: 2125197368}
+  - {fileID: 1684504862}

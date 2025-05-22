@@ -4,11 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum RecursoCoste
-{
-    Mana,
-    Sanidad
-}
+public enum RecursoCoste { Mana, Sanidad }
 
 [System.Serializable]
 public struct Accion
@@ -26,47 +22,8 @@ public struct Accion
     public RecursoCoste tipoCoste;
 }
 
-public enum TipoEfecto
-{
-    DañoPorTurno,
-    CurarPorTurno,
-    ModificarDaño
-}
-
-[System.Serializable]
-public class EfectoActivo
-{
-    public string nombre;
-    public int duracionTurnos;
-    public int modificador;
-    public TipoEfecto tipo;
-
-    public void AplicarEfectoPorTurno(Luchador objetivo)
-    {
-        switch (tipo)
-        {
-            case TipoEfecto.DañoPorTurno:
-                objetivo.CambiarVida(-modificador);
-                Debug.Log($"{objetivo.nombre} sufre {modificador} de daño por turno.");
-                break;
-            case TipoEfecto.CurarPorTurno:
-                objetivo.CambiarVida(modificador);
-                Debug.Log($"{objetivo.nombre} se cura {modificador} por turno.");
-                break;
-            case TipoEfecto.ModificarDaño:
-                objetivo.bonusDaño += modificador;
-                Debug.Log($"{objetivo.nombre} gana {modificador} de bonus de daño.");
-                break;
-        }
-    }
-
-    public bool EsPermanente => duracionTurnos <= 0;
-}
-
 public class Luchador : MonoBehaviour
 {
-    #region Estado
-
     public string nombre;
     public int vida;
     public int mana;
@@ -79,11 +36,10 @@ public class Luchador : MonoBehaviour
     public CardCollection cartasDisponibles;
     public List<Accion> Acciones;
     public List<EfectoActivo> efectosActivos = new();
+    public EstadoEspecial estadoEspecial = new();
 
     private Animator anim;
     public NavMeshAgent nv;
-
-    #endregion
 
     private void Start()
     {
@@ -92,30 +48,18 @@ public class Luchador : MonoBehaviour
         nv.updateRotation = false;
     }
 
-    public void EjecutarAccionDesdeCarta(Accion accion, Luchador objetivo)
-    {
-        StartCoroutine(EjecutarAccion(accion, objetivo));
-    }
-
     public IEnumerator EjecutarAccion(Accion accion, Luchador objetivo)
     {
         Debug.Log($"[{nombre}] ejecuta {accion.nombre} sobre {objetivo.nombre}");
 
-        // Descontar recurso
+        // Recurso
         switch (accion.tipoCoste)
         {
-            case RecursoCoste.Mana:
-                mana -= accion.costoMana;
-                break;
-            case RecursoCoste.Sanidad:
-                CambiarSanidad(-accion.costoMana);
-                break;
+            case RecursoCoste.Mana: mana -= accion.costoMana; break;
+            case RecursoCoste.Sanidad: CambiarSanidad(-accion.costoMana); break;
         }
 
-        if (accion.objetivoEsElEquipo)
-        {
-            objetivo = this;
-        }
+        if (accion.objetivoEsElEquipo) objetivo = this;
 
         if (accion.estatico)
         {
@@ -123,24 +67,20 @@ public class Luchador : MonoBehaviour
         }
         else
         {
-            Vector3 posInicial = transform.position;
+            Vector3 origen = transform.position;
             transform.LookAt(objetivo.transform.position);
             nv.SetDestination(objetivo.transform.position);
 
             while (Vector3.Distance(transform.position, objetivo.transform.position) > 2f)
-            {
                 yield return null;
-            }
 
             EjecutarEfecto(accion, objetivo);
 
-            transform.LookAt(posInicial);
-            nv.SetDestination(posInicial);
+            transform.LookAt(origen);
+            nv.SetDestination(origen);
 
-            while (Vector3.Distance(transform.position, posInicial) > 0.1f)
-            {
+            while (Vector3.Distance(transform.position, origen) > 0.1f)
                 yield return null;
-            }
         }
     }
 
@@ -158,52 +98,52 @@ public class Luchador : MonoBehaviour
                 objetivo.CambiarSanidad(accion.argumento);
                 break;
             case "AplicarEfecto":
+                TipoEfecto tipo = Enum.TryParse(accion.efectoSecundario, out TipoEfecto resultado) ? resultado : TipoEfecto.Sangrado;
                 var efecto = new EfectoActivo
                 {
                     nombre = accion.efectoSecundario,
-                    tipo = (TipoEfecto)Enum.Parse(typeof(TipoEfecto), accion.efectoSecundario),
+                    tipo = tipo,
                     modificador = accion.argumento,
                     duracionTurnos = 3
                 };
                 objetivo.efectosActivos.Add(efecto);
                 break;
-            default:
-                Debug.LogWarning($"Acción '{accion.mensaje}' no implementada.");
-                break;
         }
 
         if (!string.IsNullOrEmpty(accion.animacionTrigger))
-        {
             anim?.SetTrigger(accion.animacionTrigger);
-        }
     }
 
     public void AplicarEfectosPorTurno()
     {
+        estadoEspecial.Reiniciar();
+
         for (int i = efectosActivos.Count - 1; i >= 0; i--)
         {
             var efecto = efectosActivos[i];
             efecto.AplicarEfectoPorTurno(this);
-            if (!efecto.EsPermanente)
+
+            if (efecto.Expirado)
             {
-                efecto.duracionTurnos--;
-                if (efecto.duracionTurnos <= 0)
-                {
-                    efectosActivos.RemoveAt(i);
-                    Debug.Log($"{nombre} pierde el efecto: {efecto.nombre}");
-                }
+                efectosActivos.RemoveAt(i);
+                Debug.Log($"{nombre} pierde el efecto: {efecto.nombre}");
             }
         }
     }
 
     public void CambiarVida(int cantidad)
     {
-        vida += cantidad;
-        Debug.Log($"[{nombre}] vida modificada en {cantidad}, nueva vida: {vida}");
+        if (estadoEspecial.Asqueado && cantidad > 0)
+        {
+            Debug.Log($"{nombre} no puede curarse por asqueado.");
+            return;
+        }
 
-        if (vida <= 0)
+        vida += cantidad;
+        if (vida <= 0 && sigueVivo)
         {
             sigueVivo = false;
+            gameObject.SetActive(false);
             Debug.Log($"{nombre} ha sido derrotado.");
         }
     }
@@ -211,18 +151,29 @@ public class Luchador : MonoBehaviour
     public void CambiarMana(int cantidad)
     {
         mana += cantidad;
-        Debug.Log($"[{nombre}] mana modificado en {cantidad}, nuevo mana: {mana}");
     }
 
     public void CambiarSanidad(int cantidad)
     {
         sanidad += cantidad;
-        Debug.Log($"[{nombre}] sanidad modificada en {cantidad}, nueva sanidad: {sanidad}");
-
         if (sanidad <= 0)
-        {
             Debug.Log($"{nombre} ha perdido la cordura.");
-            // Lógica adicional si se desea
+    }
+
+    public void Revivir(int cantidad)
+    {
+        if (!sigueVivo)
+        {
+            vida = cantidad;
+            sigueVivo = true;
+            gameObject.SetActive(true);
+            Debug.Log($"{nombre} ha revivido con {cantidad} de vida.");
         }
+    }
+
+    public List<Luchador> ObtenerEnemigosCercanos()
+    {
+        return new List<Luchador>(FindObjectsOfType<Luchador>())
+            .FindAll(l => l.Aliado != this.Aliado && l.sigueVivo);
     }
 }

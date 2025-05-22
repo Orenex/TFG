@@ -331,6 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: Cofre_1.3
   zonas: {fileID: 241545306}
   nodosConectados:
   - {fileID: 1712078801}
@@ -338,6 +339,7 @@ MonoBehaviour:
   - {fileID: 529874900}
   isActive: 0
   isVisited: 0
+  escena: 
 --- !u!1 &336663971
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,6 +473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: Pelea_2.1
   zonas: {fileID: 336663973}
   nodosConectados:
   - {fileID: 1540441030}
@@ -478,6 +481,7 @@ MonoBehaviour:
   - {fileID: 1264878152}
   isActive: 0
   isVisited: 0
+  escena: 
 --- !u!1 &519893906
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,11 +615,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: Jefe_1
   zonas: {fileID: 519893908}
   nodosConectados: []
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
+  escena: Boss_Catacumbas
 --- !u!1 &529874895
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,6 +755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: Cofre_1.1
   zonas: {fileID: 529874897}
   nodosConectados:
   - {fileID: 1712078801}
@@ -757,6 +764,7 @@ MonoBehaviour:
   - {fileID: 241545309}
   isActive: 0
   isVisited: 0
+  escena: 
 --- !u!1 &566397268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,6 +1110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: Decanso_1
   zonas: {fileID: 1170781223}
   nodosConectados:
   - {fileID: 1276196439}
@@ -1109,6 +1118,7 @@ MonoBehaviour:
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
+  escena: Descanso_Catacumbas
 --- !u!1 &1264878147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,6 +1252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: Pelea_2.2
   zonas: {fileID: 1264878149}
   nodosConectados:
   - {fileID: 1540441030}
@@ -1249,6 +1260,7 @@ MonoBehaviour:
   - {fileID: 336663976}
   isActive: 0
   isVisited: 0
+  escena: 
 --- !u!1 &1267564182
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,6 +1394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: Pelea_5.2
   zonas: {fileID: 1267564184}
   nodosConectados:
   - {fileID: 529874900}
@@ -1389,6 +1402,7 @@ MonoBehaviour:
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
+  escena: 
 --- !u!1 &1276196434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,6 +1536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: Pelea_4.2
   zonas: {fileID: 1276196436}
   nodosConectados:
   - {fileID: 1267564187}
@@ -1529,6 +1544,7 @@ MonoBehaviour:
   - {fileID: 2060195208}
   isActive: 0
   isVisited: 0
+  escena: 
 --- !u!1 &1375144553
 GameObject:
   m_ObjectHideFlags: 0
@@ -1662,6 +1678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: Pelea_5.1
   zonas: {fileID: 1375144555}
   nodosConectados:
   - {fileID: 529874900}
@@ -1669,6 +1686,7 @@ MonoBehaviour:
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
+  escena: 
 --- !u!1 &1409642631
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,6 +1803,52 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1421505956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1421505958}
+  - component: {fileID: 1421505957}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1421505957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421505956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 987cee0ee12fac747819293be640ae6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastScene: 
+  lastNodeID: 
+--- !u!4 &1421505958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421505956}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.43301803, y: 0.5876782, z: 1.6324947}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1470674680
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,12 +2103,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: Pelea_3
   zonas: {fileID: 1540441027}
   nodosConectados:
   - {fileID: 1170781226}
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
+  escena: 
 --- !u!1 &1626073629
 GameObject:
   m_ObjectHideFlags: 0
@@ -2178,6 +2244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: Cofre_1.2
   zonas: {fileID: 1626073631}
   nodosConectados:
   - {fileID: 1712078801}
@@ -2185,6 +2252,7 @@ MonoBehaviour:
   - {fileID: 529874900}
   isActive: 0
   isVisited: 0
+  escena: 
 --- !u!1 &1712078796
 GameObject:
   m_ObjectHideFlags: 0
@@ -2318,12 +2386,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: Descanso_2
   zonas: {fileID: 1712078798}
   nodosConectados:
   - {fileID: 519893911}
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
+  escena: Descanso_Catacumbas
 --- !u!1 &2060195203
 GameObject:
   m_ObjectHideFlags: 0
@@ -2457,6 +2527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: Pelea_4.1
   zonas: {fileID: 2060195205}
   nodosConectados:
   - {fileID: 1375144558}
@@ -2464,6 +2535,7 @@ MonoBehaviour:
   - {fileID: 1276196439}
   isActive: 0
   isVisited: 0
+  escena: 
 --- !u!1 &2064182264
 GameObject:
   m_ObjectHideFlags: 0
@@ -2598,6 +2670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: Pelea_1
   zonas: {fileID: 2064182266}
   nodosConectados:
   - {fileID: 336663976}
@@ -2605,6 +2678,7 @@ MonoBehaviour:
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
+  escena: 
 --- !u!114 &2064182270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2626,3 +2700,4 @@ SceneRoots:
   - {fileID: 1470674682}
   - {fileID: 1409642635}
   - {fileID: 54373301}
+  - {fileID: 1421505958}

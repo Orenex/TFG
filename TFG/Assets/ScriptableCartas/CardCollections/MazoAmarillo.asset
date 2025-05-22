@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803fab1b7bec4684cb5aa86fc2e46fba, type: 3}
   m_Name: MazoAmarillo
   m_EditorClassIdentifier: 
-  <CartasEnLaColeccion>k__BackingField:
-  - {fileID: 11400000, guid: 96ae2ef7982cfaf4d97d90532c249e7e, type: 2}
+  CartasEnLaColeccion:
   - {fileID: 11400000, guid: 96ae2ef7982cfaf4d97d90532c249e7e, type: 2}
   - {fileID: 11400000, guid: 96ae2ef7982cfaf4d97d90532c249e7e, type: 2}
   - {fileID: 11400000, guid: 96ae2ef7982cfaf4d97d90532c249e7e, type: 2}

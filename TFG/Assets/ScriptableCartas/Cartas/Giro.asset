@@ -12,19 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b6d4f9b96275b419ac724268a707ee, type: 3}
   m_Name: Giro
   m_EditorClassIdentifier: 
-  <nombreCarta>k__BackingField: Giro
-  <descripcion>k__BackingField: LE mareo
-  <coste>k__BackingField: 0
-  <imagen>k__BackingField: {fileID: 21300000, guid: ae64a0402521e93478347e89981645ba, type: 3}
-  <efecto>k__BackingField: -10 hp
-  <tipo>k__BackingField: 0
-  <colores>k__BackingField: 0
-  <accion>k__BackingField:
-    nombre: Giro
+  nombreCarta: Giro
+  descripcion: Giras sobre tu propio eje
+  efecto: 
+  tipo: 0
+  accion:
+    nombre: 
     estatico: 0
     objetivoEsElEquipo: 0
-    mensaje: '"CambiaVida"'
-    argumento: -10
+    mensaje: 
+    argumento: 0
     animacionTrigger: 
     efectoSecundario: 
-    costoMana: 2
+    costoMana: 0
+    tipoCoste: 0
+  imagen: {fileID: 21300000, guid: ae64a0402521e93478347e89981645ba, type: 3}
+  coste: 1
+  tipoCoste: 0
