@@ -5,6 +5,8 @@ public class PlayerInputController : MonoBehaviour
     public static PlayerInputController Instance { get; private set; }
     public static bool TurnoFinalizado { get; private set; }
 
+    private bool enSeleccionDeObjetivo = false;
+
     private void Awake()
     {
         if (Instance != null) Destroy(gameObject);
@@ -24,6 +26,32 @@ public class PlayerInputController : MonoBehaviour
         CombatUI.Instance.ActivarInterfazJugador(false);
         SeleccionDeObjetivo.Instance.LimpiarSeleccion();
     }
+
+    private void Update()
+    {
+        if (!enSeleccionDeObjetivo)
+        {
+            if (Input.GetKeyDown(KeyCode.Return)) // Confirmar selección de carta para pasar a elegir objetivo
+            {
+                var carta = HandManager.Instance.ObtenerCartaSeleccionada();
+                if (carta != null)
+                {
+                    enSeleccionDeObjetivo = true;
+                    Debug.Log("Selecciona un objetivo con A/D, ENTER para confirmar.");
+                }
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+                SeleccionDeObjetivo.Instance.CambiarSeleccion(-1);
+            else if (Input.GetKeyDown(KeyCode.D))
+                SeleccionDeObjetivo.Instance.CambiarSeleccion(1);
+            else if (Input.GetKeyDown(KeyCode.Return))
+                ConfirmarUso();
+        }
+    }
+
     public void ConfirmarUso()
     {
         var carta = HandManager.Instance.ObtenerCartaSeleccionada();
@@ -42,6 +70,6 @@ public class PlayerInputController : MonoBehaviour
         }
 
         CardActionExecutor.Instance.EjecutarCarta(carta, objetivo);
+        enSeleccionDeObjetivo = false;
     }
-
 }

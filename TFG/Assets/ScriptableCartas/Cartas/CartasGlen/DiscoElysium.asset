@@ -19,13 +19,13 @@ MonoBehaviour:
   accion:
     nombre: DiscoElysium
     estatico: 1
-    objetivoEsElEquipo: 1
+    objetivoEsElEquipo: 0
     mensaje: AplicarEfecto
-    argumento: 0
+    argumento: 3
     animacionTrigger: 
     efectoSecundario: FuriaFocalizada
     costoMana: 0
     tipoCoste: 0
   imagen: {fileID: 21300000, guid: ae64a0402521e93478347e89981645ba, type: 3}
-  coste: 0
+  costoSanidad: 0
   tipoCoste: 0

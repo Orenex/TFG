@@ -27,5 +27,5 @@ MonoBehaviour:
     costoMana: 0
     tipoCoste: 0
   imagen: {fileID: 21300000, guid: 069a267a049d4f34aa028a1622ba421a, type: 3}
-  coste: 0
+  costoSanidad: 0
   tipoCoste: 0

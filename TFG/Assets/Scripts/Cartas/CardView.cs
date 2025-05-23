@@ -12,7 +12,6 @@ public class CardView : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
     [SerializeField] private TextMeshProUGUI textoEfecto;
     [SerializeField] private TextMeshProUGUI textoCoste;
     [SerializeField] private TextMeshProUGUI textoTipo;
-    [SerializeField] private TextMeshProUGUI textoRecurso;
 
     [Header("Animación")]
     [SerializeField] private float escalaHover = 1.1f;
@@ -47,9 +46,8 @@ public class CardView : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         textoNombre.text = Data.nombreCarta;
         textoDescripcion.text = Data.descripcion;
         textoEfecto.text = Data.efecto;
-        textoCoste.text = Data.coste.ToString();
+        textoCoste.text = Data.costoSanidad.ToString();
         textoTipo.text = Data.tipo.ToString();
-        textoRecurso.text = Data.tipoCoste.ToString();
         imagenCarta.sprite = Data.imagen;
     }
 

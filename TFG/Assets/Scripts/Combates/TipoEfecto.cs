@@ -13,7 +13,9 @@ public enum TipoEfecto
     CondicionPerfecta,
     ResucitarUnaVez,
     Confusion,
-    FuriaSanidad
+    FuriaSanidad,
+    DañoEnArea
+
 
 }
 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombreCarta: Creacion
   descripcion: "Causa entre -1 y -4 de da\xF1o"
-  efecto: "Da\xF1o aleatorio"
+  efecto: -1 - -4 HP
   tipo: 0
   accion:
     nombre: AtaqueAleatorio
@@ -27,5 +27,5 @@ MonoBehaviour:
     costoMana: 0
     tipoCoste: 0
   imagen: {fileID: 21300000, guid: 4a9e8740b217fbe4580704226318043a, type: 3}
-  coste: 0
+  costoSanidad: 0
   tipoCoste: 0

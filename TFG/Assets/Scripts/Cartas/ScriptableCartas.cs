@@ -21,6 +21,6 @@ public class ScriptableCartas : ScriptableObject
     public Accion accion;
 
     public Sprite imagen;
-    public int coste;
-    public RecursoCoste tipoCoste;
+    public int costoSanidad;
+    public RecursoCoste tipoCoste = RecursoCoste.Sanidad;
 }

@@ -17,7 +17,14 @@ public class CombatManager : MonoBehaviour
 
         if (!EsAccionValida(accion, lanzador))
         {
-            Debug.LogWarning("No tienes recursos suficientes.");
+            Debug.LogWarning("No tienes suficiente sanidad para usar esta acción.");
+            return;
+        }
+
+        if (lanzador.estadoEspecial.Paralizado)
+        {
+            Debug.LogWarning($"{lanzador.nombre} está paralizado y no puede actuar.");
+            PlayerInputController.TerminarTurno();
             return;
         }
 
@@ -28,7 +35,15 @@ public class CombatManager : MonoBehaviour
     {
         if (!EsAccionValida(accion, lanzador))
         {
-            Debug.LogWarning("IA sin recursos.");
+            Debug.LogWarning("IA sin recursos de sanidad.");
+            EnemyAIController.TurnoFinalizado = true;
+            return;
+        }
+
+        if (lanzador.estadoEspecial.Paralizado)
+        {
+            Debug.LogWarning($"{lanzador.nombre} está paralizado y pierde su turno.");
+            EnemyAIController.TurnoFinalizado = true;
             return;
         }
 
@@ -40,6 +55,8 @@ public class CombatManager : MonoBehaviour
         if (objetivo == null || !objetivo.sigueVivo)
         {
             Debug.LogWarning("Objetivo inválido.");
+            if (jugador) PlayerInputController.TerminarTurno();
+            else EnemyAIController.TurnoFinalizado = true;
             yield break;
         }
 
@@ -53,11 +70,6 @@ public class CombatManager : MonoBehaviour
 
     private bool EsAccionValida(Accion accion, Luchador lanzador)
     {
-        return accion.tipoCoste switch
-        {
-            RecursoCoste.Mana => lanzador.mana >= accion.costoMana,
-            RecursoCoste.Sanidad => lanzador.sanidad >= accion.costoMana,
-            _ => false
-        };
+        return lanzador.sanidad >= accion.costoMana;
     }
 }

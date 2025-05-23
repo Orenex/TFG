@@ -43,7 +43,7 @@ public class SeleccionDeObjetivo : MonoBehaviour
         }
     }
 
-    private void CambiarSeleccion(int direccion)
+    public void CambiarSeleccion(int direccion)
     {
         if (enemigos.Count == 0) return;
 

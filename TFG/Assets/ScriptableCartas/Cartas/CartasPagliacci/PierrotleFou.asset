@@ -23,9 +23,9 @@ MonoBehaviour:
     mensaje: AplicarEfecto
     argumento: 1
     animacionTrigger: 
-    efectoSecundario: Confusion
+    efectoSecundario: ConfusionGlobal
     costoMana: 1
-    tipoCoste: 1
+    tipoCoste: 0
   imagen: {fileID: 21300000, guid: 069a267a049d4f34aa028a1622ba421a, type: 3}
-  coste: 1
-  tipoCoste: 1
+  costoSanidad: 0
+  tipoCoste: 0

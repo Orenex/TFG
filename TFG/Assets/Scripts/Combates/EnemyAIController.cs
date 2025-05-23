@@ -7,7 +7,6 @@ public class EnemyAIController : MonoBehaviour
     public static EnemyAIController Instance { get; private set; }
     public static bool TurnoFinalizado { get; set; }
 
-    // Memoria de objetivos para evitar repeticiones
     private Dictionary<Luchador, Luchador> memoriaDeObjetivos = new();
 
     private void Awake()
@@ -20,16 +19,22 @@ public class EnemyAIController : MonoBehaviour
     {
         TurnoFinalizado = false;
 
+        if (enemigo.estadoEspecial.Paralizado)
+        {
+            Debug.Log($"{enemigo.nombre} está paralizado y pierde su turno.");
+            TurnoFinalizado = true;
+            return;
+        }
+
         var cartas = enemigo.cartasDisponibles.CartasEnLaColeccion;
 
         var jugables = cartas.FindAll(c =>
-            c != null &&
-            ((c.accion.tipoCoste == RecursoCoste.Mana && enemigo.mana >= c.accion.costoMana) ||
-             (c.accion.tipoCoste == RecursoCoste.Sanidad && enemigo.sanidad >= c.accion.costoMana))
+            c != null && enemigo.sanidad >= c.accion.costoMana
         );
 
         if (jugables.Count == 0)
         {
+            Debug.Log($"{enemigo.nombre} no tiene cartas jugables por falta de sanidad.");
             TurnoFinalizado = true;
             return;
         }
@@ -43,6 +48,7 @@ public class EnemyAIController : MonoBehaviour
         }
         else
         {
+            Debug.Log($"{enemigo.nombre} no encontró un objetivo válido.");
             TurnoFinalizado = true;
         }
     }
@@ -65,7 +71,6 @@ public class EnemyAIController : MonoBehaviour
 
     private Luchador ElegirObjetivo(ScriptableCartas carta, Luchador lanzador)
     {
-        // Si enemigo está confundido, atacar a otro enemigo al azar
         if (lanzador.estadoEspecial.Confusion)
         {
             var posibles = new List<Luchador>(FindObjectsOfType<Luchador>());
@@ -80,7 +85,6 @@ public class EnemyAIController : MonoBehaviour
             }
         }
 
-        // Objetivos válidos: aliados del jugador
         var posiblesObjetivos = new List<Luchador>(FindObjectsOfType<Luchador>());
         posiblesObjetivos = posiblesObjetivos.FindAll(l => l.sigueVivo && l.Aliado != lanzador.Aliado);
 
@@ -102,7 +106,7 @@ public class EnemyAIController : MonoBehaviour
 
         Luchador objetivoElegido;
 
-        if (carta.accion.argumento < 0) // daño
+        if (carta.accion.argumento < 0)
         {
             if (Random.value < 0.5f)
             {

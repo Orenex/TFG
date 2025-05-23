@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62b6d4f9b96275b419ac724268a707ee, type: 3}
-  m_Name: FinalDestination
+  m_Name: "R\xF6yksopp"
   m_EditorClassIdentifier: 
-  nombreCarta: Final Destination
-  descripcion: "Marca a un aliado que revivir\xE1 si muere"
+  nombreCarta: "R\xF6yksopp"
+  descripcion: "Aplica al azar Sangrado, Miedo o Confusi\xF3n al enemigo"
   efecto: 
-  tipo: 2
+  tipo: 3
   accion:
-    nombre: ResurreccionUnica
+    nombre: "R\xF6yksopp"
     estatico: 1
-    objetivoEsElEquipo: 1
+    objetivoEsElEquipo: 0
     mensaje: AplicarEfecto
-    argumento: 1
+    argumento: 2
     animacionTrigger: 
-    efectoSecundario: ResucitarUnaVez
+    efectoSecundario: GlitchRandom
     costoMana: 0
     tipoCoste: 0
-  imagen: {fileID: 21300000, guid: 069a267a049d4f34aa028a1622ba421a, type: 3}
+  imagen: {fileID: 21300000, guid: 4a9e8740b217fbe4580704226318043a, type: 3}
   costoSanidad: 0
   tipoCoste: 0
