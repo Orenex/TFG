@@ -41,6 +41,11 @@ public class Luchador : MonoBehaviour
     private Animator anim;
     public NavMeshAgent nv;
 
+    public bool saltarSiguienteTurno = false;
+
+    public EfectoActivo.FuriaFocalizada furiaFocalizada;
+
+
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -60,6 +65,11 @@ public class Luchador : MonoBehaviour
         }
 
         if (accion.objetivoEsElEquipo) objetivo = this;
+
+        if (accion.nombre == "GrimFandango")
+        {
+            saltarSiguienteTurno = true;
+        }
 
         if (accion.estatico)
         {
@@ -121,7 +131,7 @@ public class Luchador : MonoBehaviour
         for (int i = efectosActivos.Count - 1; i >= 0; i--)
         {
             var efecto = efectosActivos[i];
-            efecto.AplicarEfectoPorTurno(this);
+            efecto.AplicarEfectoPorTurno(this, this);
 
             if (efecto.Expirado)
             {
@@ -139,14 +149,37 @@ public class Luchador : MonoBehaviour
             return;
         }
 
+        // Aumentar daño recibido si tiene Furia activa
+        if (cantidad < 0 && estadoEspecial.FuriaRecibidaExtra > 0)
+        {
+            cantidad -= estadoEspecial.FuriaRecibidaExtra;
+        }
+
         vida += cantidad;
+
+        if (estadoEspecial.ReflejarDanioA != null && cantidad < 0)
+        {
+            int dañoReflejado = Mathf.CeilToInt(Mathf.Abs(cantidad) * 1f); // 100%
+            estadoEspecial.ReflejarDanioA.CambiarVida(-dañoReflejado);
+            Debug.Log($"{estadoEspecial.ReflejarDanioA.nombre} sufre {dañoReflejado} por Evil Dead (reflejo).");
+
+        }
+
         if (vida <= 0 && sigueVivo)
         {
             sigueVivo = false;
             gameObject.SetActive(false);
             Debug.Log($"{nombre} ha sido derrotado.");
         }
+
+        if (estadoEspecial.Critico && cantidad < 0 && UnityEngine.Random.value < 0.4f)
+        {
+            cantidad *= 2;
+            Debug.Log($"{nombre} hizo un CRÍTICO!");
+        }
+
     }
+
 
     public void CambiarMana(int cantidad)
     {
@@ -176,4 +209,8 @@ public class Luchador : MonoBehaviour
         return new List<Luchador>(FindObjectsOfType<Luchador>())
             .FindAll(l => l.Aliado != this.Aliado && l.sigueVivo);
     }
+
+ 
+
+
 }

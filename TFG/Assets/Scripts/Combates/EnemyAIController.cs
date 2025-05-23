@@ -65,6 +65,22 @@ public class EnemyAIController : MonoBehaviour
 
     private Luchador ElegirObjetivo(ScriptableCartas carta, Luchador lanzador)
     {
+        // Si enemigo está confundido, atacar a otro enemigo al azar
+        if (lanzador.estadoEspecial.Confusion)
+        {
+            var posibles = new List<Luchador>(FindObjectsOfType<Luchador>());
+            posibles = posibles.FindAll(l => !l.Aliado && l != lanzador && l.sigueVivo);
+
+            if (posibles.Count > 0)
+            {
+                var confundido = posibles[Random.Range(0, posibles.Count)];
+                Debug.Log($"{lanzador.nombre} está confundido y ataca a {confundido.nombre}");
+                lanzador.estadoEspecial.Confusion = false;
+                return confundido;
+            }
+        }
+
+        // Objetivos válidos: aliados del jugador
         var posiblesObjetivos = new List<Luchador>(FindObjectsOfType<Luchador>());
         posiblesObjetivos = posiblesObjetivos.FindAll(l => l.sigueVivo && l.Aliado != lanzador.Aliado);
 

@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62b6d4f9b96275b419ac724268a707ee, type: 3}
-  m_Name: Cadenazo
+  m_Name: AClockworkOrange
   m_EditorClassIdentifier: 
-  nombreCarta: Cadenazo
-  descripcion: Das un golpe con las cadenas
-  efecto: -10 HP
-  tipo: 0
+  nombreCarta: A Clockwork Orange
+  descripcion: Asquea a todos los enemigos
+  efecto: 
+  tipo: 5
   accion:
-    nombre: "Da\xF1oCadenazo"
-    estatico: 0
+    nombre: AscoGlobal
+    estatico: 1
     objetivoEsElEquipo: 0
-    mensaje: CambiarVida
-    argumento: -10
+    mensaje: AplicarEfectoGlobal
+    argumento: 1
     animacionTrigger: 
-    efectoSecundario: 
+    efectoSecundario: Asqueado
     costoMana: 1
-    tipoCoste: 0
-  imagen: {fileID: 21300000, guid: 4a9e8740b217fbe4580704226318043a, type: 3}
+    tipoCoste: 1
+  imagen: {fileID: 21300000, guid: 069a267a049d4f34aa028a1622ba421a, type: 3}
   coste: 1
-  tipoCoste: 0
+  tipoCoste: 1

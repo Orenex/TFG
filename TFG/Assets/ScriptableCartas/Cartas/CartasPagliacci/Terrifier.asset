@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62b6d4f9b96275b419ac724268a707ee, type: 3}
-  m_Name: Ataque normal
+  m_Name: Terrifier
   m_EditorClassIdentifier: 
-  nombreCarta: Hachazo
-  descripcion: Das un golpe con el hacha
-  efecto: -10 HP
+  nombreCarta: Terrifier
+  descripcion: Ataca al enemigo y mete miedo
+  efecto: -3 HP
   tipo: 0
   accion:
-    nombre: "Da\xF1oHachazo"
+    nombre: Terrifier
     estatico: 0
     objetivoEsElEquipo: 0
-    mensaje: CambiarVida
-    argumento: -10
+    mensaje: AplicarEfecto
+    argumento: -3
     animacionTrigger: 
-    efectoSecundario: 
-    costoMana: 1
+    efectoSecundario: Miedo
+    costoMana: 0
     tipoCoste: 0
-  imagen: {fileID: 21300000, guid: ae64a0402521e93478347e89981645ba, type: 3}
-  coste: 1
+  imagen: {fileID: 21300000, guid: 069a267a049d4f34aa028a1622ba421a, type: 3}
+  coste: 0
   tipoCoste: 0

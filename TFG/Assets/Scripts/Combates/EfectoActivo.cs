@@ -7,61 +7,78 @@ public class EfectoActivo
     public TipoEfecto tipo;
     public int duracionTurnos;
     public int modificador;
-    private bool yaActivado = false;
 
-    public void AplicarEfectoPorTurno(Luchador objetivo)
+
+    public void AplicarEfectoPorTurno(Luchador objetivo, Luchador lanzador = null)
     {
+        duracionTurnos--;
+
         switch (tipo)
         {
             case TipoEfecto.Sangrado:
                 objetivo.CambiarVida(-modificador);
                 break;
 
-            case TipoEfecto.CurarPorTurno:
-                objetivo.CambiarVida(modificador);
+            case TipoEfecto.Miedo:
+                // Reduce el daño que inflige el objetivo
+                objetivo.bonusDaño -= modificador;
+                break;
+
+            case TipoEfecto.Furia:
+                // Aumenta daño infligido, pero también el recibido
+                objetivo.bonusDaño += modificador;
+                objetivo.estadoEspecial.FuriaRecibidaExtra = modificador;
                 break;
 
             case TipoEfecto.Asqueado:
                 objetivo.estadoEspecial.Asqueado = true;
                 break;
 
-            case TipoEfecto.Furia:
-                objetivo.bonusDaño += modificador;
-                break;
-
-            case TipoEfecto.ReducirDaño:
-                objetivo.bonusDaño -= modificador;
-                break;
-
-            case TipoEfecto.RobarSalud:
-                var enemigos = objetivo.ObtenerEnemigosCercanos();
-                foreach (var e in enemigos)
+            case TipoEfecto.FuriaFocalizada:
+                // Solo si no está ya activa, se aplica
+                if (objetivo.furiaFocalizada == null)
                 {
-                    e.CambiarVida(-modificador);
-                    objetivo.CambiarVida(modificador);
+                    objetivo.furiaFocalizada = new FuriaFocalizada();
+                    objetivo.furiaFocalizada.objetivo = SeleccionDeObjetivo.Instance.ObtenerObjetivoActual();
+                    objetivo.furiaFocalizada.bonusDaño = modificador;
+                    objetivo.furiaFocalizada.turnosRestantes = 3;
                 }
+                break;
+
+            case TipoEfecto.Paralizado:
+                objetivo.estadoEspecial.Paralizado = true;
+                break;
+
+            case TipoEfecto.Critico:
+                objetivo.estadoEspecial.Critico = true;
+                break;
+
+            case TipoEfecto.CondicionPerfecta:
+                objetivo.estadoEspecial.CondicionPerfecta = true;
+                break;
+            
+            case TipoEfecto.ResucitarUnaVez:
+                objetivo.estadoEspecial.ResucitarUnaVez = true;
+                break;
+            case TipoEfecto.Confusion:
+                objetivo.estadoEspecial.Confusion = true;
                 break;
 
             case TipoEfecto.CompartirDaño:
-                objetivo.estadoEspecial.CompartirDaño = true;
+                lanzador.estadoEspecial.ReflejarDanioA = objetivo;
                 break;
-
-            case TipoEfecto.Miedo:
-                if (Random.value < 0.3f)
-                    objetivo.estadoEspecial.Paralizado = true;
-                break;
-
-            case TipoEfecto.Revivir:
-                if (!yaActivado && objetivo.vida <= 0)
-                {
-                    objetivo.Revivir(10);
-                    yaActivado = true;
-                }
+           
+            case TipoEfecto.FuriaSanidad:
+                float factor = 1f - Mathf.Clamp01(objetivo.sanidad / 10f);
+                objetivo.bonusDaño += Mathf.CeilToInt(modificador * factor);
                 break;
         }
-
-        duracionTurnos--;
     }
-
+    public class FuriaFocalizada
+    {
+        public Luchador objetivo;
+        public int bonusDaño;
+        public int turnosRestantes;
+    }
     public bool Expirado => duracionTurnos <= 0;
 }

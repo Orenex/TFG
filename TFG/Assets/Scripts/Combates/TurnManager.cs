@@ -50,6 +50,15 @@ public class TurnManager : MonoBehaviour
             if (actual == null || !actual.sigueVivo)
                 continue;
 
+            if (actual.saltarSiguienteTurno)
+            {
+                Debug.Log($"{actual.nombre} salta su turno por Grim Fandango.");
+                actual.saltarSiguienteTurno = false;
+                ordenTurnos.Enqueue(actual);
+                yield return null;
+                continue;
+            }
+
             SeleccionDeObjetivo.Instance.LimpiarSeleccion();
             actual.AplicarEfectosPorTurno();
 

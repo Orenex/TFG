@@ -6,7 +6,8 @@ public enum TipoCarta
     Curacion,
     Buff,
     Debuff,
-    Duplicadora
+    Duplicadora,
+    Ultimate
 }
 
 [CreateAssetMenu(fileName = "NuevaCarta", menuName = "Cartas/Carta")]

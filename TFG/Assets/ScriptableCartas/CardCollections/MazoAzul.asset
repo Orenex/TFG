@@ -13,10 +13,20 @@ MonoBehaviour:
   m_Name: MazoAzul
   m_EditorClassIdentifier: 
   CartasEnLaColeccion:
-  - {fileID: 11400000, guid: 3acf2d790c17cd843a22410c98195dd5, type: 2}
-  - {fileID: 11400000, guid: 3acf2d790c17cd843a22410c98195dd5, type: 2}
-  - {fileID: 11400000, guid: 3acf2d790c17cd843a22410c98195dd5, type: 2}
-  - {fileID: 11400000, guid: 3acf2d790c17cd843a22410c98195dd5, type: 2}
-  - {fileID: 11400000, guid: 32c7e4d993bdd9049b6ad710bca1f558, type: 2}
-  - {fileID: 11400000, guid: 32c7e4d993bdd9049b6ad710bca1f558, type: 2}
-  - {fileID: 11400000, guid: 32c7e4d993bdd9049b6ad710bca1f558, type: 2}
+  - {fileID: 11400000, guid: 9fb1dbf2b1f73df47abe82201053e5a5, type: 2}
+  - {fileID: 11400000, guid: 9fb1dbf2b1f73df47abe82201053e5a5, type: 2}
+  - {fileID: 11400000, guid: 9fb1dbf2b1f73df47abe82201053e5a5, type: 2}
+  - {fileID: 11400000, guid: 9fb1dbf2b1f73df47abe82201053e5a5, type: 2}
+  - {fileID: 11400000, guid: 9fb1dbf2b1f73df47abe82201053e5a5, type: 2}
+  - {fileID: 11400000, guid: 9fb1dbf2b1f73df47abe82201053e5a5, type: 2}
+  - {fileID: 11400000, guid: 9fb1dbf2b1f73df47abe82201053e5a5, type: 2}
+  - {fileID: 11400000, guid: 9fb1dbf2b1f73df47abe82201053e5a5, type: 2}
+  - {fileID: 11400000, guid: 9fb1dbf2b1f73df47abe82201053e5a5, type: 2}
+  - {fileID: 11400000, guid: 9fb1dbf2b1f73df47abe82201053e5a5, type: 2}
+  - {fileID: 11400000, guid: efcd55f2c2e4b944aa4588a4944f470b, type: 2}
+  - {fileID: 11400000, guid: e187090c51e6a684c9891d2474ac829d, type: 2}
+  - {fileID: 11400000, guid: e187090c51e6a684c9891d2474ac829d, type: 2}
+  - {fileID: 11400000, guid: 86bdaee7e48feae4e878f61972fe79f3, type: 2}
+  - {fileID: 11400000, guid: 86bdaee7e48feae4e878f61972fe79f3, type: 2}
+  - {fileID: 11400000, guid: 90b44991d9cb15f42ac6ac84e5f68c56, type: 2}
+  - {fileID: 11400000, guid: 90b44991d9cb15f42ac6ac84e5f68c56, type: 2}
