@@ -24,7 +24,7 @@ MonoBehaviour:
     argumento: -5
     animacionTrigger: 
     efectoSecundario: Sangrado
-    costoMana: 0
+    costoMana: 1
     tipoCoste: 1
   imagen: {fileID: 21300000, guid: ae64a0402521e93478347e89981645ba, type: 3}
   coste: 1

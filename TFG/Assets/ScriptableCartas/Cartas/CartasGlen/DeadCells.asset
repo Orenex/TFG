@@ -17,11 +17,11 @@ MonoBehaviour:
   efecto: 
   tipo: 2
   accion:
-    nombre: 
+    nombre: Dead Cells
     estatico: 1
     objetivoEsElEquipo: 1
     mensaje: AplicarEfecto
-    argumento: 0
+    argumento: 3
     animacionTrigger: 
     efectoSecundario: Furia
     costoMana: 0

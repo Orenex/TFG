@@ -13,10 +13,22 @@ MonoBehaviour:
   m_Name: MazoVerde
   m_EditorClassIdentifier: 
   CartasEnLaColeccion:
-  - {fileID: 11400000, guid: b5a48d9e45c366142a88ff7e92424d3a, type: 2}
-  - {fileID: 11400000, guid: b5a48d9e45c366142a88ff7e92424d3a, type: 2}
-  - {fileID: 11400000, guid: b5a48d9e45c366142a88ff7e92424d3a, type: 2}
-  - {fileID: 11400000, guid: b5a48d9e45c366142a88ff7e92424d3a, type: 2}
-  - {fileID: 11400000, guid: b5a48d9e45c366142a88ff7e92424d3a, type: 2}
-  - {fileID: 11400000, guid: b5a48d9e45c366142a88ff7e92424d3a, type: 2}
-  - {fileID: 11400000, guid: b5a48d9e45c366142a88ff7e92424d3a, type: 2}
+  - {fileID: 11400000, guid: 9729c129935d858468b7afb6de8385f0, type: 2}
+  - {fileID: 11400000, guid: 9729c129935d858468b7afb6de8385f0, type: 2}
+  - {fileID: 11400000, guid: 9729c129935d858468b7afb6de8385f0, type: 2}
+  - {fileID: 11400000, guid: 9729c129935d858468b7afb6de8385f0, type: 2}
+  - {fileID: 11400000, guid: 9729c129935d858468b7afb6de8385f0, type: 2}
+  - {fileID: 11400000, guid: 9729c129935d858468b7afb6de8385f0, type: 2}
+  - {fileID: 11400000, guid: 9729c129935d858468b7afb6de8385f0, type: 2}
+  - {fileID: 11400000, guid: 9729c129935d858468b7afb6de8385f0, type: 2}
+  - {fileID: 11400000, guid: 9729c129935d858468b7afb6de8385f0, type: 2}
+  - {fileID: 11400000, guid: 9729c129935d858468b7afb6de8385f0, type: 2}
+  - {fileID: 11400000, guid: 9e29cfb5a745a194c875a6799360dd7e, type: 2}
+  - {fileID: 11400000, guid: 9e29cfb5a745a194c875a6799360dd7e, type: 2}
+  - {fileID: 11400000, guid: 16664419f2393484f846380ffc497e27, type: 2}
+  - {fileID: 11400000, guid: 16664419f2393484f846380ffc497e27, type: 2}
+  - {fileID: 11400000, guid: 391fbd167ae77c3499e7b2e42d3db638, type: 2}
+  - {fileID: 11400000, guid: 391fbd167ae77c3499e7b2e42d3db638, type: 2}
+  - {fileID: 11400000, guid: 001882395ba712745808aa154fe2baa0, type: 2}
+  - {fileID: 11400000, guid: 001882395ba712745808aa154fe2baa0, type: 2}
+  - {fileID: 11400000, guid: 2c3f0cf2985077a40bd6548f7b6d1c5e, type: 2}
