@@ -1873,7 +1873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac930aadc3856749bd19817471f4976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nombre: Dummy
+  nombre: Dummy1
   vida: 100
   vidaMaxima: 0
   sanidad: 100
@@ -2113,7 +2113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac930aadc3856749bd19817471f4976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nombre: Dummy
+  nombre: Dummy2
   vida: 100
   vidaMaxima: 0
   sanidad: 100
@@ -3119,7 +3119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac930aadc3856749bd19817471f4976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nombre: Dummy
+  nombre: Dummy3
   vida: 100
   vidaMaxima: 0
   sanidad: 100

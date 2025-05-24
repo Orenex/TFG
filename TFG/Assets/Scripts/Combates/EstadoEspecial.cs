@@ -1,3 +1,5 @@
+using UnityEngine;
+
 [System.Serializable]
 public class EstadoEspecial
 {
@@ -10,11 +12,12 @@ public class EstadoEspecial
     public bool ResucitarUnaVez = false;
     public bool Confusion = false;
     public Luchador ReflejarDanioA = null;
-
+    public bool Sangrado;
 
 
     public void Reiniciar()
     {
+        Debug.Log("ReiniciandoLuchador");
         Asqueado = false;
         CompartirDaño = false;
         Paralizado = false;
@@ -23,7 +26,8 @@ public class EstadoEspecial
         CondicionPerfecta = false;
         Confusion = false;
         ReflejarDanioA = null;
+        Sangrado = false;
 
 
-    }
+}
 }

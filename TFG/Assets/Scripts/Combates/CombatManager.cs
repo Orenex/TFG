@@ -28,6 +28,20 @@ public class CombatManager : MonoBehaviour
             return;
         }
 
+        if (lanzador.estadoEspecial.Sangrado)
+        {
+            Debug.LogWarning($"{lanzador.nombre} está sangrando");
+            objetivo.CambiarVida(-1); // Daño leve
+            return;
+        }
+
+        if (lanzador.estadoEspecial.Asqueado)
+        {
+            Debug.LogWarning($"{lanzador.nombre} está asqueado");
+            objetivo.CambiarVida(-3); // Daño leve
+            return;
+        }
+
         StartCoroutine(ResolverAccion(accion, lanzador, objetivo, true, accionSecundaria));
     }
 

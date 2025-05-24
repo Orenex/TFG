@@ -18,12 +18,24 @@ public class EnemyAIController : MonoBehaviour
     public void EjecutarTurno(Luchador enemigo)
     {
         TurnoFinalizado = false;
+        Debug.Log($"Paralizado: {enemigo.estadoEspecial.Paralizado}");
 
         if (enemigo.estadoEspecial.Paralizado)
         {
             Debug.Log($"{enemigo.nombre} está paralizado y pierde su turno.");
             TurnoFinalizado = true;
             return;
+        }
+
+        if (enemigo.estadoEspecial.Asqueado)
+        {
+            Debug.Log($"{enemigo.nombre} está asqueado.");
+            enemigo.vida = enemigo.vida - 3;
+        }
+        if (enemigo.estadoEspecial.Sangrado)
+        {
+            Debug.Log($"{enemigo.nombre} está sangrando.");
+            enemigo.vida = enemigo.vida - 1;
         }
 
         var cartas = enemigo.cartasDisponibles.CartasEnLaColeccion;

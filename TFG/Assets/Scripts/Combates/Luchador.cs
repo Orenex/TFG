@@ -161,7 +161,7 @@ public class Luchador : MonoBehaviour
                     {
                         if (enemigo.Aliado != this.Aliado && enemigo.sigueVivo)
                         {
-                            if (efectoGlobal == TipoEfecto.DanioEnArea || efectoGlobal == TipoEfecto.DanioEnArea)
+                            if (efectoGlobal == TipoEfecto.DanioEnArea)
                             {
                                 enemigo.CambiarVida(accion.argumento);
                                 Debug.Log($"{enemigo.nombre} recibe daño global inmediato de {accion.argumento}");
@@ -198,15 +198,7 @@ public class Luchador : MonoBehaviour
                     break;
                 }
 
-                if (accion.efectoSecundario == "MiedoYDanio")
-                {
-                    objetivo.CambiarVida(accion.argumento + bonusDaño);
-                    objetivo.estadoEspecial.Paralizado = true;
-                    Debug.Log($"{objetivo.nombre} recibe daño y miedo por Terrifier.");
-                    break;
-                }
-
-                TipoEfecto tipo = TipoEfecto.Sangrado;
+                TipoEfecto tipo;
                 if (accion.efectoSecundario == "GlitchRandom")
                 {
                     var opciones = new[] { TipoEfecto.Sangrado, TipoEfecto.Paralizado, TipoEfecto.Confusion };
@@ -234,6 +226,7 @@ public class Luchador : MonoBehaviour
                     modificador = accion.argumento,
                     duracionTurnos = 3
                 };
+                Debug.Log($"Añadiendo efecto {nuevoEfecto.nombre}");
                 objetivo.efectosActivos.Add(nuevoEfecto);
                 break;
         }
@@ -249,8 +242,8 @@ public class Luchador : MonoBehaviour
 
     public void AplicarEfectosPorTurno()
     {
+        Debug.Log($"AplicarEfectos {efectosActivos.Count}");
         estadoEspecial.Reiniciar();
-
         for (int i = efectosActivos.Count - 1; i >= 0; i--)
         {
             var efecto = efectosActivos[i];
@@ -261,7 +254,9 @@ public class Luchador : MonoBehaviour
                 efectosActivos.RemoveAt(i);
                 Debug.Log($"{nombre} pierde el efecto: {efecto.nombre}");
             }
+            Debug.Log($"vuelta {i}");
         }
+        
     }
 
     public void CambiarVida(int cantidad)

@@ -25,6 +25,7 @@ public class HandManager : MonoBehaviour
 
     public void PrepararNuevaMano(CardCollection coleccion)
     {
+        Debug.Log("PreparandoMano");
         LimpiarMano();
         List<ScriptableCartas> lista = new(coleccion.CartasEnLaColeccion);
         lista.Shuffle();

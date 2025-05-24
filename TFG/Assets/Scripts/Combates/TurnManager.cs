@@ -27,7 +27,7 @@ public class TurnManager : MonoBehaviour
     private void InicializarTurnos()
     {
         ordenTurnos.Clear();
-
+        
         foreach (var luchador in luchadoresEnCombate)
         {
             if (luchador != null && luchador.sigueVivo)
@@ -64,6 +64,7 @@ public class TurnManager : MonoBehaviour
 
             if (actual.Aliado)
             {
+                Debug.Log(actual.nombre);
                 CombatUI.Instance.MostrarCartas(actual.cartasDisponibles);
                 EnemyAIController.Instance.ReiniciarMemoriaDeObjetivos();
                 PlayerInputController.Instance.PrepararTurno();

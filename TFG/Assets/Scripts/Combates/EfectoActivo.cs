@@ -16,7 +16,9 @@ public class EfectoActivo
         switch (tipo)
         {
             case TipoEfecto.Sangrado:
-                objetivo.CambiarVida(-modificador);
+                
+                Debug.Log($"{objetivo.nombre} sufre sangrado.");
+                objetivo.estadoEspecial.Sangrado = true;
                 break;
 
             case TipoEfecto.Furia:
@@ -25,8 +27,10 @@ public class EfectoActivo
                 break;
 
             case TipoEfecto.Asqueado:
+                Debug.Log($"{objetivo.nombre} vomita del asco.");
                 objetivo.estadoEspecial.Asqueado = true;
                 break;
+
 
             case TipoEfecto.FuriaFocalizada:
                 if (objetivo.furiaFocalizada == null)
@@ -39,6 +43,7 @@ public class EfectoActivo
                 break;
 
             case TipoEfecto.Paralizado:
+                Debug.Log("Se hace el estado True");
                 objetivo.estadoEspecial.Paralizado = true;
                 break;
 
