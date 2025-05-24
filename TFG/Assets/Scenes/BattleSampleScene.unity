@@ -285,6 +285,7 @@ MonoBehaviour:
     ResucitarUnaVez: 0
     Confusion: 0
     ReflejarDanioA: {fileID: 0}
+    Sangrado: 0
   nv: {fileID: 23868591}
   saltarSiguienteTurno: 0
 --- !u!1 &128574785
@@ -1311,6 +1312,7 @@ MonoBehaviour:
     ResucitarUnaVez: 0
     Confusion: 0
     ReflejarDanioA: {fileID: 0}
+    Sangrado: 0
   nv: {fileID: 1323463329}
   saltarSiguienteTurno: 0
 --- !u!1 &1364796337
@@ -1529,6 +1531,7 @@ MonoBehaviour:
     ResucitarUnaVez: 0
     Confusion: 0
     ReflejarDanioA: {fileID: 0}
+    Sangrado: 0
   nv: {fileID: 1489431646}
   saltarSiguienteTurno: 0
 --- !u!1 &1623621478
@@ -1697,6 +1700,7 @@ MonoBehaviour:
     ResucitarUnaVez: 0
     Confusion: 0
     ReflejarDanioA: {fileID: 0}
+    Sangrado: 0
   nv: {fileID: 1623621484}
   saltarSiguienteTurno: 0
 --- !u!1 &1679492176
@@ -1893,6 +1897,7 @@ MonoBehaviour:
     ResucitarUnaVez: 0
     Confusion: 0
     ReflejarDanioA: {fileID: 0}
+    Sangrado: 0
   nv: {fileID: 1679492177}
   saltarSiguienteTurno: 0
 --- !u!1 &1684504860
@@ -2133,6 +2138,7 @@ MonoBehaviour:
     ResucitarUnaVez: 0
     Confusion: 0
     ReflejarDanioA: {fileID: 0}
+    Sangrado: 0
   nv: {fileID: 1687238853}
   saltarSiguienteTurno: 0
 --- !u!1 &1689714744
@@ -3139,6 +3145,7 @@ MonoBehaviour:
     ResucitarUnaVez: 0
     Confusion: 0
     ReflejarDanioA: {fileID: 0}
+    Sangrado: 0
   nv: {fileID: 1764553549}
   saltarSiguienteTurno: 0
 --- !u!1 &1807752033
@@ -3186,10 +3193,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luchadoresEnCombate:
+  - {fileID: 1623621485}
   - {fileID: 1489431647}
   - {fileID: 1323463330}
   - {fileID: 23868592}
-  - {fileID: 1623621485}
   - {fileID: 1679492184}
   - {fileID: 1687238854}
   - {fileID: 1764553556}

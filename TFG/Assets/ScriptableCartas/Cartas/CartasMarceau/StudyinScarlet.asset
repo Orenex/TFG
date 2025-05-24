@@ -20,7 +20,7 @@ MonoBehaviour:
     nombre: 'Sangrado '
     estatico: 1
     objetivoEsElEquipo: 0
-    mensaje: 'AplicarEfecto '
+    mensaje: AplicarEfecto
     argumento: 1
     animacionTrigger: 
     efectoSecundario: 'Sangrado '
