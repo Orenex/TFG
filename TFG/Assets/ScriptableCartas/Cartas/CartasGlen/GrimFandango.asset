@@ -19,6 +19,16 @@ MonoBehaviour:
   accion:
     nombre: GrimFandangoBase
     estatico: 1
+    objetivoEsElEquipo: 0
+    mensaje: AplicarEfecto
+    argumento: 1
+    animacionTrigger: 
+    efectoSecundario: Paralizado
+    costoMana: 0
+    tipoCoste: 0
+  accionSecundaria:
+    nombre: GrimFandangoBase
+    estatico: 1
     objetivoEsElEquipo: 1
     mensaje: AplicarEfecto
     argumento: 1

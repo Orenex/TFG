@@ -267,7 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombre: Pagliacci
   vida: 100
-  mana: 10
+  vidaMaxima: 100
   sanidad: 100
   "bonusDa\xF1o": 0
   Aliado: 1
@@ -279,7 +279,14 @@ MonoBehaviour:
     Asqueado: 0
     "CompartirDa\xF1o": 0
     Paralizado: 0
+    FuriaRecibidaExtra: 0
+    Critico: 0
+    CondicionPerfecta: 0
+    ResucitarUnaVez: 0
+    Confusion: 0
+    ReflejarDanioA: {fileID: 0}
   nv: {fileID: 23868591}
+  saltarSiguienteTurno: 0
 --- !u!1 &128574785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,7 +1293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombre: Jack
   vida: 100
-  mana: 10
+  vidaMaxima: 100
   sanidad: 100
   "bonusDa\xF1o": 0
   Aliado: 1
@@ -1298,7 +1305,14 @@ MonoBehaviour:
     Asqueado: 0
     "CompartirDa\xF1o": 0
     Paralizado: 0
+    FuriaRecibidaExtra: 0
+    Critico: 0
+    CondicionPerfecta: 0
+    ResucitarUnaVez: 0
+    Confusion: 0
+    ReflejarDanioA: {fileID: 0}
   nv: {fileID: 1323463329}
+  saltarSiguienteTurno: 0
 --- !u!1 &1364796337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1497,7 +1511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombre: Glen
   vida: 100
-  mana: 10
+  vidaMaxima: 100
   sanidad: 100
   "bonusDa\xF1o": 0
   Aliado: 1
@@ -1509,7 +1523,14 @@ MonoBehaviour:
     Asqueado: 0
     "CompartirDa\xF1o": 0
     Paralizado: 0
+    FuriaRecibidaExtra: 0
+    Critico: 0
+    CondicionPerfecta: 0
+    ResucitarUnaVez: 0
+    Confusion: 0
+    ReflejarDanioA: {fileID: 0}
   nv: {fileID: 1489431646}
+  saltarSiguienteTurno: 0
 --- !u!1 &1623621478
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,7 +1679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombre: Marceau
   vida: 100
-  mana: 10
+  vidaMaxima: 100
   sanidad: 100
   "bonusDa\xF1o": 0
   Aliado: 1
@@ -1670,7 +1691,14 @@ MonoBehaviour:
     Asqueado: 0
     "CompartirDa\xF1o": 0
     Paralizado: 0
+    FuriaRecibidaExtra: 0
+    Critico: 0
+    CondicionPerfecta: 0
+    ResucitarUnaVez: 0
+    Confusion: 0
+    ReflejarDanioA: {fileID: 0}
   nv: {fileID: 1623621484}
+  saltarSiguienteTurno: 0
 --- !u!1 &1679492176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1847,19 +1875,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombre: Dummy
   vida: 100
-  mana: 3
+  vidaMaxima: 0
   sanidad: 100
   "bonusDa\xF1o": 0
   Aliado: 0
   sigueVivo: 1
-  cartasDisponibles: {fileID: 11400000, guid: cc76023cb8f267245ab7ea6e63097d6b, type: 2}
+  cartasDisponibles: {fileID: 11400000, guid: a5788ed090ed391409f87e703541c110, type: 2}
   Acciones: []
   efectosActivos: []
   estadoEspecial:
     Asqueado: 0
     "CompartirDa\xF1o": 0
     Paralizado: 0
+    FuriaRecibidaExtra: 0
+    Critico: 0
+    CondicionPerfecta: 0
+    ResucitarUnaVez: 0
+    Confusion: 0
+    ReflejarDanioA: {fileID: 0}
   nv: {fileID: 1679492177}
+  saltarSiguienteTurno: 0
 --- !u!1 &1684504860
 GameObject:
   m_ObjectHideFlags: 0
@@ -2080,19 +2115,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombre: Dummy
   vida: 100
-  mana: 3
+  vidaMaxima: 0
   sanidad: 100
   "bonusDa\xF1o": 0
   Aliado: 0
   sigueVivo: 1
-  cartasDisponibles: {fileID: 11400000, guid: cc76023cb8f267245ab7ea6e63097d6b, type: 2}
+  cartasDisponibles: {fileID: 11400000, guid: a5788ed090ed391409f87e703541c110, type: 2}
   Acciones: []
   efectosActivos: []
   estadoEspecial:
     Asqueado: 0
     "CompartirDa\xF1o": 0
     Paralizado: 0
+    FuriaRecibidaExtra: 0
+    Critico: 0
+    CondicionPerfecta: 0
+    ResucitarUnaVez: 0
+    Confusion: 0
+    ReflejarDanioA: {fileID: 0}
   nv: {fileID: 1687238853}
+  saltarSiguienteTurno: 0
 --- !u!1 &1689714744
 GameObject:
   m_ObjectHideFlags: 0
@@ -3079,19 +3121,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombre: Dummy
   vida: 100
-  mana: 3
+  vidaMaxima: 0
   sanidad: 100
   "bonusDa\xF1o": 0
   Aliado: 0
   sigueVivo: 1
-  cartasDisponibles: {fileID: 11400000, guid: cc76023cb8f267245ab7ea6e63097d6b, type: 2}
+  cartasDisponibles: {fileID: 11400000, guid: a5788ed090ed391409f87e703541c110, type: 2}
   Acciones: []
   efectosActivos: []
   estadoEspecial:
     Asqueado: 0
     "CompartirDa\xF1o": 0
     Paralizado: 0
+    FuriaRecibidaExtra: 0
+    Critico: 0
+    CondicionPerfecta: 0
+    ResucitarUnaVez: 0
+    Confusion: 0
+    ReflejarDanioA: {fileID: 0}
   nv: {fileID: 1764553549}
+  saltarSiguienteTurno: 0
 --- !u!1 &1807752033
 GameObject:
   m_ObjectHideFlags: 0

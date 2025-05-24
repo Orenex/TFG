@@ -33,7 +33,8 @@ public class CardActionExecutor : MonoBehaviour
             return;
         }
 
-        CombatManager.Instance.EjecutarAccionJugador(carta.Data.accion, objetivo);
+        CombatManager.Instance.EjecutarAccionJugador(carta.Data.accion, objetivo, carta.Data.accionSecundaria);
+
         FinalizarCarta(carta);
     }
 

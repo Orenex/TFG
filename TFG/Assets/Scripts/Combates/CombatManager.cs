@@ -11,7 +11,7 @@ public class CombatManager : MonoBehaviour
         else Instance = this;
     }
 
-    public void EjecutarAccionJugador(Accion accion, Luchador objetivo)
+    public void EjecutarAccionJugador(Accion accion, Luchador objetivo, Accion? accionSecundaria = null)
     {
         var lanzador = TurnManager.Instance.Actual;
 
@@ -28,8 +28,9 @@ public class CombatManager : MonoBehaviour
             return;
         }
 
-        StartCoroutine(ResolverAccion(accion, lanzador, objetivo, true));
+        StartCoroutine(ResolverAccion(accion, lanzador, objetivo, true, accionSecundaria));
     }
+
 
     public void EjecutarAccionEnemigo(Accion accion, Luchador lanzador, Luchador objetivo)
     {
@@ -50,7 +51,7 @@ public class CombatManager : MonoBehaviour
         StartCoroutine(ResolverAccion(accion, lanzador, objetivo, false));
     }
 
-    private IEnumerator ResolverAccion(Accion accion, Luchador lanzador, Luchador objetivo, bool jugador)
+    private IEnumerator ResolverAccion(Accion accion, Luchador lanzador, Luchador objetivo, bool jugador, Accion? accionSecundaria = null)
     {
         if (objetivo == null || !objetivo.sigueVivo)
         {
@@ -60,13 +61,14 @@ public class CombatManager : MonoBehaviour
             yield break;
         }
 
-        yield return lanzador.EjecutarAccion(accion, objetivo);
+        yield return lanzador.EjecutarAccion(accion, objetivo, accionSecundaria);
 
         if (jugador)
             PlayerInputController.TerminarTurno();
         else
             EnemyAIController.TurnoFinalizado = true;
     }
+
 
     private bool EsAccionValida(Accion accion, Luchador lanzador)
     {

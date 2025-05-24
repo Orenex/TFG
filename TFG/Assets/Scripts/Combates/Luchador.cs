@@ -49,16 +49,17 @@ public class Luchador : MonoBehaviour
         anim = GetComponent<Animator>();
         nv = GetComponent<NavMeshAgent>();
         nv.updateRotation = false;
+        if (vidaMaxima <= 0)
+            vidaMaxima = vida;
+
     }
 
-    public IEnumerator EjecutarAccion(Accion accion, Luchador objetivo)
+    public IEnumerator EjecutarAccion(Accion accion, Luchador objetivo, Accion? accionSecundaria = null)
     {
         Debug.Log($"[{nombre}] ejecuta {accion.nombre} sobre {objetivo.nombre}");
 
         if (accion.tipoCoste == RecursoCoste.Sanidad)
-        {
             CambiarSanidad(-accion.costoMana);
-        }
 
         if (accion.objetivoEsElEquipo)
             objetivo = this;
@@ -69,6 +70,12 @@ public class Luchador : MonoBehaviour
         if (accion.estatico)
         {
             EjecutarEfecto(accion, objetivo);
+            if (accionSecundaria.HasValue)
+            {
+                var sec = accionSecundaria.Value;
+                Luchador objetivoSec = sec.objetivoEsElEquipo ? this : objetivo;
+                EjecutarEfecto(sec, objetivoSec);
+            }
         }
         else
         {
@@ -81,6 +88,13 @@ public class Luchador : MonoBehaviour
 
             EjecutarEfecto(accion, objetivo);
 
+            if (accionSecundaria.HasValue)
+            {
+                var sec = accionSecundaria.Value;
+                Luchador objetivoSec = sec.objetivoEsElEquipo ? this : objetivo;
+                EjecutarEfecto(sec, objetivoSec);
+            }
+
             transform.LookAt(origen);
             nv.SetDestination(origen);
 
@@ -88,6 +102,7 @@ public class Luchador : MonoBehaviour
                 yield return null;
         }
     }
+
 
     private void EjecutarEfecto(Accion accion, Luchador objetivo)
     {
@@ -134,25 +149,40 @@ public class Luchador : MonoBehaviour
                 break;
 
             case "AplicarEfectoGlobal":
-                if (Enum.TryParse(accion.efectoSecundario, out TipoEfecto efectoGlobal))
                 {
-                    foreach (var enemigo in FindObjectsOfType<Luchador>())
+                    if (!Enum.TryParse<TipoEfecto>(accion.efectoSecundario, out TipoEfecto efectoGlobal))
+                    {
+                        Debug.LogError($"[ERROR] Efecto global inválido: {accion.efectoSecundario}");
+                        return;
+                    }
+
+                    foreach (var enemigo in UnityEngine.Object.FindObjectsOfType<Luchador>()
+)
                     {
                         if (enemigo.Aliado != this.Aliado && enemigo.sigueVivo)
                         {
-                            var efecto = new EfectoActivo
+                            if (efectoGlobal == TipoEfecto.DanioEnArea || efectoGlobal == TipoEfecto.DanioEnArea)
                             {
-                                nombre = efectoGlobal.ToString(),
-                                tipo = efectoGlobal,
-                                modificador = accion.argumento,
-                                duracionTurnos = 3
-                            };
-                            enemigo.efectosActivos.Add(efecto);
-                            Debug.Log($"{enemigo.nombre} recibe efecto global {efectoGlobal}");
+                                enemigo.CambiarVida(accion.argumento);
+                                Debug.Log($"{enemigo.nombre} recibe daño global inmediato de {accion.argumento}");
+                            }
+                            else
+                            {
+                                var efecto = new EfectoActivo
+                                {
+                                    nombre = efectoGlobal.ToString(),
+                                    tipo = efectoGlobal,
+                                    modificador = accion.argumento,
+                                    duracionTurnos = 3
+                                };
+                                enemigo.efectosActivos.Add(efecto);
+                                Debug.Log($"{enemigo.nombre} recibe efecto global {efectoGlobal}");
+                            }
                         }
                     }
+                    break;
                 }
-                break;
+
 
             case "AplicarEfecto":
                 if (accion.efectoSecundario == "ConfusionGlobal")
@@ -179,13 +209,22 @@ public class Luchador : MonoBehaviour
                 TipoEfecto tipo = TipoEfecto.Sangrado;
                 if (accion.efectoSecundario == "GlitchRandom")
                 {
-                    var opciones = new[] { TipoEfecto.Sangrado, TipoEfecto.Miedo, TipoEfecto.Confusion };
+                    var opciones = new[] { TipoEfecto.Sangrado, TipoEfecto.Paralizado, TipoEfecto.Confusion };
                     tipo = opciones[UnityEngine.Random.Range(0, opciones.Length)];
                     Debug.Log($"Glitch Beat aplica efecto aleatorio: {tipo}");
                 }
                 else
                 {
-                    Enum.TryParse(accion.efectoSecundario, out tipo);
+                    if (!Enum.TryParse<TipoEfecto>(accion.efectoSecundario, out tipo))
+                    {
+                        Debug.LogError($"[ERROR] No se pudo convertir '{accion.efectoSecundario}' en TipoEfecto.");
+                        return;
+                    }
+                    else
+                    {
+                        Debug.Log($"[DEBUG] Tipo de efecto detectado: {tipo}");
+                    }
+
                 }
 
                 var nuevoEfecto = new EfectoActivo

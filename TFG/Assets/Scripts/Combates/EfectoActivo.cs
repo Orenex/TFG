@@ -19,10 +19,6 @@ public class EfectoActivo
                 objetivo.CambiarVida(-modificador);
                 break;
 
-            case TipoEfecto.Miedo:
-                objetivo.bonusDaño -= modificador;
-                break;
-
             case TipoEfecto.Furia:
                 objetivo.bonusDaño += modificador;
                 objetivo.estadoEspecial.FuriaRecibidaExtra = modificador;
@@ -72,23 +68,18 @@ public class EfectoActivo
                 objetivo.bonusDaño += Mathf.CeilToInt(modificador * factor);
                 break;
 
-            case TipoEfecto.DañoEnArea:
-                int dañoBase = modificador;
-                if (lanzador != null && lanzador.estadoEspecial.FuriaRecibidaExtra > 0)
-                {
-                    dañoBase += lanzador.estadoEspecial.FuriaRecibidaExtra;
-                    Debug.Log("Daño aumentado por Furia activa en lanzador.");
-                }
-
+            case TipoEfecto.DanioEnArea:
                 foreach (var luchador in Object.FindObjectsOfType<Luchador>())
                 {
-                    if (luchador.Aliado != objetivo.Aliado && luchador.sigueVivo)
+                    if (luchador.Aliado != lanzador.Aliado && luchador.sigueVivo)
                     {
-                        luchador.CambiarVida(-dañoBase);
-                        Debug.Log($"{luchador.nombre} recibe {dañoBase} de daño por área");
+                        luchador.CambiarVida(modificador * -1);
+                        Debug.Log($"{luchador.nombre} recibe daño de área: {modificador} HP.");
                     }
                 }
                 break;
+
+
         }
     }
 

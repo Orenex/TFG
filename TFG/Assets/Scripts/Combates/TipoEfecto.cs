@@ -3,7 +3,6 @@ using UnityEngine;
 public enum TipoEfecto
 {
     Sangrado,
-    Miedo,
     Furia,
     Asqueado,
     CompartirDaño,
@@ -14,7 +13,7 @@ public enum TipoEfecto
     ResucitarUnaVez,
     Confusion,
     FuriaSanidad,
-    DañoEnArea
+    DanioEnArea
 
 
 }
