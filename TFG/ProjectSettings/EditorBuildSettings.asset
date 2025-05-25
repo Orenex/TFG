@@ -32,6 +32,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Descanso_Catacumbas.unity
     guid: 511d3fce65ccbd1428c21690fd549928
+  - enabled: 1
+    path: Assets/Scenes/Entrada_Sectarios.unity
+    guid: 0d7f60451431297438b1f1a80d4450b8
+  - enabled: 1
+    path: Assets/Scenes/Descanso_Sectarios.unity
+    guid: b8f92ca8c03a1b54ea649fea2bce71dd
+  - enabled: 1
+    path: Assets/Scenes/PuebloPrincipal.unity
+    guid: e29e3309c7b1f074fb4c7705dd5726e9
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
