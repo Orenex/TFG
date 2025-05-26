@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Clase de extensión que añade funcionalidades adicionales a listas genéricas
 public static class ListExtensions
 {
-    /// <summary>
-    /// Mezcla los elementos de una lista de forma aleatoria.
-    /// </summary>
     public static void Shuffle<T>(this IList<T> list)
     {
         for (int i = 0; i < list.Count; i++)

@@ -1,25 +1,28 @@
+// Clase principal para los personajes que participan en combate, ya sean aliados o enemigos
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum RecursoCoste { Sanidad } 
+// Tipos de recurso que puede consumir una acción
+public enum RecursoCoste { Sanidad }
 
+// Representa una acción que una carta o luchador puede ejecutar
 [System.Serializable]
 public struct Accion
 {
     public string nombre;
-    public bool estatico;
-    public bool objetivoEsElEquipo;
+    public bool estatico;                  // Si es estatico, no requiere movimiento
+    public bool objetivoEsElEquipo;        // Si el objetivo es uno mismo
 
-    public string mensaje;
-    public int argumento;
+    public string mensaje;                 // Tipo de efecto (daño, curación, etc.)
+    public int argumento;                  // Valor del efecto
 
-    public string animacionTrigger;
-    public string efectoSecundario;
-    public int costoMana;
-    public RecursoCoste tipoCoste;
+    public string animacionTrigger;        // Animación a reproducir
+    public string efectoSecundario;        // Nombre del efecto adicional
+    public int costoMana;                  // Costo de sanidad
+    public RecursoCoste tipoCoste;         // Tipo de recurso usado
 }
 
 public class Luchador : MonoBehaviour
@@ -49,11 +52,13 @@ public class Luchador : MonoBehaviour
         anim = GetComponent<Animator>();
         nv = GetComponent<NavMeshAgent>();
         nv.updateRotation = false;
+
+        // Ajusta vida máxima si no está definida
         if (vidaMaxima <= 0)
             vidaMaxima = vida;
-
     }
 
+    // Ejecuta una acción principal y secundaria sobre un objetivo
     public IEnumerator EjecutarAccion(Accion accion, Luchador objetivo, Accion? accionSecundaria = null)
     {
         Debug.Log($"[{nombre}] ejecuta {accion.nombre} sobre {objetivo.nombre}");
@@ -67,6 +72,7 @@ public class Luchador : MonoBehaviour
         if (accion.nombre == "GrimFandango")
             saltarSiguienteTurno = true;
 
+        // Si es una acción estática, se aplica sin moverse
         if (accion.estatico)
         {
             EjecutarEfecto(accion, objetivo);
@@ -103,7 +109,7 @@ public class Luchador : MonoBehaviour
         }
     }
 
-
+    // Aplica el efecto de una acción sobre un objetivo
     private void EjecutarEfecto(Accion accion, Luchador objetivo)
     {
         switch (accion.mensaje)
@@ -149,40 +155,36 @@ public class Luchador : MonoBehaviour
                 break;
 
             case "AplicarEfectoGlobal":
+                if (!Enum.TryParse<TipoEfecto>(accion.efectoSecundario, out TipoEfecto efectoGlobal))
                 {
-                    if (!Enum.TryParse<TipoEfecto>(accion.efectoSecundario, out TipoEfecto efectoGlobal))
-                    {
-                        Debug.LogError($"[ERROR] Efecto global inválido: {accion.efectoSecundario}");
-                        return;
-                    }
-
-                    foreach (var enemigo in UnityEngine.Object.FindObjectsOfType<Luchador>()
-)
-                    {
-                        if (enemigo.Aliado != this.Aliado && enemigo.sigueVivo)
-                        {
-                            if (efectoGlobal == TipoEfecto.DanioEnArea)
-                            {
-                                enemigo.CambiarVida(accion.argumento);
-                                Debug.Log($"{enemigo.nombre} recibe daño global inmediato de {accion.argumento}");
-                            }
-                            else
-                            {
-                                var efecto = new EfectoActivo
-                                {
-                                    nombre = efectoGlobal.ToString(),
-                                    tipo = efectoGlobal,
-                                    modificador = accion.argumento,
-                                    duracionTurnos = 3
-                                };
-                                enemigo.efectosActivos.Add(efecto);
-                                Debug.Log($"{enemigo.nombre} recibe efecto global {efectoGlobal}");
-                            }
-                        }
-                    }
-                    break;
+                    Debug.LogError($"[ERROR] Efecto global inválido: {accion.efectoSecundario}");
+                    return;
                 }
 
+                foreach (var enemigo in UnityEngine.Object.FindObjectsOfType<Luchador>())
+                {
+                    if (enemigo.Aliado != this.Aliado && enemigo.sigueVivo)
+                    {
+                        if (efectoGlobal == TipoEfecto.DanioEnArea)
+                        {
+                            enemigo.CambiarVida(accion.argumento);
+                            Debug.Log($"{enemigo.nombre} recibe daño global inmediato de {accion.argumento}");
+                        }
+                        else
+                        {
+                            var efecto = new EfectoActivo
+                            {
+                                nombre = efectoGlobal.ToString(),
+                                tipo = efectoGlobal,
+                                modificador = accion.argumento,
+                                duracionTurnos = 3
+                            };
+                            enemigo.efectosActivos.Add(efecto);
+                            Debug.Log($"{enemigo.nombre} recibe efecto global {efectoGlobal}");
+                        }
+                    }
+                }
+                break;
 
             case "AplicarEfecto":
                 if (accion.efectoSecundario == "ConfusionGlobal")
@@ -216,7 +218,6 @@ public class Luchador : MonoBehaviour
                     {
                         Debug.Log($"[DEBUG] Tipo de efecto detectado: {tipo}");
                     }
-
                 }
 
                 var nuevoEfecto = new EfectoActivo
@@ -254,9 +255,7 @@ public class Luchador : MonoBehaviour
                 efectosActivos.RemoveAt(i);
                 Debug.Log($"{nombre} pierde el efecto: {efecto.nombre}");
             }
-            Debug.Log($"vuelta {i}");
         }
-        
     }
 
     public void CambiarVida(int cantidad)
@@ -320,6 +319,7 @@ public class Luchador : MonoBehaviour
         }
     }
 
+    // Obtiene enemigos vivos para posibles efectos o acciones
     public List<Luchador> ObtenerEnemigosCercanos()
     {
         return new List<Luchador>(FindObjectsOfType<Luchador>())

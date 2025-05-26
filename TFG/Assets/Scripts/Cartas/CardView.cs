@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
+// Clase encargada de representar visualmente una carta y gestionar su interacción.
 public class CardView : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("UI")]
@@ -32,6 +33,7 @@ public class CardView : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         escalaOriginal = rect.localScale;
     }
 
+    // Configura los datos de la carta y actualiza la UI.
     public void Configurar(ScriptableCartas data, int indice)
     {
         Data = data;
@@ -39,6 +41,7 @@ public class CardView : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         ActualizarUI();
     }
 
+    // Refresca el contenido visual de la carta.
     private void ActualizarUI()
     {
         if (Data == null) return;
@@ -51,11 +54,13 @@ public class CardView : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         imagenCarta.sprite = Data.imagen;
     }
 
+    // Evento al hacer clic en la carta.
     public void OnPointerClick(PointerEventData eventData)
     {
         Seleccionar();
     }
 
+    // Marca esta carta como seleccionada.
     public void Seleccionar()
     {
         if (cartaSeleccionada != null && cartaSeleccionada != this)
@@ -66,23 +71,27 @@ public class CardView : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         rect.localScale = escalaOriginal * escalaSeleccion;
     }
 
+    // Quita la selección visual de la carta.
     public void Deseleccionar()
     {
         Seleccionada = false;
         rect.localScale = escalaOriginal;
     }
 
+    // Evento al pasar el cursor por encima.
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!Seleccionada)
             rect.localScale = escalaOriginal * escalaHover;
     }
 
+    // Evento al sacar el cursor de la carta.
     public void OnPointerExit(PointerEventData eventData)
     {
         if (!Seleccionada)
             rect.localScale = escalaOriginal;
     }
 
+    // Devuelve la carta actualmente seleccionada.
     public static CardView ObtenerSeleccionada() => cartaSeleccionada;
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Clase encargada de ejecutar el efecto de una carta seleccionada.
 public class CardActionExecutor : MonoBehaviour
 {
     public static CardActionExecutor Instance { get; private set; }
@@ -10,6 +11,7 @@ public class CardActionExecutor : MonoBehaviour
         else Instance = this;
     }
 
+    // Ejecuta una carta sobre un objetivo (Luchador).
     public void EjecutarCarta(CardView carta, Luchador objetivo)
     {
         if (carta == null || carta.Data == null)
@@ -20,6 +22,7 @@ public class CardActionExecutor : MonoBehaviour
 
         var tipo = carta.Data.tipo;
 
+        // Si es una carta duplicadora, invoca el duplicador y finaliza.
         if (tipo == TipoCarta.Duplicadora)
         {
             CardDuplicator.Instance.DuplicarCarta(carta);
@@ -33,11 +36,13 @@ public class CardActionExecutor : MonoBehaviour
             return;
         }
 
+        // Ejecuta la acción principal y secundaria de la carta.
         CombatManager.Instance.EjecutarAccionJugador(carta.Data.accion, objetivo, carta.Data.accionSecundaria);
 
         FinalizarCarta(carta);
     }
 
+    // Desactiva visualmente la carta y la envía al descarte.
     private void FinalizarCarta(CardView carta)
     {
         HandManager.Instance.DescartarCarta(carta);

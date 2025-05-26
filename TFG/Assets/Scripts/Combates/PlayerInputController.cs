@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Controlador de entrada para el jugador humano
 public class PlayerInputController : MonoBehaviour
 {
     public static PlayerInputController Instance { get; private set; }
@@ -13,6 +14,7 @@ public class PlayerInputController : MonoBehaviour
         else Instance = this;
     }
 
+    // Prepara el turno activando la interfaz del jugador
     public void PrepararTurno()
     {
         TurnoFinalizado = false;
@@ -20,6 +22,7 @@ public class PlayerInputController : MonoBehaviour
         SeleccionDeObjetivo.Instance.LimpiarSeleccion();
     }
 
+    // Finaliza el turno del jugador
     public static void TerminarTurno()
     {
         TurnoFinalizado = true;
@@ -31,7 +34,8 @@ public class PlayerInputController : MonoBehaviour
     {
         if (!enSeleccionDeObjetivo)
         {
-            if (Input.GetKeyDown(KeyCode.Return)) // Confirmar selección de carta para pasar a elegir objetivo
+            // Si presiona ENTER y hay carta seleccionada, pasa a selección de objetivo
+            if (Input.GetKeyDown(KeyCode.Return))
             {
                 var carta = HandManager.Instance.ObtenerCartaSeleccionada();
                 if (carta != null)
@@ -43,6 +47,7 @@ public class PlayerInputController : MonoBehaviour
         }
         else
         {
+            // Navega entre objetivos con A y D, y ENTER para confirmar
             if (Input.GetKeyDown(KeyCode.A))
                 SeleccionDeObjetivo.Instance.CambiarSeleccion(-1);
             else if (Input.GetKeyDown(KeyCode.D))
@@ -52,6 +57,7 @@ public class PlayerInputController : MonoBehaviour
         }
     }
 
+    // Confirma el uso de una carta sobre un objetivo
     public void ConfirmarUso()
     {
         var carta = HandManager.Instance.ObtenerCartaSeleccionada();

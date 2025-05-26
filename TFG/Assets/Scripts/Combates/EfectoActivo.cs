@@ -1,22 +1,26 @@
-// Archivo: EfectoActivo.cs (añadir soporte para daño en área)
 using UnityEngine;
 
+// Clase que representa un efecto aplicado a un luchador y su comportamiento por turno
 [System.Serializable]
 public class EfectoActivo
 {
-    public string nombre;
-    public TipoEfecto tipo;
-    public int duracionTurnos;
-    public int modificador;
+    public string nombre;               // Nombre del efecto
+    public TipoEfecto tipo;             // Tipo del efecto (enum)
+    public int duracionTurnos;          // Cuántos turnos dura el efecto
+    public int modificador;             // Valor numérico del efecto
 
+    // Aplica el efecto al objetivo cada turno y reduce su duración
     public void AplicarEfectoPorTurno(Luchador objetivo, Luchador lanzador = null)
     {
-        duracionTurnos--;
+        if (tipo != TipoEfecto.Sangrado)
+        {
+            duracionTurnos--;
+        }
+          
 
         switch (tipo)
         {
             case TipoEfecto.Sangrado:
-                
                 Debug.Log($"{objetivo.nombre} sufre sangrado.");
                 objetivo.estadoEspecial.Sangrado = true;
                 break;
@@ -30,7 +34,6 @@ public class EfectoActivo
                 Debug.Log($"{objetivo.nombre} vomita del asco.");
                 objetivo.estadoEspecial.Asqueado = true;
                 break;
-
 
             case TipoEfecto.FuriaFocalizada:
                 if (objetivo.furiaFocalizada == null)
@@ -83,11 +86,10 @@ public class EfectoActivo
                     }
                 }
                 break;
-
-
         }
     }
 
+    // Subclase para controlar el efecto de Furia Focalizada
     public class FuriaFocalizada
     {
         public Luchador objetivo;
@@ -95,5 +97,6 @@ public class EfectoActivo
         public int turnosRestantes;
     }
 
-    public bool Expirado => duracionTurnos <= 0;
+    // Verifica si el efecto ya se agotó
+    public bool Expirado => tipo != TipoEfecto.Sangrado && duracionTurnos <= 0;
 }

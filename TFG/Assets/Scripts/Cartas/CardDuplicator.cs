@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Clase encargada de duplicar cartas seleccionadas por el jugador.
 public class CardDuplicator : MonoBehaviour
 {
     public static CardDuplicator Instance { get; private set; }
@@ -10,6 +11,7 @@ public class CardDuplicator : MonoBehaviour
         else Instance = this;
     }
 
+    // Método que realiza la duplicación de una carta seleccionada.
     public void DuplicarCarta(CardView cartaDuplicadora)
     {
         if (cartaDuplicadora == null || cartaDuplicadora.Data == null)
@@ -38,6 +40,7 @@ public class CardDuplicator : MonoBehaviour
             return;
         }
 
+        // Busca una posición libre en la mano para colocar la nueva carta.
         Transform ancla = HandManager.Instance.ObtenerAnclaLibre(out int index);
         if (ancla == null)
         {
@@ -45,6 +48,7 @@ public class CardDuplicator : MonoBehaviour
             return;
         }
 
+        // Instancia visualmente la nueva carta duplicada.
         GameObject duplicadoGO = Instantiate(cartaDuplicadora.gameObject, ancla);
         duplicadoGO.transform.localPosition = Vector3.zero;
 

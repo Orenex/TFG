@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Clase encargada de la selección de objetivos enemigos durante el turno del jugador
 public class SeleccionDeObjetivo : MonoBehaviour
 {
     public static SeleccionDeObjetivo Instance { get; private set; }
 
     [Header("Marcador de selección")]
-    [SerializeField] private GameObject marcadorPrefab;
+    [SerializeField] private GameObject marcadorPrefab;  // Prefab del marcador visual para el objetivo
 
     private GameObject marcadorInstanciado;
     private Luchador objetivoActual;
@@ -22,6 +23,7 @@ public class SeleccionDeObjetivo : MonoBehaviour
 
     private void Start()
     {
+        // Se inicializa la lista de enemigos válidos al comienzo del combate
         enemigos = new List<Luchador>(FindObjectsOfType<Luchador>());
         enemigos = enemigos.FindAll(e => !e.Aliado && e.sigueVivo);
 
@@ -33,6 +35,7 @@ public class SeleccionDeObjetivo : MonoBehaviour
     {
         if (enemigos.Count == 0) return;
 
+        // Permite cambiar de objetivo con las teclas A y D
         if (Input.GetKeyDown(KeyCode.A))
         {
             CambiarSeleccion(-1);
@@ -43,6 +46,7 @@ public class SeleccionDeObjetivo : MonoBehaviour
         }
     }
 
+    // Cambia la selección de objetivo en la lista de enemigos vivos
     public void CambiarSeleccion(int direccion)
     {
         if (enemigos.Count == 0) return;
@@ -51,12 +55,14 @@ public class SeleccionDeObjetivo : MonoBehaviour
         SeleccionarPorIndice(indiceSeleccionado);
     }
 
+    // Selecciona al enemigo según su índice en la lista
     private void SeleccionarPorIndice(int index)
     {
         var objetivo = enemigos[index];
         SeleccionarObjetivo(objetivo);
     }
 
+    // Cambia el objetivo actual y coloca un marcador visual sobre él
     public void SeleccionarObjetivo(Luchador objetivo)
     {
         if (objetivo == null || !objetivo.sigueVivo) return;
@@ -72,6 +78,7 @@ public class SeleccionDeObjetivo : MonoBehaviour
         Debug.Log($"Objetivo seleccionado: {objetivo.nombre}");
     }
 
+    // Limpia la selección de objetivo actual
     public void LimpiarSeleccion()
     {
         objetivoActual = null;
@@ -83,6 +90,7 @@ public class SeleccionDeObjetivo : MonoBehaviour
         }
     }
 
+    // Devuelve el objetivo actualmente seleccionado
     public Luchador ObtenerObjetivoActual()
     {
         return objetivoActual;

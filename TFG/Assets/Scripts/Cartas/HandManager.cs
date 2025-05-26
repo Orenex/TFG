@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Clase encargada de gestionar la mano de cartas del jugador.
 public class HandManager : MonoBehaviour
 {
     public static HandManager Instance { get; private set; }
 
     [Header("Configuración")]
-    [SerializeField] private Transform[] anclas;
+    [SerializeField] private Transform[] anclas; // Puntos donde se colocan las cartas en pantalla
     [SerializeField] private GameObject cartaPrefab;
 
     private bool[] posicionesLibres;
@@ -23,6 +24,7 @@ public class HandManager : MonoBehaviour
             posicionesLibres[i] = true;
     }
 
+    // Prepara una nueva mano de cartas a partir de una colección
     public void PrepararNuevaMano(CardCollection coleccion)
     {
         Debug.Log("PreparandoMano");
@@ -38,6 +40,7 @@ public class HandManager : MonoBehaviour
         descarteUsadoEsteTurno = false;
     }
 
+    // Instancia y configura una carta en una posición específica
     private void CrearCartaEnPosicion(ScriptableCartas data, int index)
     {
         Transform ancla = anclas[index];
@@ -52,6 +55,7 @@ public class HandManager : MonoBehaviour
         cartasEnMano.Add(cardView);
     }
 
+    // Elimina una carta de la mano
     public void DescartarCarta(CardView carta)
     {
         if (!cartasEnMano.Contains(carta)) return;
@@ -61,6 +65,7 @@ public class HandManager : MonoBehaviour
         Destroy(carta.gameObject);
     }
 
+    // Reemplaza una carta por otra del mazo, solo una vez por turno
     public void ReemplazarCarta(CardView carta)
     {
         if (descarteUsadoEsteTurno)
@@ -85,6 +90,7 @@ public class HandManager : MonoBehaviour
         }
     }
 
+    // Devuelve la primera posición libre disponible para una nueva carta
     public Transform ObtenerAnclaLibre(out int index)
     {
         for (int i = 0; i < posicionesLibres.Length; i++)
@@ -101,6 +107,7 @@ public class HandManager : MonoBehaviour
         return null;
     }
 
+    // Libera todas las posiciones y elimina todas las cartas actuales
     public void LiberarTodasLasPosiciones()
     {
         for (int i = 0; i < posicionesLibres.Length; i++)
@@ -112,6 +119,7 @@ public class HandManager : MonoBehaviour
         cartasEnMano.Clear();
     }
 
+    // Limpia visualmente la mano actual
     private void LimpiarMano()
     {
         foreach (var carta in cartasEnMano)
@@ -124,10 +132,13 @@ public class HandManager : MonoBehaviour
             posicionesLibres[i] = true;
     }
 
+    // Obtiene la carta actualmente seleccionada
     public CardView ObtenerCartaSeleccionada()
     {
         return cartasEnMano.Find(c => c.Seleccionada);
     }
+
+    // Confirma el descarte y reemplazo de la carta seleccionada
     public void ConfirmarDescarte()
     {
         var seleccionada = ObtenerCartaSeleccionada();
@@ -139,6 +150,4 @@ public class HandManager : MonoBehaviour
 
         ReemplazarCarta(seleccionada);
     }
-
-
 }
