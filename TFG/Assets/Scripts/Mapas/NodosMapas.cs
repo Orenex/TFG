@@ -13,6 +13,9 @@ public class NodosMapas : MonoBehaviour
     public bool isVisited = false;
     public string escena;
 
+    public bool esUltimoNodo = false;
+
+
     void Start()
     {
         zonas.onClick.AddListener(OnNodeClicked);
@@ -59,7 +62,14 @@ public class NodosMapas : MonoBehaviour
         if (!string.IsNullOrEmpty(escena))
         {
             if (GameManager.Instance != null)
+            {
                 GameManager.Instance.lastScene = SceneManager.GetActiveScene().name;
+
+                if (esUltimoNodo)
+                {
+                    Destroy(GameManager.Instance.gameObject);
+                }
+            }
 
             SceneManager.LoadScene(escena);
         }

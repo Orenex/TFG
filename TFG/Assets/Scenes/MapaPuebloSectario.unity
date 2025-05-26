@@ -252,6 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: 
   zonas: {fileID: 195947156}
   nodosConectados:
   - {fileID: 1174717824}
@@ -393,6 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: 
   zonas: {fileID: 368772092}
   nodosConectados:
   - {fileID: 1560286285}
@@ -533,6 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: 
   zonas: {fileID: 512607205}
   nodosConectados: []
   caminosdesactivados: []
@@ -672,6 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: 
   zonas: {fileID: 545674507}
   nodosConectados:
   - {fileID: 1578342275}
@@ -1068,6 +1072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: 
   zonas: {fileID: 609548448}
   nodosConectados:
   - {fileID: 368772095}
@@ -1223,6 +1228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: Pelea_1.2
   zonas: {fileID: 609784108}
   nodosConectados:
   - {fileID: 1174717824}
@@ -1365,6 +1371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: 
   zonas: {fileID: 627251599}
   nodosConectados: []
   caminosdesactivados: []
@@ -1658,6 +1665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: 
   zonas: {fileID: 1078551425}
   nodosConectados:
   - {fileID: 1155919108}
@@ -1800,6 +1808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: 
   zonas: {fileID: 1155919105}
   nodosConectados:
   - {fileID: 609548451}
@@ -1941,6 +1950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: 
   zonas: {fileID: 1174717821}
   nodosConectados:
   - {fileID: 2004696482}
@@ -2083,6 +2093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: Pelea_1.1
   zonas: {fileID: 1457117049}
   nodosConectados:
   - {fileID: 609548451}
@@ -2238,6 +2249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: 
   zonas: {fileID: 1472635982}
   nodosConectados: []
   caminosdesactivados: []
@@ -2377,6 +2389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: 
   zonas: {fileID: 1485543972}
   nodosConectados:
   - {fileID: 195947159}
@@ -2519,6 +2532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: 
   zonas: {fileID: 1560286282}
   nodosConectados:
   - {fileID: 1578342275}
@@ -2659,6 +2673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: 
   zonas: {fileID: 1578342272}
   nodosConectados:
   - {fileID: 1696159874}
@@ -2799,6 +2814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: 
   zonas: {fileID: 1696159871}
   nodosConectados:
   - {fileID: 1472635985}
@@ -2806,6 +2822,52 @@ MonoBehaviour:
   isActive: 0
   isVisited: 0
   escena: 
+--- !u!1 &1839039495
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1839039497}
+  - component: {fileID: 1839039496}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1839039496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839039495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 987cee0ee12fac747819293be640ae6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastScene: 
+  lastNodeID: 
+--- !u!4 &1839039497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839039495}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.43301803, y: 0.5876782, z: 1.6324947}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2004696477
 GameObject:
   m_ObjectHideFlags: 0
@@ -2939,6 +3001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeID: 
   zonas: {fileID: 2004696479}
   nodosConectados:
   - {fileID: 545674510}
@@ -3075,3 +3138,4 @@ SceneRoots:
   - {fileID: 2145582795}
   - {fileID: 565079124}
   - {fileID: 1064342710}
+  - {fileID: 1839039497}
