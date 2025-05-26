@@ -1,28 +1,25 @@
-// Clase principal para los personajes que participan en combate, ya sean aliados o enemigos
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-// Tipos de recurso que puede consumir una acción
 public enum RecursoCoste { Sanidad }
 
-// Representa una acción que una carta o luchador puede ejecutar
 [System.Serializable]
 public struct Accion
 {
     public string nombre;
-    public bool estatico;                  // Si es estatico, no requiere movimiento
-    public bool objetivoEsElEquipo;        // Si el objetivo es uno mismo
+    public bool estatico;
+    public bool objetivoEsElEquipo;
 
-    public string mensaje;                 // Tipo de efecto (daño, curación, etc.)
-    public int argumento;                  // Valor del efecto
+    public string mensaje;
+    public int argumento;
 
-    public string animacionTrigger;        // Animación a reproducir
-    public string efectoSecundario;        // Nombre del efecto adicional
-    public int costoMana;                  // Costo de sanidad
-    public RecursoCoste tipoCoste;         // Tipo de recurso usado
+    public string animacionTrigger;
+    public string efectoSecundario;
+    public int costoMana;
+    public RecursoCoste tipoCoste;
 }
 
 public class Luchador : MonoBehaviour
@@ -52,13 +49,13 @@ public class Luchador : MonoBehaviour
         anim = GetComponent<Animator>();
         nv = GetComponent<NavMeshAgent>();
         nv.updateRotation = false;
-
-        // Ajusta vida máxima si no está definida
         if (vidaMaxima <= 0)
             vidaMaxima = vida;
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Luchadores"), LayerMask.NameToLayer("Luchadores"), true);
+
+        nv.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
     }
 
-    // Ejecuta una acción principal y secundaria sobre un objetivo
     public IEnumerator EjecutarAccion(Accion accion, Luchador objetivo, Accion? accionSecundaria = null)
     {
         Debug.Log($"[{nombre}] ejecuta {accion.nombre} sobre {objetivo.nombre}");
@@ -72,7 +69,6 @@ public class Luchador : MonoBehaviour
         if (accion.nombre == "GrimFandango")
             saltarSiguienteTurno = true;
 
-        // Si es una acción estática, se aplica sin moverse
         if (accion.estatico)
         {
             EjecutarEfecto(accion, objetivo);
@@ -87,9 +83,13 @@ public class Luchador : MonoBehaviour
         {
             Vector3 origen = transform.position;
             transform.LookAt(objetivo.transform.position);
+            // Añadir un pequeño offset para evitar colisiones al llegar
+            Vector3 offset = (transform.position - objetivo.transform.position).normalized * 1.5f;
+            Vector3 destino = objetivo.transform.position + offset;
+
             nv.SetDestination(objetivo.transform.position);
 
-            while (Vector3.Distance(transform.position, objetivo.transform.position) > 2f)
+            while (Vector3.Distance(transform.position, objetivo.transform.position) > 1.5f)
                 yield return null;
 
             EjecutarEfecto(accion, objetivo);
@@ -106,10 +106,11 @@ public class Luchador : MonoBehaviour
 
             while (Vector3.Distance(transform.position, origen) > 0.1f)
                 yield return null;
+
+            transform.eulerAngles = Vector3.zero;
         }
     }
 
-    // Aplica el efecto de una acción sobre un objetivo
     private void EjecutarEfecto(Accion accion, Luchador objetivo)
     {
         switch (accion.mensaje)
@@ -165,41 +166,20 @@ public class Luchador : MonoBehaviour
                 {
                     if (enemigo.Aliado != this.Aliado && enemigo.sigueVivo)
                     {
-                        if (efectoGlobal == TipoEfecto.DanioEnArea)
+                        var efecto = new EfectoActivo
                         {
-                            enemigo.CambiarVida(accion.argumento);
-                            Debug.Log($"{enemigo.nombre} recibe daño global inmediato de {accion.argumento}");
-                        }
-                        else
-                        {
-                            var efecto = new EfectoActivo
-                            {
-                                nombre = efectoGlobal.ToString(),
-                                tipo = efectoGlobal,
-                                modificador = accion.argumento,
-                                duracionTurnos = 3
-                            };
-                            enemigo.efectosActivos.Add(efecto);
-                            Debug.Log($"{enemigo.nombre} recibe efecto global {efectoGlobal}");
-                        }
+                            nombre = efectoGlobal.ToString(),
+                            tipo = efectoGlobal,
+                            modificador = accion.argumento,
+                            duracionTurnos = 3
+                        };
+                        enemigo.efectosActivos.Add(efecto);
+                        Debug.Log($"{enemigo.nombre} recibe efecto global {efectoGlobal}");
                     }
                 }
                 break;
 
             case "AplicarEfecto":
-                if (accion.efectoSecundario == "ConfusionGlobal")
-                {
-                    foreach (var enemigo in FindObjectsOfType<Luchador>())
-                    {
-                        if (enemigo.Aliado != this.Aliado && enemigo.sigueVivo)
-                        {
-                            enemigo.estadoEspecial.Confusion = true;
-                            Debug.Log($"{enemigo.nombre} está confundido por {nombre}.");
-                        }
-                    }
-                    break;
-                }
-
                 TipoEfecto tipo;
                 if (accion.efectoSecundario == "GlitchRandom")
                 {

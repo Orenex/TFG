@@ -1859,7 +1859,7 @@ Transform:
   m_GameObject: {fileID: 1679492176}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.265, y: 0.5, z: 1}
+  m_LocalPosition: {x: -2.13, y: 0.5, z: 1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3107,7 +3107,7 @@ Transform:
   m_GameObject: {fileID: 1764553548}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.282, y: 0.5, z: 1}
+  m_LocalPosition: {x: 2.12, y: 0.5, z: 1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3193,13 +3193,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luchadoresEnCombate:
-  - {fileID: 1489431647}
-  - {fileID: 1323463330}
   - {fileID: 23868592}
-  - {fileID: 1623621485}
   - {fileID: 1679492184}
   - {fileID: 1687238854}
   - {fileID: 1764553556}
+  - {fileID: 1489431647}
+  - {fileID: 1323463330}
+  - {fileID: 1623621485}
 --- !u!1 &1867683943
 GameObject:
   m_ObjectHideFlags: 0
