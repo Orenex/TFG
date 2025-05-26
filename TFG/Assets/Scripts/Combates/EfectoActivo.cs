@@ -1,27 +1,25 @@
+// Clase que representa un efecto aplicado a un luchador y su comportamiento por turno
 using UnityEngine;
 
-// Clase que representa un efecto aplicado a un luchador y su comportamiento por turno
 [System.Serializable]
 public class EfectoActivo
 {
-    public string nombre;               // Nombre del efecto
-    public TipoEfecto tipo;             // Tipo del efecto (enum)
-    public int duracionTurnos;          // Cuántos turnos dura el efecto
-    public int modificador;             // Valor numérico del efecto
+    public string nombre;
+    public TipoEfecto tipo;
+    public int duracionTurnos;
+    public int modificador;
 
-    // Aplica el efecto al objetivo cada turno y reduce su duración
-    public void AplicarEfectoPorTurno(Luchador objetivo, Luchador lanzador = null)
+    public Luchador lanzador;
+
+    public void AplicarEfectoPorTurno(Luchador objetivo, Luchador lanzadorIgnorado = null)
     {
         if (tipo != TipoEfecto.Sangrado)
-        {
             duracionTurnos--;
-        }
-          
 
         switch (tipo)
         {
             case TipoEfecto.Sangrado:
-                Debug.Log($"{objetivo.nombre} sufre sangrado.");
+                Debug.Log($"{objetivo.nombre} sufre sangrado permanente.");
                 objetivo.estadoEspecial.Sangrado = true;
                 break;
 
@@ -46,7 +44,6 @@ public class EfectoActivo
                 break;
 
             case TipoEfecto.Paralizado:
-                Debug.Log("Se hace el estado True");
                 objetivo.estadoEspecial.Paralizado = true;
                 break;
 
@@ -67,8 +64,11 @@ public class EfectoActivo
                 break;
 
             case TipoEfecto.CompartirDaño:
-                if (lanzador != null)
+                if (lanzador != null && lanzador != objetivo)
+                {
                     lanzador.estadoEspecial.ReflejarDanioA = objetivo;
+                    Debug.Log($"{lanzador.nombre} marcará a {objetivo.nombre} para recibir el daño que él reciba.");
+                }
                 break;
 
             case TipoEfecto.FuriaSanidad:
@@ -89,7 +89,6 @@ public class EfectoActivo
         }
     }
 
-    // Subclase para controlar el efecto de Furia Focalizada
     public class FuriaFocalizada
     {
         public Luchador objetivo;
@@ -97,6 +96,5 @@ public class EfectoActivo
         public int turnosRestantes;
     }
 
-    // Verifica si el efecto ya se agotó
     public bool Expirado => tipo != TipoEfecto.Sangrado && duracionTurnos <= 0;
 }

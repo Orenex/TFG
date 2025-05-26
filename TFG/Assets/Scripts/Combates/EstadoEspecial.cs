@@ -26,7 +26,6 @@ public class EstadoEspecial
         Critico = false;
         CondicionPerfecta = false;
         Confusion = false;
-        ReflejarDanioA = null;
         Sangrado = false;
     }
 }

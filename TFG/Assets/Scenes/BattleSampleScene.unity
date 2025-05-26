@@ -3193,13 +3193,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luchadoresEnCombate:
+  - {fileID: 1489431647}
+  - {fileID: 1323463330}
   - {fileID: 23868592}
+  - {fileID: 1623621485}
   - {fileID: 1679492184}
   - {fileID: 1687238854}
   - {fileID: 1764553556}
-  - {fileID: 1489431647}
-  - {fileID: 1323463330}
-  - {fileID: 1623621485}
 --- !u!1 &1867683943
 GameObject:
   m_ObjectHideFlags: 0

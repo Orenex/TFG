@@ -172,6 +172,7 @@ public class Luchador : MonoBehaviour
                             tipo = efectoGlobal,
                             modificador = accion.argumento,
                             duracionTurnos = 3
+                            
                         };
                         enemigo.efectosActivos.Add(efecto);
                         Debug.Log($"{enemigo.nombre} recibe efecto global {efectoGlobal}");
@@ -205,7 +206,8 @@ public class Luchador : MonoBehaviour
                     nombre = tipo.ToString(),
                     tipo = tipo,
                     modificador = accion.argumento,
-                    duracionTurnos = 3
+                    duracionTurnos = 3,
+                    lanzador = this
                 };
                 Debug.Log($"Añadiendo efecto {nuevoEfecto.nombre}");
                 objetivo.efectosActivos.Add(nuevoEfecto);
@@ -232,9 +234,16 @@ public class Luchador : MonoBehaviour
 
             if (efecto.Expirado)
             {
+                if (efecto.tipo == TipoEfecto.CompartirDaño)
+                {
+                    Debug.Log($"{nombre} ya no refleja daño a {estadoEspecial.ReflejarDanioA?.nombre}");
+                    estadoEspecial.ReflejarDanioA = null;
+                }
+
                 efectosActivos.RemoveAt(i);
                 Debug.Log($"{nombre} pierde el efecto: {efecto.nombre}");
             }
+
         }
     }
 
