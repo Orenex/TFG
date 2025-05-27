@@ -1,15 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Clase encargada de gestionar el mazo de cartas y su descarte.
+// Clase encargada de gestionar el mazo de cartas y su descarte
 public class Deck : MonoBehaviour
 {
     public static Deck Instance { get; private set; }
 
-    [SerializeField] private CardCollection coleccionBase;
+    [SerializeField] private CardCollection coleccionBase; // Colección inicial de cartas
 
-    private List<ScriptableCartas> pilaCartas = new();
-    private List<ScriptableCartas> pilaDescarte = new();
+    private List<ScriptableCartas> pilaCartas = new(); // Cartas disponibles para robar
+    private List<ScriptableCartas> pilaDescarte = new(); // Cartas descartadas que pueden reciclarse
 
     private void Awake()
     {
@@ -19,7 +19,7 @@ public class Deck : MonoBehaviour
         InicializarMazo();
     }
 
-    // Inicializa el mazo con la colección base
+    // Inicializa el mazo con la colección base y la mezcla
     private void InicializarMazo()
     {
         if (coleccionBase == null || coleccionBase.CartasEnLaColeccion.Count == 0)
@@ -39,7 +39,7 @@ public class Deck : MonoBehaviour
             if (pilaDescarte.Count > 0)
                 MezclarDescarteEnMazo();
             else
-                return null;
+                return null; // No hay cartas disponibles
         }
 
         var carta = pilaCartas[0];
@@ -47,21 +47,21 @@ public class Deck : MonoBehaviour
         return carta;
     }
 
-    // Envía una carta al montón de descarte
+    // Agrega una carta al montón de descarte
     public void EnviarADescarte(ScriptableCartas carta)
     {
         if (carta != null)
             pilaDescarte.Add(carta);
     }
 
-    // Cambia la colección base y reinicia el mazo
+    // Cambia la colección base por otra y reinicia el mazo
     public void AsignarColeccion(CardCollection nueva)
     {
         coleccionBase = nueva;
         InicializarMazo();
     }
 
-    // Mezcla las cartas del descarte nuevamente en el mazo
+    // Mezcla las cartas del descarte y las vuelve a agregar al mazo principal
     private void MezclarDescarteEnMazo()
     {
         pilaCartas.AddRange(pilaDescarte);

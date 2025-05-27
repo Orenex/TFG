@@ -12,18 +12,19 @@ public class CombatManager : MonoBehaviour
         else Instance = this;
     }
 
-    // Ejecuta la acción de un jugador sobre un objetivo
+    // Ejecuta una acción de un jugador sobre un objetivo
     public void EjecutarAccionJugador(Accion accion, Luchador objetivo, Accion? accionSecundaria = null)
     {
         var lanzador = TurnManager.Instance.Actual;
 
-        // Validación de recursos y estados
+        // Verifica si tiene suficientes recursos para ejecutar la acción
         if (!EsAccionValida(accion, lanzador))
         {
             Debug.LogWarning("No tienes suficiente sanidad para usar esta acción.");
             return;
         }
 
+        // Si el lanzador está paralizado, pierde el turno
         if (lanzador.estadoEspecial.Paralizado)
         {
             Debug.LogWarning($"{lanzador.nombre} está paralizado y no puede actuar.");
@@ -31,26 +32,27 @@ public class CombatManager : MonoBehaviour
             return;
         }
 
-        // Efectos negativos automáticos
+        // Sangrado hace que pierda vida y no ejecute acción
         if (lanzador.estadoEspecial.Sangrado)
         {
             Debug.LogWarning($"{lanzador.nombre} está sangrando");
-            objetivo.CambiarVida(-1); // Daño leve
+            objetivo.CambiarVida(-1);
             return;
         }
 
+        // Asqueado provoca una pérdida mayor de vida
         if (lanzador.estadoEspecial.Asqueado)
         {
             Debug.LogWarning($"{lanzador.nombre} está asqueado");
-            objetivo.CambiarVida(-3); // Daño leve
+            objetivo.CambiarVida(-3);
             return;
         }
 
-        // Inicia la ejecución de la acción
+        // Si todo está bien, se lanza la corrutina para resolver la acción
         StartCoroutine(ResolverAccion(accion, lanzador, objetivo, true, accionSecundaria));
     }
 
-    // Ejecuta la acción de un enemigo IA sobre un objetivo
+    // Ejecuta una acción por parte de un enemigo IA
     public void EjecutarAccionEnemigo(Accion accion, Luchador lanzador, Luchador objetivo)
     {
         if (!EsAccionValida(accion, lanzador))
@@ -73,6 +75,7 @@ public class CombatManager : MonoBehaviour
     // Corrutina que resuelve una acción de combate
     private IEnumerator ResolverAccion(Accion accion, Luchador lanzador, Luchador objetivo, bool jugador, Accion? accionSecundaria = null)
     {
+        // Si el objetivo no es válido, se cancela
         if (objetivo == null || !objetivo.sigueVivo)
         {
             Debug.LogWarning("Objetivo inválido.");
@@ -81,15 +84,17 @@ public class CombatManager : MonoBehaviour
             yield break;
         }
 
+        // Ejecuta la acción principal (y secundaria si la hay)
         yield return lanzador.EjecutarAccion(accion, objetivo, accionSecundaria);
 
+        // Marca el fin del turno correspondiente
         if (jugador)
             PlayerInputController.TerminarTurno();
         else
             EnemyAIController.TurnoFinalizado = true;
     }
 
-    // Verifica si el lanzador tiene suficiente recurso para usar la acción
+    // Verifica si el luchador tiene suficiente recurso para usar la acción
     private bool EsAccionValida(Accion accion, Luchador lanzador)
     {
         return lanzador.sanidad >= accion.costoMana;

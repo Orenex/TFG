@@ -3,24 +3,26 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
+// Sistema de tienda de la bruja para mejoras
 public class TiendaBruja : MonoBehaviour
 {
     [System.Serializable]
     public class ObjetoTienda
     {
-        public string nombre;
-        public int precio;
-        public Sprite icono;
+        public string nombre;     // Nombre del objeto de mejora
+        public int precio;        // Precio en oro
+        public Sprite icono;      // Icono mostrado en la interfaz
     }
 
-    public GameObject panelItems;
-    public GameObject itemPrefab;
-    public Transform contenidoScroll;
-    public TextMeshProUGUI goldText;
-    public int gold = 100;
+    public GameObject panelItems;             // Panel de la tienda
+    public GameObject itemPrefab;             // Prefab de item en UI
+    public Transform contenidoScroll;         // Contenedor del scroll
+    public TextMeshProUGUI goldText;          // Texto con el oro actual
+    public int gold = 100;                    // Oro inicial del jugador
 
-    public List<ObjetoTienda> mejorar;
+    public List<ObjetoTienda> mejorar;        // Lista de mejoras disponibles
 
+    // Muestra los objetos disponibles según la categoría
     public void MostrarCategoria(string categoria)
     {
         LimpiarScroll();
@@ -45,6 +47,7 @@ public class TiendaBruja : MonoBehaviour
         panelItems.SetActive(true);
     }
 
+    // Limpia los objetos anteriores del scroll
     void LimpiarScroll()
     {
         foreach (Transform hijo in contenidoScroll)
@@ -53,6 +56,7 @@ public class TiendaBruja : MonoBehaviour
         }
     }
 
+    // Realiza la compra del objeto si hay suficiente oro
     void Comprar(ObjetoTienda obj)
     {
         if (gold >= obj.precio)
@@ -60,6 +64,7 @@ public class TiendaBruja : MonoBehaviour
             gold -= obj.precio;
             goldText.text = "Gold: " + gold;
             Debug.Log("Compraste: " + obj.nombre);
+            // Aquí podrías aplicar los efectos de mejora
         }
     }
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 public class PlayerInputController : MonoBehaviour
 {
     public static PlayerInputController Instance { get; private set; }
-    public static bool TurnoFinalizado { get; private set; }
+    public static bool TurnoFinalizado { get; private set; } // Indica si el jugador ya hizo su jugada
 
-    private bool enSeleccionDeObjetivo = false;
+    private bool enSeleccionDeObjetivo = false; // Determina si está eligiendo un objetivo actualmente
 
     private void Awake()
     {
@@ -14,7 +14,7 @@ public class PlayerInputController : MonoBehaviour
         else Instance = this;
     }
 
-    // Prepara el turno activando la interfaz del jugador
+    // Prepara el turno del jugador humano
     public void PrepararTurno()
     {
         TurnoFinalizado = false;
@@ -22,7 +22,7 @@ public class PlayerInputController : MonoBehaviour
         SeleccionDeObjetivo.Instance.LimpiarSeleccion();
     }
 
-    // Finaliza el turno del jugador
+    // Finaliza el turno del jugador humano
     public static void TerminarTurno()
     {
         TurnoFinalizado = true;
@@ -34,7 +34,7 @@ public class PlayerInputController : MonoBehaviour
     {
         if (!enSeleccionDeObjetivo)
         {
-            // Si presiona ENTER y hay carta seleccionada, pasa a selección de objetivo
+            // Si presiona ENTER y hay carta seleccionada, empieza la selección de objetivo
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 var carta = HandManager.Instance.ObtenerCartaSeleccionada();
@@ -47,17 +47,17 @@ public class PlayerInputController : MonoBehaviour
         }
         else
         {
-            // Navega entre objetivos con A y D, y ENTER para confirmar
+            // Navega entre objetivos con A y D
             if (Input.GetKeyDown(KeyCode.A))
                 SeleccionDeObjetivo.Instance.CambiarSeleccion(-1);
             else if (Input.GetKeyDown(KeyCode.D))
                 SeleccionDeObjetivo.Instance.CambiarSeleccion(1);
             else if (Input.GetKeyDown(KeyCode.Return))
-                ConfirmarUso();
+                ConfirmarUso(); // Confirma la acción sobre el objetivo
         }
     }
 
-    // Confirma el uso de una carta sobre un objetivo
+    // Confirma el uso de una carta sobre el objetivo seleccionado
     public void ConfirmarUso()
     {
         var carta = HandManager.Instance.ObtenerCartaSeleccionada();

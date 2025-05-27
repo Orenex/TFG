@@ -4,15 +4,16 @@ using UnityEngine;
 [System.Serializable]
 public class EfectoActivo
 {
-    public string nombre;
-    public TipoEfecto tipo;
-    public int duracionTurnos;
-    public int modificador;
+    public string nombre;                    // Nombre del efecto
+    public TipoEfecto tipo;                  // Tipo de efecto aplicado
+    public int duracionTurnos;               // Cuántos turnos dura el efecto (excepto algunos permanentes)
+    public int modificador;                  // Valor adicional que influye en el efecto
+    public Luchador lanzador;                // Quién aplicó el efecto
 
-    public Luchador lanzador;
-
+    // Método que aplica el efecto al objetivo cada turno
     public void AplicarEfectoPorTurno(Luchador objetivo, Luchador lanzadorIgnorado = null)
     {
+        // El sangrado es permanente, los demás reducen duración
         if (tipo != TipoEfecto.Sangrado)
             duracionTurnos--;
 
@@ -89,6 +90,7 @@ public class EfectoActivo
         }
     }
 
+    // Clase interna para efecto especial de FuriaFocalizada
     public class FuriaFocalizada
     {
         public Luchador objetivo;
@@ -96,5 +98,6 @@ public class EfectoActivo
         public int turnosRestantes;
     }
 
+    // Indica si el efecto ha expirado (excepto sangrado)
     public bool Expirado => tipo != TipoEfecto.Sangrado && duracionTurnos <= 0;
 }

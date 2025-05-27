@@ -1,25 +1,26 @@
+// Clase que representa un luchador en el combate, puede ser jugador o enemigo
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// Tipos de recursos que puede usar una carta (por ahora solo Sanidad)
 public enum RecursoCoste { Sanidad }
 
+// Estructura que define una acción de combate
 [System.Serializable]
 public struct Accion
 {
     public string nombre;
-    public bool estatico;
-    public bool objetivoEsElEquipo;
-
-    public string mensaje;
-    public int argumento;
-
-    public string animacionTrigger;
-    public string efectoSecundario;
-    public int costoMana;
-    public RecursoCoste tipoCoste;
+    public bool estatico;                  // Si requiere desplazamiento o no
+    public bool objetivoEsElEquipo;        // Si se aplica al propio lanzador
+    public string mensaje;                 // Tipo de efecto (CambiarVida, CurarORevivir, etc.)
+    public int argumento;                  // Valor del efecto
+    public string animacionTrigger;       // Trigger de animación
+    public string efectoSecundario;        // Efecto adicional a aplicar
+    public int costoMana;                 // Costo en sanidad
+    public RecursoCoste tipoCoste;        // Tipo de recurso utilizado
 }
 
 public class Luchador : MonoBehaviour
@@ -30,10 +31,10 @@ public class Luchador : MonoBehaviour
     public int sanidad = 100;
     public int bonusDaño = 0;
 
-    public bool Aliado;
+    public bool Aliado;                   // Si es parte del equipo del jugador
     public bool sigueVivo = true;
 
-    public CardCollection cartasDisponibles;
+    public CardCollection cartasDisponibles; // Cartas que puede usar este luchador
     public List<Accion> Acciones;
     public List<EfectoActivo> efectosActivos = new();
     public EstadoEspecial estadoEspecial = new();
@@ -51,11 +52,13 @@ public class Luchador : MonoBehaviour
         nv.updateRotation = false;
         if (vidaMaxima <= 0)
             vidaMaxima = vida;
-        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Luchadores"), LayerMask.NameToLayer("Luchadores"), true);
 
+        // Evita colisiones entre luchadores
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Luchadores"), LayerMask.NameToLayer("Luchadores"), true);
         nv.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
     }
 
+    // Corrutina que ejecuta la acción de combate sobre un objetivo
     public IEnumerator EjecutarAccion(Accion accion, Luchador objetivo, Accion? accionSecundaria = null)
     {
         Debug.Log($"[{nombre}] ejecuta {accion.nombre} sobre {objetivo.nombre}");
@@ -69,6 +72,7 @@ public class Luchador : MonoBehaviour
         if (accion.nombre == "GrimFandango")
             saltarSiguienteTurno = true;
 
+        // Si no hay movimiento necesario
         if (accion.estatico)
         {
             EjecutarEfecto(accion, objetivo);
@@ -81,9 +85,9 @@ public class Luchador : MonoBehaviour
         }
         else
         {
+            // Movimiento hacia el objetivo
             Vector3 origen = transform.position;
             transform.LookAt(objetivo.transform.position);
-            // Añadir un pequeño offset para evitar colisiones al llegar
             Vector3 offset = (transform.position - objetivo.transform.position).normalized * 1.5f;
             Vector3 destino = objetivo.transform.position + offset;
 
@@ -101,6 +105,7 @@ public class Luchador : MonoBehaviour
                 EjecutarEfecto(sec, objetivoSec);
             }
 
+            // Regresa a la posición original
             transform.LookAt(origen);
             nv.SetDestination(origen);
 
@@ -111,6 +116,7 @@ public class Luchador : MonoBehaviour
         }
     }
 
+    // Ejecuta el efecto de una acción en el objetivo
     private void EjecutarEfecto(Accion accion, Luchador objetivo)
     {
         switch (accion.mensaje)
@@ -172,7 +178,6 @@ public class Luchador : MonoBehaviour
                             tipo = efectoGlobal,
                             modificador = accion.argumento,
                             duracionTurnos = 3
-                            
                         };
                         enemigo.efectosActivos.Add(efecto);
                         Debug.Log($"{enemigo.nombre} recibe efecto global {efectoGlobal}");
@@ -188,17 +193,10 @@ public class Luchador : MonoBehaviour
                     tipo = opciones[UnityEngine.Random.Range(0, opciones.Length)];
                     Debug.Log($"Glitch Beat aplica efecto aleatorio: {tipo}");
                 }
-                else
+                else if (!Enum.TryParse<TipoEfecto>(accion.efectoSecundario, out tipo))
                 {
-                    if (!Enum.TryParse<TipoEfecto>(accion.efectoSecundario, out tipo))
-                    {
-                        Debug.LogError($"[ERROR] No se pudo convertir '{accion.efectoSecundario}' en TipoEfecto.");
-                        return;
-                    }
-                    else
-                    {
-                        Debug.Log($"[DEBUG] Tipo de efecto detectado: {tipo}");
-                    }
+                    Debug.LogError($"[ERROR] No se pudo convertir '{accion.efectoSecundario}' en TipoEfecto.");
+                    return;
                 }
 
                 var nuevoEfecto = new EfectoActivo
@@ -243,7 +241,6 @@ public class Luchador : MonoBehaviour
                 efectosActivos.RemoveAt(i);
                 Debug.Log($"{nombre} pierde el efecto: {efecto.nombre}");
             }
-
         }
     }
 

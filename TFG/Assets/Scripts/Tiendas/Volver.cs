@@ -1,26 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Clase que permite volver a la escena del pueblo y restaurar la posición del jugador
 public class Volver : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Llamado por un botón o evento para regresar a "PuebloPrincipal"
     public void VolverAlPueblo()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.LoadScene("PuebloPrincipal");
+        SceneManager.sceneLoaded += OnSceneLoaded; // Se suscribe al evento de escena cargada
+        SceneManager.LoadScene("PuebloPrincipal"); // Carga la escena del pueblo
     }
 
+    // Cuando se carga la escena, se restaura la posición previa si fue guardada
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name == "PuebloPrincipal" && GameState.hasSavedPosition)
@@ -31,16 +22,15 @@ public class Volver : MonoBehaviour
                 CharacterController controller = player.GetComponent<CharacterController>();
                 if (controller != null)
                 {
-                    controller.enabled = false; // Necesario para cambiar posición con CharacterController
-                    player.transform.position = GameState.lastPlayerPosition;
-                    controller.enabled = true;
+                    controller.enabled = false; // Se desactiva el controlador para cambiar posición
+                    player.transform.position = GameState.lastPlayerPosition; // Se mueve al punto guardado
+                    controller.enabled = true; // Se reactiva el controlador
                 }
             }
 
-            GameState.hasSavedPosition = false;
+            GameState.hasSavedPosition = false; // Se limpia el estado de guardado
         }
 
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded -= OnSceneLoaded; // Se desuscribe del evento
     }
-
 }

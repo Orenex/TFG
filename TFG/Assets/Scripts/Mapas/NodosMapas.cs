@@ -3,23 +3,25 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Clase que representa cada nodo en el mapa del juego (zona de combate o evento)
 public class NodosMapas : MonoBehaviour
 {
-    public string nodeID; // Asegúrate de asignar un ID único desde el Inspector
-    public Button zonas;
-    public List<NodosMapas> nodosConectados;
-    public List<NodosMapas> caminosdesactivados;
+    public string nodeID; // ID único asignado desde el Inspector
+    public Button zonas; // Botón que representa este nodo en la UI
+    public List<NodosMapas> nodosConectados; // Nodos que se activan al visitar este
+    public List<NodosMapas> caminosdesactivados; // Nodos que se desactivan al visitarlo
     public bool isActive = false;
     public bool isVisited = false;
-    public string escena;
+    public string escena; // Escena que se carga al hacer clic
 
-    public bool esUltimoNodo = false;
-
+    public bool esUltimoNodo = false; // Si este nodo marca el final del recorrido
 
     void Start()
     {
+        // Asigna el evento de clic al botón
         zonas.onClick.AddListener(OnNodeClicked);
 
+        // Restaura estado del nodo desde el GameManager
         if (GameManager.Instance != null && GameManager.Instance.nodeStates.TryGetValue(nodeID, out var state))
         {
             isActive = state.isActive;
@@ -29,11 +31,13 @@ public class NodosMapas : MonoBehaviour
         UpdateButtonState();
     }
 
+    // Actualiza la interactividad del botón
     void UpdateButtonState()
     {
         zonas.interactable = isActive && !isVisited;
     }
 
+    // Método llamado cuando se hace clic sobre el nodo
     void OnNodeClicked()
     {
         if (!isActive || isVisited) return;
@@ -41,12 +45,14 @@ public class NodosMapas : MonoBehaviour
         isVisited = true;
         zonas.interactable = false;
 
+        // Guarda el nodo actual como último visitado
         if (GameManager.Instance != null)
         {
             GameManager.Instance.lastNodeID = nodeID;
             SaveState();
         }
 
+        // Activa y desactiva nodos conectados
         foreach (NodosMapas node in nodosConectados)
         {
             node.ActivateNode();
@@ -59,12 +65,14 @@ public class NodosMapas : MonoBehaviour
             alt.SaveState();
         }
 
+        // Carga la escena asociada si existe
         if (!string.IsNullOrEmpty(escena))
         {
             if (GameManager.Instance != null)
             {
                 GameManager.Instance.lastScene = SceneManager.GetActiveScene().name;
 
+                // Elimina GameManager si se llega al final del camino
                 if (esUltimoNodo)
                 {
                     Destroy(GameManager.Instance.gameObject);
@@ -75,18 +83,21 @@ public class NodosMapas : MonoBehaviour
         }
     }
 
+    // Activa el nodo actual
     public void ActivateNode()
     {
         isActive = true;
         UpdateButtonState();
     }
 
+    // Desactiva el nodo actual
     public void DeactivateNode()
     {
         isActive = false;
         UpdateButtonState();
     }
 
+    // Guarda el estado del nodo en GameManager
     public void SaveState()
     {
         if (GameManager.Instance == null) return;

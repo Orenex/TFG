@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Controlador de inteligencia artificial para enemigos en combate
+// Controlador de inteligencia artificial para enemigos durante el combate
 public class EnemyAIController : MonoBehaviour
 {
     public static EnemyAIController Instance { get; private set; }
     public static bool TurnoFinalizado { get; set; }
 
-    private Dictionary<Luchador, Luchador> memoriaDeObjetivos = new(); // Memoria para evitar objetivos repetidos
+    private Dictionary<Luchador, Luchador> memoriaDeObjetivos = new(); // Guarda el objetivo anterior de cada enemigo
 
     private void Awake()
     {
@@ -16,13 +16,13 @@ public class EnemyAIController : MonoBehaviour
         else Instance = this;
     }
 
-    // Ejecuta el turno de un enemigo
+    // Ejecuta el turno del enemigo
     public void EjecutarTurno(Luchador enemigo)
     {
         TurnoFinalizado = false;
         Debug.Log($"Paralizado: {enemigo.estadoEspecial.Paralizado}");
 
-        // Revisa condiciones negativas
+        // Condiciones negativas que afectan el turno
         if (enemigo.estadoEspecial.Paralizado)
         {
             Debug.Log($"{enemigo.nombre} está paralizado y pierde su turno.");
@@ -41,7 +41,7 @@ public class EnemyAIController : MonoBehaviour
             enemigo.vida -= 1;
         }
 
-        // Filtra cartas que el enemigo puede usar con su sanidad actual
+        // Filtra cartas que puede usar con su sanidad actual
         var cartas = enemigo.cartasDisponibles.CartasEnLaColeccion;
         var jugables = cartas.FindAll(c => c != null && enemigo.sanidad >= c.accion.costoMana);
 
@@ -52,7 +52,7 @@ public class EnemyAIController : MonoBehaviour
             return;
         }
 
-        // Escoge carta y objetivo, y ejecuta acción
+        // Elige carta y objetivo
         ScriptableCartas carta = ElegirCarta(jugables, enemigo);
         Luchador objetivo = ElegirObjetivo(carta, enemigo);
 
@@ -67,7 +67,7 @@ public class EnemyAIController : MonoBehaviour
         }
     }
 
-    // Estrategia básica de selección de carta
+    // Estrategia de elección de carta (prioriza curación si tiene poca vida)
     private ScriptableCartas ElegirCarta(List<ScriptableCartas> cartas, Luchador lanzador)
     {
         if (lanzador.vida <= 10)
@@ -84,10 +84,10 @@ public class EnemyAIController : MonoBehaviour
         return cartas[Random.Range(0, cartas.Count)];
     }
 
-    // Selección del objetivo para la carta elegida
+    // Estrategia de selección de objetivo
     private Luchador ElegirObjetivo(ScriptableCartas carta, Luchador lanzador)
     {
-        // Si está confundido puede atacar a un aliado enemigo
+        // Si está confundido, puede atacar aliados enemigos
         if (lanzador.estadoEspecial.Confusion)
         {
             var posibles = new List<Luchador>(FindObjectsOfType<Luchador>());
@@ -102,6 +102,7 @@ public class EnemyAIController : MonoBehaviour
             }
         }
 
+        // Lista de enemigos válidos
         var posiblesObjetivos = new List<Luchador>(FindObjectsOfType<Luchador>());
         posiblesObjetivos = posiblesObjetivos.FindAll(l => l.sigueVivo && l.Aliado != lanzador.Aliado);
 
@@ -114,17 +115,14 @@ public class EnemyAIController : MonoBehaviour
         if (carta.accion.objetivoEsElEquipo)
             return lanzador;
 
-        // Reutiliza objetivo anterior si es válido
+        // Reutiliza objetivo anterior si aún está vivo
         memoriaDeObjetivos.TryGetValue(lanzador, out var ultimoObjetivo);
-
         if (posiblesObjetivos.Count > 1 && ultimoObjetivo != null && posiblesObjetivos.Contains(ultimoObjetivo))
-        {
             posiblesObjetivos.Remove(ultimoObjetivo);
-        }
 
         Luchador objetivoElegido;
 
-        // Elige entre objetivo con menos vida o aleatorio
+        // A veces prioriza enemigo con menos vida
         if (carta.accion.argumento < 0)
         {
             if (Random.value < 0.5f)
@@ -146,14 +144,14 @@ public class EnemyAIController : MonoBehaviour
         return objetivoElegido;
     }
 
-    // Ejecuta la acción con una corrutina
+    // Ejecuta la acción seleccionada con una corrutina
     private IEnumerator EjecutarAccion(Accion accion, Luchador lanzador, Luchador objetivo)
     {
         yield return lanzador.EjecutarAccion(accion, objetivo);
         TurnoFinalizado = true;
     }
 
-    // Limpia la memoria para que IA pueda variar objetivos en el siguiente turno
+    // Limpia la memoria de objetivos para evitar repeticiones entre turnos
     public void ReiniciarMemoriaDeObjetivos()
     {
         memoriaDeObjetivos.Clear();

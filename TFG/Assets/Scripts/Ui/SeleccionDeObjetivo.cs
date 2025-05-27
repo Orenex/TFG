@@ -7,13 +7,13 @@ public class SeleccionDeObjetivo : MonoBehaviour
     public static SeleccionDeObjetivo Instance { get; private set; }
 
     [Header("Marcador de selección")]
-    [SerializeField] private GameObject marcadorPrefab;  // Prefab del marcador visual para el objetivo
+    [SerializeField] private GameObject marcadorPrefab;  // Prefab visual para indicar al objetivo
 
-    private GameObject marcadorInstanciado;
-    private Luchador objetivoActual;
+    private GameObject marcadorInstanciado; // Instancia activa del marcador visual
+    private Luchador objetivoActual; // Luchador actualmente seleccionado como objetivo
 
-    private List<Luchador> enemigos = new();
-    private int indiceSeleccionado = 0;
+    private List<Luchador> enemigos = new(); // Lista de enemigos disponibles como objetivo
+    private int indiceSeleccionado = 0; // Índice actual en la lista de enemigos
 
     private void Awake()
     {
@@ -23,7 +23,7 @@ public class SeleccionDeObjetivo : MonoBehaviour
 
     private void Start()
     {
-        // Se inicializa la lista de enemigos válidos al comienzo del combate
+        // Inicializa la lista de enemigos válidos al comienzo del combate
         enemigos = new List<Luchador>(FindObjectsOfType<Luchador>());
         enemigos = enemigos.FindAll(e => !e.Aliado && e.sigueVivo);
 
@@ -35,7 +35,7 @@ public class SeleccionDeObjetivo : MonoBehaviour
     {
         if (enemigos.Count == 0) return;
 
-        // Permite cambiar de objetivo con las teclas A y D
+        // Cambia de objetivo con teclas A y D
         if (Input.GetKeyDown(KeyCode.A))
         {
             CambiarSeleccion(-1);
@@ -46,7 +46,7 @@ public class SeleccionDeObjetivo : MonoBehaviour
         }
     }
 
-    // Cambia la selección de objetivo en la lista de enemigos vivos
+    // Cambia la selección de objetivo en la lista
     public void CambiarSeleccion(int direccion)
     {
         if (enemigos.Count == 0) return;
@@ -55,14 +55,14 @@ public class SeleccionDeObjetivo : MonoBehaviour
         SeleccionarPorIndice(indiceSeleccionado);
     }
 
-    // Selecciona al enemigo según su índice en la lista
+    // Selecciona un enemigo basado en su posición en la lista
     private void SeleccionarPorIndice(int index)
     {
         var objetivo = enemigos[index];
         SeleccionarObjetivo(objetivo);
     }
 
-    // Cambia el objetivo actual y coloca un marcador visual sobre él
+    // Cambia el objetivo actual y coloca el marcador visual sobre él
     public void SeleccionarObjetivo(Luchador objetivo)
     {
         if (objetivo == null || !objetivo.sigueVivo) return;
@@ -73,12 +73,12 @@ public class SeleccionDeObjetivo : MonoBehaviour
             Destroy(marcadorInstanciado);
 
         marcadorInstanciado = Instantiate(marcadorPrefab, objetivo.transform);
-        marcadorInstanciado.transform.localPosition = Vector3.up * 2.5f;
+        marcadorInstanciado.transform.localPosition = Vector3.up * 2.5f; // Coloca el marcador sobre el objetivo
 
         Debug.Log($"Objetivo seleccionado: {objetivo.nombre}");
     }
 
-    // Limpia la selección de objetivo actual
+    // Limpia la selección de objetivo actual y elimina el marcador
     public void LimpiarSeleccion()
     {
         objetivoActual = null;

@@ -6,8 +6,8 @@ public class CombatUI : MonoBehaviour
     public static CombatUI Instance { get; private set; }
 
     [Header("Referencias UI")]
-    [SerializeField] private GameObject panelCartas;       // Panel donde se muestran las cartas
-    [SerializeField] private GameObject botonDescartar;    // Botón para descartar carta
+    [SerializeField] private GameObject panelCartas;       // Panel que contiene las cartas
+    [SerializeField] private GameObject botonDescartar;    // Botón para descartar una carta
     [SerializeField] private GameObject botonConfirmar;    // Botón para confirmar uso de carta
 
     private void Awake()
@@ -19,6 +19,7 @@ public class CombatUI : MonoBehaviour
     // Muestra las cartas del jugador activando el panel y preparando la mano
     public void MostrarCartas(CardCollection coleccion)
     {
+        // Asigna la colección al mazo y genera la mano visual
         Deck.Instance.AsignarColeccion(coleccion);
         HandManager.Instance.PrepararNuevaMano(coleccion);
         panelCartas.SetActive(true);
@@ -32,7 +33,7 @@ public class CombatUI : MonoBehaviour
         botonConfirmar.SetActive(activa);
     }
 
-    // Oculta las cartas del jugador
+    // Oculta las cartas del jugador (cuando termina su turno)
     public void OcultarCartas()
     {
         panelCartas.SetActive(false);
