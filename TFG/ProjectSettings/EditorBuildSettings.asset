@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Catacumbas/Entrada_Catacumbas.unity
     guid: 5b38056f97993674781a708ca83481a7
   - enabled: 1
-    path: Assets/Scenes/PuebloPrincipal/Tienda.unity
+    path: Assets/Scenes/PuebloPrincipal/TiendaHerrero.unity
     guid: b2243c959e0c96642b4510aa17945d71
   - enabled: 1
     path: Assets/Scenes/Catacumbas/Boss_Catacumbas.unity
@@ -41,6 +41,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PuebloPrincipal/PuebloPrincipal.unity
     guid: e29e3309c7b1f074fb4c7705dd5726e9
+  - enabled: 1
+    path: Assets/Scenes/PuebloPrincipal/TiendaBruja.unity
+    guid: 03b10be0245198248897a56651df08b1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

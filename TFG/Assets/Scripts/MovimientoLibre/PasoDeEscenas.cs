@@ -14,6 +14,21 @@ public class PasoDeEscenas : MonoBehaviour
         if (messageUI != null)
             messageUI.SetActive(false); // Ocultar el mensaje al principio
     }
+    void Update()
+    {
+        if (isPlayerInside && Input.GetKeyDown(KeyCode.E))
+        {
+            // Guardamos la posición actual del jugador antes de cambiar de escena
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                GameState.lastPlayerPosition = player.transform.position;
+                GameState.hasSavedPosition = true;
+            }
+
+            SceneManager.LoadScene(sceneToLoad);
+        }
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -32,14 +47,6 @@ public class PasoDeEscenas : MonoBehaviour
             isPlayerInside = false;
             if (messageUI != null)
                 messageUI.SetActive(false);
-        }
-    }
-
-    void Update()
-    {
-        if (isPlayerInside && Input.GetKeyDown(KeyCode.E))
-        {
-            SceneManager.LoadScene(sceneToLoad);
         }
     }
 }

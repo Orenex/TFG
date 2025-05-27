@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803fab1b7bec4684cb5aa86fc2e46fba, type: 3}
+  m_Name: MazoAmarillo+
+  m_EditorClassIdentifier: 
+  CartasEnLaColeccion:
+  - {fileID: 11400000, guid: c48fef18cf294d24886f2544e23fb3e4, type: 2}
+  - {fileID: 11400000, guid: c48fef18cf294d24886f2544e23fb3e4, type: 2}
+  - {fileID: 11400000, guid: c48fef18cf294d24886f2544e23fb3e4, type: 2}
+  - {fileID: 11400000, guid: c48fef18cf294d24886f2544e23fb3e4, type: 2}
+  - {fileID: 11400000, guid: c48fef18cf294d24886f2544e23fb3e4, type: 2}
+  - {fileID: 11400000, guid: d7650ad7c9bed1044a1ea29487f24897, type: 2}
+  - {fileID: 11400000, guid: d7650ad7c9bed1044a1ea29487f24897, type: 2}
+  - {fileID: 11400000, guid: d7650ad7c9bed1044a1ea29487f24897, type: 2}
+  - {fileID: 11400000, guid: d7650ad7c9bed1044a1ea29487f24897, type: 2}
+  - {fileID: 11400000, guid: d7650ad7c9bed1044a1ea29487f24897, type: 2}
+  - {fileID: 11400000, guid: 6b0be5fd0940fb44da2b896e92423b56, type: 2}
+  - {fileID: 11400000, guid: 6b0be5fd0940fb44da2b896e92423b56, type: 2}
+  - {fileID: 11400000, guid: a8030ac8d2614a3429d1bf9ef9b9f3da, type: 2}
+  - {fileID: 11400000, guid: a8030ac8d2614a3429d1bf9ef9b9f3da, type: 2}
+  - {fileID: 11400000, guid: b58b40742a0faa04aa52cf6693a0ee9b, type: 2}
+  - {fileID: 11400000, guid: b58b40742a0faa04aa52cf6693a0ee9b, type: 2}
+  - {fileID: 11400000, guid: 727a0295de04d8a498257d70b806c8d4, type: 2}
+  - {fileID: 11400000, guid: 727a0295de04d8a498257d70b806c8d4, type: 2}
+  - {fileID: 11400000, guid: c8634172e82846c40baf659696966908, type: 2}

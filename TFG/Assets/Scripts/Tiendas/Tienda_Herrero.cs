@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
-public class Tienda : MonoBehaviour
+public class Tienda_Herrero : MonoBehaviour
 {
     [System.Serializable]
     public class ObjetoTienda

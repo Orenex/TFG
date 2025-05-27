@@ -3,7 +3,142 @@ guid: 0ed55d32474a93e48a85d90196878274
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ayuntamiento
+    second: {fileID: 2100000, guid: 24fe9291fa285a14486e018c012ec213, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BluePotion
+    second: {fileID: 2100000, guid: 4bc59da7e052b6744bda37b2f8b40acc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Casa1
+    second: {fileID: 2100000, guid: eda79d634840573429f49d675e56c01c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Casa2
+    second: {fileID: 2100000, guid: 5d5cdf98d39987e47827599d8d55db52, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CasaBaja1
+    second: {fileID: 2100000, guid: 5176f338b78e1134687f7cd67156a44f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CasaBaja2
+    second: {fileID: 2100000, guid: 17f01fc67ac1d584989233fd60839fb6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CasaHerrero
+    second: {fileID: 2100000, guid: 95d2c7809db41834cbb5b6cce5de44e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CasaL
+    second: {fileID: 2100000, guid: 08cd5ed89c474bf40af31d4e205c91ab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CasaTortuga
+    second: {fileID: 2100000, guid: d178a768bf283804caf1d837654e4be0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CasaU
+    second: {fileID: 2100000, guid: 089ebb1a45365da44875bfb3c8f95558, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cesta
+    second: {fileID: 2100000, guid: 942c162878514dc46848bf224af7696d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Horno
+    second: {fileID: 2100000, guid: 0efc4f31a712bac42ae6f161c9f4a67b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Iglesia
+    second: {fileID: 2100000, guid: bca0ad307a74b344c838e768239e6515, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: InteriorHorno
+    second: {fileID: 2100000, guid: ac31518cbad713c4c89bdc984dfb7830, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lona
+    second: {fileID: 2100000, guid: d1929e8dba3d6c14abb2443a7127a5ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Madera
+    second: {fileID: 2100000, guid: ad6adbde329192442ba8198b98fb99d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Nota
+    second: {fileID: 2100000, guid: 400140c2693383a4fafee46a6847c7aa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pez
+    second: {fileID: 2100000, guid: 86e08a952f985844796329727aae4210, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PurplePotion
+    second: {fileID: 2100000, guid: 2e0136866bef0014ab27bd9061e91bd6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Queso
+    second: {fileID: 2100000, guid: 9ecac9f76b94c2c4eaac717cd61ed2ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RedPotion
+    second: {fileID: 2100000, guid: a312399b324bd40488db8902b791f763, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Salchichas
+    second: {fileID: 2100000, guid: 1e4fdd860fae8434786a892efb363bc6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sandia
+    second: {fileID: 2100000, guid: 75708ac077ae66948b985d1ed1fd3225, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Taberna1
+    second: {fileID: 2100000, guid: f88f9ae609efae64b8035b899061a993, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Terreno
+    second: {fileID: 2100000, guid: f56b22855709e5d4f889872ffb081a9c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TiendaBrujaBase
+    second: {fileID: 2100000, guid: c25c8ee090153ba4dbde7e714be12e3e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TiendaBrujaPuerta
+    second: {fileID: 2100000, guid: 0838827129d05bb4399f35a6ac6aeb30, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
