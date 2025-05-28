@@ -1786,7 +1786,7 @@ MonoBehaviour:
   vida: 100
   vidaMaxima: 100
   sanidad: 100
-  sanidadMaxima: 0
+  sanidadMaxima: 100
   "bonusDa\xF1o": 0
   Aliado: 1
   sigueVivo: 1
@@ -3372,10 +3372,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luchadoresEnCombate:
+  - {fileID: 1623621485}
   - {fileID: 1489431647}
   - {fileID: 1323463330}
   - {fileID: 23868592}
-  - {fileID: 1623621485}
   - {fileID: 1679492184}
   - {fileID: 1687238854}
   - {fileID: 1764553556}

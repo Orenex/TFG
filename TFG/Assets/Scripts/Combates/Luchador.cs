@@ -201,6 +201,7 @@ public class Luchador : MonoBehaviour
                     return;
                 }
 
+
                 var nuevoEfecto = new EfectoActivo
                 {
                     nombre = tipo.ToString(),
@@ -209,9 +210,20 @@ public class Luchador : MonoBehaviour
                     duracionTurnos = 3,
                     lanzador = this
                 };
+
+                if (tipo == TipoEfecto.FuriaSanidad)
+                {
+                    int sanidadPerdida = objetivo.sanidadMaxima - objetivo.sanidad;
+                    nuevoEfecto.bonusFuriaSanidad = sanidadPerdida;
+                    objetivo.bonusDaño += sanidadPerdida;
+                    Debug.Log($"{objetivo.nombre} obtiene {sanidadPerdida} de daño por Furia Sanidad (aplicado una vez).");
+                }
+
                 Debug.Log($"Añadiendo efecto {nuevoEfecto.nombre}");
                 objetivo.efectosActivos.Add(nuevoEfecto);
                 break;
+
+               
         }
 
         if (!string.IsNullOrEmpty(accion.animacionTrigger))
@@ -231,7 +243,6 @@ public class Luchador : MonoBehaviour
         {
             var efecto = efectosActivos[i];
             efecto.AplicarEfectoPorTurno(this, this);
-
             if (efecto.Expirado)
             {
                 if (efecto.tipo == TipoEfecto.CompartirDaño)
@@ -240,9 +251,16 @@ public class Luchador : MonoBehaviour
                     estadoEspecial.ReflejarDanioA = null;
                 }
 
+                if (efecto.tipo == TipoEfecto.FuriaSanidad && efecto.bonusFuriaSanidad > 0)
+                {
+                    bonusDaño -= efecto.bonusFuriaSanidad;
+                    Debug.Log($"{nombre} pierde {efecto.bonusFuriaSanidad} de Furia Sanidad al expirar el efecto.");
+                }
+
                 efectosActivos.RemoveAt(i);
                 Debug.Log($"{nombre} pierde el efecto: {efecto.nombre}");
             }
+
         }
     }
 

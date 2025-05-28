@@ -9,6 +9,7 @@ public class EfectoActivo
     public int duracionTurnos;               // Cuántos turnos dura el efecto (excepto algunos permanentes)
     public int modificador;                  // Valor adicional que influye en el efecto
     public Luchador lanzador;                // Quién aplicó el efecto
+    public int bonusFuriaSanidad = 0;
 
     // Método que aplica el efecto al objetivo cada turno
     public void AplicarEfectoPorTurno(Luchador objetivo, Luchador lanzadorIgnorado = null)
@@ -73,8 +74,7 @@ public class EfectoActivo
                 break;
 
             case TipoEfecto.FuriaSanidad:
-                float factor = 1f - Mathf.Clamp01(objetivo.sanidad / 10f);
-                objetivo.bonusDaño += Mathf.CeilToInt(modificador * factor);
+                // No se aplica cada turno, se aplica al ser creado.
                 break;
 
             case TipoEfecto.DanioEnArea:
