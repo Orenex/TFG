@@ -18,9 +18,15 @@ public class TiendaBruja : MonoBehaviour
     public GameObject itemPrefab;             // Prefab de item en UI
     public Transform contenidoScroll;         // Contenedor del scroll
     public TextMeshProUGUI goldText;          // Texto con el oro actual
-    public int gold = 100;                    // Oro inicial del jugador
+    public int gold;                          // Oro inicial del jugador
 
     public List<ObjetoTienda> mejorar;        // Lista de mejoras disponibles
+
+    private void Start()
+    {
+        goldText.text = "Gold: " + InventarioJugador.Instance.ObtenerOro();
+
+    }
 
     // Muestra los objetos disponibles según la categoría
     public void MostrarCategoria(string categoria)
@@ -59,12 +65,11 @@ public class TiendaBruja : MonoBehaviour
     // Realiza la compra del objeto si hay suficiente oro
     void Comprar(ObjetoTienda obj)
     {
-        if (gold >= obj.precio)
+        if (InventarioJugador.Instance.TieneOro(obj.precio))
         {
-            gold -= obj.precio;
-            goldText.text = "Gold: " + gold;
-            Debug.Log("Compraste: " + obj.nombre);
-            // Aquí podrías aplicar los efectos de mejora
+            InventarioJugador.Instance.GastarOro(obj.precio);
+            goldText.text = "Gold: " + InventarioJugador.Instance.ObtenerOro();
+
         }
     }
 }

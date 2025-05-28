@@ -44,6 +44,8 @@ public class Luchador : MonoBehaviour
 
     public bool saltarSiguienteTurno = false;
     public EfectoActivo.FuriaFocalizada furiaFocalizada;
+    public Sprite imagenPerfil; // Imagen para mostrar en la UI lateral
+
 
     private void Start()
     {
