@@ -1,34 +1,91 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class InventarioJugador : MonoBehaviour
 {
-    public static InventarioJugador Instance { get; private set; }
+    public static InventarioJugador Instance;
 
-    [Header("Economía del jugador")]
-    public int oro = 100;
+    public int oroActual = 100;
+    public List<string> mazosMejorados = new();
 
     private void Awake()
     {
-        if (Instance != null && Instance != this) Destroy(gameObject);
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
         else
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            CargarMazosMejorados();
+        }
+    }
+    //Esto hay que eliminarlo cuando se entregue
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            PlayerPrefs.DeleteAll();
+            mazosMejorados.Clear();
+            oroActual = 100; // o el valor inicial que uses
+            Debug.Log("Inventario reseteado");
         }
     }
 
-    public bool TieneOro(int cantidad) => oro >= cantidad;
+    public bool TieneOro(int cantidad) => oroActual >= cantidad;
 
     public void GastarOro(int cantidad)
     {
-        oro -= cantidad;
-        if (oro < 0) oro = 0;
+        oroActual -= cantidad;
+        Debug.Log("Oro restante: " + oroActual);
     }
 
-    public void AgregarOro(int cantidad)
+    public int ObtenerOro() => oroActual;
+
+    public void MarcarMazoComoMejorado(string id)
     {
-        oro += cantidad;
+        Debug.Log("Intentando marcar como comprado: '" + id + "'");
+
+        if (!mazosMejorados.Contains(id))
+        {
+            mazosMejorados.Add(id);
+            PlayerPrefs.SetInt("MazoMejorado_" + id, 1);
+            Debug.Log("Mazo marcado como mejorado y guardado: " + id);
+        }
+        else
+        {
+            Debug.LogWarning("El mazo ya estaba marcado como comprado: " + id);
+        }
     }
 
-    public int ObtenerOro() => oro;
+    public bool EsMazoMejorado(string id)
+    {
+        bool resultado = mazosMejorados.Contains(id);
+        Debug.Log($"¿'{id}' está en mazos mejorados?  {resultado}");
+        return resultado;
+    }
+
+    public void CargarMazosMejorados()
+    {
+        string[] ids = new[] { "Glen", "Jack", "Pagliacci" };
+
+        foreach (var id in ids)
+        {
+            if (PlayerPrefs.GetInt("MazoMejorado_" + id, 0) == 1)
+            {
+                mazosMejorados.Add(id);
+                Debug.Log("Cargado desde PlayerPrefs: " + id);
+            }
+        }
+    }
+
+    public void DebugMazosComprados()
+    {
+        Debug.Log("Mazos mejorados actuales:");
+        foreach (var id in mazosMejorados)
+        {
+            Debug.Log("- " + id);
+        }
+    }
 }
