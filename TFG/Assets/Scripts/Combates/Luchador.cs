@@ -179,9 +179,23 @@ public class Luchador : MonoBehaviour
                             nombre = efectoGlobal.ToString(),
                             tipo = efectoGlobal,
                             modificador = accion.argumento,
-                            duracionTurnos = 3
+                            duracionTurnos = 3,
+                            lanzador = this //¡Esto es lo que faltaba!
                         };
-                        enemigo.efectosActivos.Add(efecto);
+                        if (efectoGlobal == TipoEfecto.DanioEnArea)
+                        {
+                            if (enemigo.Aliado != this.Aliado && enemigo.sigueVivo)
+                            {
+                                enemigo.CambiarVida(-accion.argumento);
+                                Debug.Log($"{enemigo.nombre} recibió {accion.argumento} de daño en área directamente.");
+                            }
+                        }
+
+                        else
+                        {
+                            enemigo.efectosActivos.Add(efecto);
+                            Debug.Log($"{enemigo.nombre} recibe efecto global {efectoGlobal}");
+                        }
                         Debug.Log($"{enemigo.nombre} recibe efecto global {efectoGlobal}");
                     }
                 }
