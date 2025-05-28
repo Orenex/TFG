@@ -28,7 +28,8 @@ public class Luchador : MonoBehaviour
     public string nombre;
     public int vida;
     public int vidaMaxima;
-    public int sanidad = 100;
+    public int sanidad;
+    public int sanidadMaxima;
     public int bonusDaño = 0;
 
     public bool Aliado;                   // Si es parte del equipo del jugador
@@ -44,7 +45,6 @@ public class Luchador : MonoBehaviour
 
     public bool saltarSiguienteTurno = false;
     public EfectoActivo.FuriaFocalizada furiaFocalizada;
-    public Sprite imagenPerfil; // Imagen para mostrar en la UI lateral
 
 
     private void Start()
