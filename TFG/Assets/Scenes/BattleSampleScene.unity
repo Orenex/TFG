@@ -1981,8 +1981,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: Dummy1
-  vida: 100
-  vidaMaxima: 0
+  vida: 30
+  vidaMaxima: 30
   sanidad: 100
   sanidadMaxima: 0
   "bonusDa\xF1o": 0
@@ -2223,8 +2223,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: Dummy2
-  vida: 100
-  vidaMaxima: 0
+  vida: 30
+  vidaMaxima: 30
   sanidad: 100
   sanidadMaxima: 0
   "bonusDa\xF1o": 0
@@ -3304,8 +3304,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: Dummy3
-  vida: 100
-  vidaMaxima: 0
+  vida: 30
+  vidaMaxima: 30
   sanidad: 100
   sanidadMaxima: 0
   "bonusDa\xF1o": 0
@@ -3372,10 +3372,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   luchadoresEnCombate:
-  - {fileID: 1623621485}
   - {fileID: 1489431647}
   - {fileID: 1323463330}
   - {fileID: 23868592}
+  - {fileID: 1623621485}
   - {fileID: 1679492184}
   - {fileID: 1687238854}
   - {fileID: 1764553556}
@@ -3678,6 +3678,10 @@ PrefabInstance:
     - target: {fileID: 4048355726027723545, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
       propertyPath: m_Name
       value: Canvas_Vidas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4048355726027723545, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4368896719598942278, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
       propertyPath: m_SizeDelta.x
