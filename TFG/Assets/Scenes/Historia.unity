@@ -558,8 +558,9 @@ MonoBehaviour:
   dialogueText: {fileID: 451673018}
   typingSpeed: 0.05
   sentences:
-  - 
+  - Hola
   arrowIndicator: {fileID: 271726838}
+  siguienteEscena: 
 --- !u!4 &1435475451
 Transform:
   m_ObjectHideFlags: 0

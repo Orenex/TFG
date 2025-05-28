@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI dialogueText;
@@ -13,6 +13,7 @@ public class DialogueManager : MonoBehaviour
     private bool isTyping = false;
 
     public GameObject arrowIndicator;
+    public string siguienteEscena;
 
     void Start()
     {
@@ -60,7 +61,13 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            dialogueText.text = ""; // Fin del diálogo
+            // Aquí cambia la escena
+            LoadNextScene();
         }
     }
+    void LoadNextScene()
+    {
+        SceneManager.LoadScene(siguienteEscena);
+    }
+
 }
