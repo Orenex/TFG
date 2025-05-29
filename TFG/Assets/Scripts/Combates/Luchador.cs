@@ -237,11 +237,24 @@ public class Luchador : MonoBehaviour
                 objetivo.efectosActivos.Add(nuevoEfecto);
                 break;
 
-               
+            case "CurarYLimpiar":
+                // Curar vida
+                objetivo.CambiarVida(accion.argumento);
+
+                // Eliminar todos los efectos activos
+                objetivo.efectosActivos.Clear();
+                objetivo.estadoEspecial.Reiniciar();
+
+                Debug.Log($"{objetivo.nombre} fue curado y todos sus efectos negativos fueron eliminados.");
+                break;
+
+
         }
 
         if (!string.IsNullOrEmpty(accion.animacionTrigger))
             anim?.SetTrigger(accion.animacionTrigger);
+
+
     }
 
     public void RestaurarVidaTotal()

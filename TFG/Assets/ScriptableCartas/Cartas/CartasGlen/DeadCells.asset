@@ -20,12 +20,22 @@ MonoBehaviour:
     nombre: Dead Cells
     estatico: 1
     objetivoEsElEquipo: 1
-    mensaje: AplicarEfecto
-    argumento: 3
+    mensaje: CurarYLimpiar
+    argumento: 5
     animacionTrigger: 
-    efectoSecundario: Furia
+    efectoSecundario: 
+    costoMana: 0
+    tipoCoste: 0
+  accionSecundaria:
+    nombre: 
+    estatico: 0
+    objetivoEsElEquipo: 0
+    mensaje: 
+    argumento: 0
+    animacionTrigger: 
+    efectoSecundario: 
     costoMana: 0
     tipoCoste: 0
   imagen: {fileID: 21300000, guid: ae64a0402521e93478347e89981645ba, type: 3}
-  coste: 0
+  costoSanidad: 0
   tipoCoste: 0

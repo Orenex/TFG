@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: DiscoElysium+
   m_EditorClassIdentifier: 
   nombreCarta: Disco Elysium+
-  descripcion: "Te enfureces contra un enemigo y da\xF1as al resto"
+  descripcion: Te pones en posicion defensiva por un turno
   efecto: 
   tipo: 2
   accion:
     nombre: DiscoElysium
     estatico: 1
-    objetivoEsElEquipo: 0
-    mensaje: AplicarEfecto
-    argumento: 3
+    objetivoEsElEquipo: 1
+    mensaje: 
+    argumento: 0
     animacionTrigger: 
-    efectoSecundario: FuriaFocalizada
+    efectoSecundario: 
     costoMana: 0
     tipoCoste: 0
   accionSecundaria:

@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombreCarta: The Skeleton Key+
   descripcion: Roba salud al enemigo
-  efecto: -4 HP
+  efecto: -6 HP
   tipo: 0
   accion:
     nombre: RobarSalud
     estatico: 0
     objetivoEsElEquipo: 0
     mensaje: RobarSalud
-    argumento: -4
+    argumento: -6
     animacionTrigger: 
     efectoSecundario: 
     costoMana: 0

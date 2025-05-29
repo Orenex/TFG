@@ -21,7 +21,7 @@ MonoBehaviour:
     estatico: 0
     objetivoEsElEquipo: 0
     mensaje: CambiarVida
-    argumento: -3
+    argumento: -4
     animacionTrigger: 
     efectoSecundario: 
     costoMana: 0

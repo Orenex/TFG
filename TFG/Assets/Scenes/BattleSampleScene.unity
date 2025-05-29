@@ -272,7 +272,7 @@ MonoBehaviour:
   sanidadMaxima: 0
   "bonusDa\xF1o": 0
   Aliado: 1
-  sigueVivo: 1
+  sigueVivo: 0
   cartasDisponibles: {fileID: 11400000, guid: 5a6eaaaf4d6a9d44e8a3ce76178f50db, type: 2}
   Acciones: []
   efectosActivos: []
@@ -1399,7 +1399,7 @@ MonoBehaviour:
   sanidadMaxima: 0
   "bonusDa\xF1o": 0
   Aliado: 1
-  sigueVivo: 1
+  sigueVivo: 0
   cartasDisponibles: {fileID: 11400000, guid: 496045eaac342e74e9069427238eebb2, type: 2}
   Acciones: []
   efectosActivos: []
@@ -1789,7 +1789,7 @@ MonoBehaviour:
   sanidadMaxima: 100
   "bonusDa\xF1o": 0
   Aliado: 1
-  sigueVivo: 1
+  sigueVivo: 0
   cartasDisponibles: {fileID: 11400000, guid: 2319e50be4c1a8a4bb900846185489d5, type: 2}
   Acciones: []
   efectosActivos: []

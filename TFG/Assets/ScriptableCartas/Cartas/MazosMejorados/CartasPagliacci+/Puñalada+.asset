@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombreCarta: "Pu\xF1alada+"
   descripcion: "Una pu\xF1alada al objetivo"
-  efecto: -3 HP
+  efecto: -5 HP
   tipo: 0
   accion:
     nombre: "AtaqueB\xE1sico"
     estatico: 0
     objetivoEsElEquipo: 0
     mensaje: CambiarVida
-    argumento: -3
+    argumento: -5
     animacionTrigger: 
     efectoSecundario: 
     costoMana: 0

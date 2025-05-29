@@ -20,10 +20,10 @@ MonoBehaviour:
     nombre: Dead Cells
     estatico: 1
     objetivoEsElEquipo: 1
-    mensaje: AplicarEfecto
-    argumento: 3
+    mensaje: CurarYLimpiar
+    argumento: 7
     animacionTrigger: 
-    efectoSecundario: Furia
+    efectoSecundario: 
     costoMana: 0
     tipoCoste: 0
   accionSecundaria:

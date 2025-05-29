@@ -21,7 +21,7 @@ MonoBehaviour:
     estatico: 1
     objetivoEsElEquipo: 1
     mensaje: AplicarEfecto
-    argumento: -4
+    argumento: -6
     animacionTrigger: 
     efectoSecundario: Furia
     costoMana: 0

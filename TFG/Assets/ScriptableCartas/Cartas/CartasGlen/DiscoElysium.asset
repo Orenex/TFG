@@ -13,17 +13,27 @@ MonoBehaviour:
   m_Name: DiscoElysium
   m_EditorClassIdentifier: 
   nombreCarta: Disco Elysium
-  descripcion: "Te enfureces contra un enemigo y da\xF1as al resto"
+  descripcion: "Reflejas el da\xF1o al primer enemigo que te ataque"
   efecto: 
   tipo: 2
   accion:
     nombre: DiscoElysium
     estatico: 1
-    objetivoEsElEquipo: 0
+    objetivoEsElEquipo: 1
     mensaje: AplicarEfecto
-    argumento: 3
+    argumento: 0
     animacionTrigger: 
-    efectoSecundario: FuriaFocalizada
+    efectoSecundario: 
+    costoMana: 0
+    tipoCoste: 0
+  accionSecundaria:
+    nombre: 
+    estatico: 0
+    objetivoEsElEquipo: 0
+    mensaje: 
+    argumento: 0
+    animacionTrigger: 
+    efectoSecundario: 
     costoMana: 0
     tipoCoste: 0
   imagen: {fileID: 21300000, guid: ae64a0402521e93478347e89981645ba, type: 3}
