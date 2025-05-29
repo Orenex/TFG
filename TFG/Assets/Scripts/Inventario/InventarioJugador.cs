@@ -88,4 +88,11 @@ public class InventarioJugador : MonoBehaviour
             Debug.Log("- " + id);
         }
     }
+
+    public void AgregarOro(int cantidad)
+    {
+        oroActual += cantidad;
+        Debug.Log($"Oro actual tras bonus: {oroActual}");
+    }
+
 }

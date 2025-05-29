@@ -339,7 +339,7 @@ MonoBehaviour:
   - {fileID: 529874900}
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: CofreCatacumbas
   esUltimoNodo: 0
 --- !u!1 &336663971
 GameObject:
@@ -767,7 +767,7 @@ MonoBehaviour:
   - {fileID: 241545309}
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: CofreCatacumbas
   esUltimoNodo: 0
 --- !u!1 &566397268
 GameObject:
@@ -2262,7 +2262,7 @@ MonoBehaviour:
   - {fileID: 529874900}
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: CofreCatacumbas
   esUltimoNodo: 0
 --- !u!1 &1712078796
 GameObject:

@@ -261,6 +261,7 @@ MonoBehaviour:
   isActive: 0
   isVisited: 0
   escena: 
+  esUltimoNodo: 0
 --- !u!1 &368772090
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +403,7 @@ MonoBehaviour:
   isActive: 0
   isVisited: 0
   escena: 
+  esUltimoNodo: 0
 --- !u!1 &512607203
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,7 +543,8 @@ MonoBehaviour:
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: CofreSectarios
+  esUltimoNodo: 0
 --- !u!1 &545674505
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,6 +686,7 @@ MonoBehaviour:
   isActive: 0
   isVisited: 0
   escena: 
+  esUltimoNodo: 0
 --- !u!1 &565079120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1081,6 +1085,7 @@ MonoBehaviour:
   isActive: 0
   isVisited: 0
   escena: 
+  esUltimoNodo: 0
 --- !u!1 &609784106
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,6 +1243,7 @@ MonoBehaviour:
   isActive: 0
   isVisited: 0
   escena: 
+  esUltimoNodo: 0
 --- !u!1 &627251597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,7 +1383,8 @@ MonoBehaviour:
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: CofreSectarios
+  esUltimoNodo: 0
 --- !u!1 &905579095
 GameObject:
   m_ObjectHideFlags: 0
@@ -1675,6 +1682,7 @@ MonoBehaviour:
   isActive: 0
   isVisited: 0
   escena: 
+  esUltimoNodo: 0
 --- !u!1 &1155919103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,6 +1825,7 @@ MonoBehaviour:
   isActive: 0
   isVisited: 0
   escena: 
+  esUltimoNodo: 0
 --- !u!1 &1174717819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1959,6 +1968,7 @@ MonoBehaviour:
   isActive: 0
   isVisited: 0
   escena: 
+  esUltimoNodo: 0
 --- !u!1 &1457117047
 GameObject:
   m_ObjectHideFlags: 0
@@ -2103,6 +2113,7 @@ MonoBehaviour:
   isActive: 0
   isVisited: 0
   escena: 
+  esUltimoNodo: 0
 --- !u!114 &1457117053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2256,6 +2267,7 @@ MonoBehaviour:
   isActive: 0
   isVisited: 0
   escena: 
+  esUltimoNodo: 0
 --- !u!1 &1485543970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2399,6 +2411,7 @@ MonoBehaviour:
   isActive: 0
   isVisited: 0
   escena: 
+  esUltimoNodo: 0
 --- !u!1 &1560286280
 GameObject:
   m_ObjectHideFlags: 0
@@ -2540,6 +2553,7 @@ MonoBehaviour:
   isActive: 0
   isVisited: 0
   escena: 
+  esUltimoNodo: 0
 --- !u!1 &1578342270
 GameObject:
   m_ObjectHideFlags: 0
@@ -2681,6 +2695,7 @@ MonoBehaviour:
   isActive: 0
   isVisited: 0
   escena: 
+  esUltimoNodo: 0
 --- !u!1 &1696159869
 GameObject:
   m_ObjectHideFlags: 0
@@ -2822,6 +2837,7 @@ MonoBehaviour:
   isActive: 0
   isVisited: 0
   escena: 
+  esUltimoNodo: 0
 --- !u!1 &1839039495
 GameObject:
   m_ObjectHideFlags: 0
@@ -3009,6 +3025,7 @@ MonoBehaviour:
   isActive: 0
   isVisited: 0
   escena: 
+  esUltimoNodo: 0
 --- !u!1 &2145582793
 GameObject:
   m_ObjectHideFlags: 0
