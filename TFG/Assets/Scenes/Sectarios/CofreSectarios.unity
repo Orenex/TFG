@@ -803,7 +803,7 @@ MonoBehaviour:
   - Al mirar dentro ves una bolsa de monerdas
   - Al abrirla te encuentras 50 monedas de oro
   arrowIndicator: {fileID: 428575309}
-  siguienteEscena: MapaCatacumbas
+  siguienteEscena: MapaPuebloSectario
 --- !u!4 &2079002612
 Transform:
   m_ObjectHideFlags: 0
