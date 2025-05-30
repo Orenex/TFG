@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: Creacion+
   m_EditorClassIdentifier: 
   nombreCarta: Creacion+
-  descripcion: "Causa entre -1 y -4 de da\xF1o"
-  efecto: -1 - -4 HP
+  descripcion: "Causa entre -3 y -6 de da\xF1o"
+  efecto: -3 - -6 HP
   tipo: 0
   accion:
     nombre: AtaqueAleatorio
     estatico: 0
     objetivoEsElEquipo: 0
     mensaje: CambiarVidaAleatorio
-    argumento: 0
+    argumento: -3
     animacionTrigger: 
-    efectoSecundario: 
+    efectoSecundario: -6
     costoMana: 0
     tipoCoste: 0
   accionSecundaria:

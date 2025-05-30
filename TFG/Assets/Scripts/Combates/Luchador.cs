@@ -128,10 +128,21 @@ public class Luchador : MonoBehaviour
                 break;
 
             case "CambiarVidaAleatorio":
-                int dañoAleatorio = UnityEngine.Random.Range(-4, -1);
-                objetivo.CambiarVida(dañoAleatorio + bonusDaño);
-                Debug.Log($"{nombre} causa daño aleatorio de {dañoAleatorio} a {objetivo.nombre}");
+                int min = -4;
+                int max = -1;
+                if (int.TryParse(accion.argumento.ToString(), out int a) &&
+                    int.TryParse(accion.efectoSecundario, out int b))
+                {
+                    min = Mathf.Min(a, b);
+                    max = Mathf.Max(a, b);
+                }
+
+                int daño = UnityEngine.Random.Range(min, max + 1);
+                objetivo.CambiarVida(daño + bonusDaño);
+                Debug.Log($"{nombre} causa daño aleatorio de {daño} a {objetivo.nombre}");
                 break;
+
+
 
             case "CurarORevivir":
                 if (!objetivo.sigueVivo)
@@ -302,10 +313,18 @@ public class Luchador : MonoBehaviour
         if (cantidad < 0 && estadoEspecial.FuriaRecibidaExtra > 0)
             cantidad -= estadoEspecial.FuriaRecibidaExtra;
 
-        if (estadoEspecial.Critico && cantidad < 0 && UnityEngine.Random.value < 0.4f)
+        if (estadoEspecial.Critico && cantidad < 0)
         {
-            cantidad *= 2;
-            Debug.Log($"{nombre} hizo un CRÍTICO!");
+            if (efectosActivos.Exists(e => e.tipo == TipoEfecto.Critico && e.modificador == 999))
+            {
+                cantidad *= 2;
+                Debug.Log($"{nombre} hizo un CRÍTICO FORZADO!");
+            }
+            else if (UnityEngine.Random.value < 0.4f)
+            {
+                cantidad *= 2;
+                Debug.Log($"{nombre} hizo un CRÍTICO!");
+            }
         }
 
         vida += cantidad;

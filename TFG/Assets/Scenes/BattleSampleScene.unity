@@ -1399,7 +1399,7 @@ MonoBehaviour:
   sanidadMaxima: 0
   "bonusDa\xF1o": 0
   Aliado: 1
-  sigueVivo: 0
+  sigueVivo: 1
   cartasDisponibles: {fileID: 11400000, guid: 496045eaac342e74e9069427238eebb2, type: 2}
   Acciones: []
   efectosActivos: []
@@ -1619,7 +1619,7 @@ MonoBehaviour:
   sanidadMaxima: 100
   "bonusDa\xF1o": 0
   Aliado: 1
-  sigueVivo: 1
+  sigueVivo: 0
   cartasDisponibles: {fileID: 11400000, guid: cc76023cb8f267245ab7ea6e63097d6b, type: 2}
   Acciones: []
   efectosActivos: []
@@ -3681,7 +3681,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4048355726027723545, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4368896719598942278, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
       propertyPath: m_SizeDelta.x

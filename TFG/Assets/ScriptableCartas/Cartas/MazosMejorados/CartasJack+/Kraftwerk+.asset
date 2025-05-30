@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Kraftwerk+
   m_EditorClassIdentifier: 
   nombreCarta: Kraftwerk+
-  descripcion: "Otorga probabilidad de da\xF1o cr\xEDtico"
+  descripcion: "Otorga da\xF1o cr\xEDtico asegurado por un turno"
   efecto: 
   tipo: 2
   accion:
@@ -21,7 +21,7 @@ MonoBehaviour:
     estatico: 1
     objetivoEsElEquipo: 1
     mensaje: AplicarEfecto
-    argumento: 2
+    argumento: 999
     animacionTrigger: 
     efectoSecundario: Critico
     costoMana: 0

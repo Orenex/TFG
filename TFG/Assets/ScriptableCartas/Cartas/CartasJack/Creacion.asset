@@ -21,6 +21,16 @@ MonoBehaviour:
     estatico: 0
     objetivoEsElEquipo: 0
     mensaje: CambiarVidaAleatorio
+    argumento: -1
+    animacionTrigger: 
+    efectoSecundario: -4
+    costoMana: 0
+    tipoCoste: 0
+  accionSecundaria:
+    nombre: 
+    estatico: 0
+    objetivoEsElEquipo: 0
+    mensaje: 
     argumento: 0
     animacionTrigger: 
     efectoSecundario: 
