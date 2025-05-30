@@ -100,6 +100,7 @@ public class Luchador : MonoBehaviour
 
             EjecutarEfecto(accion, objetivo);
 
+            
             if (accionSecundaria.HasValue)
             {
                 var sec = accionSecundaria.Value;
@@ -108,6 +109,7 @@ public class Luchador : MonoBehaviour
             }
 
             // Regresa a la posición original
+            //yield return new WaitForSeconds(0.5f);
             transform.LookAt(origen);
             nv.SetDestination(origen);
 
@@ -116,6 +118,8 @@ public class Luchador : MonoBehaviour
 
             transform.eulerAngles = Vector3.zero;
         }
+
+
     }
 
     // Ejecuta el efecto de una acción en el objetivo

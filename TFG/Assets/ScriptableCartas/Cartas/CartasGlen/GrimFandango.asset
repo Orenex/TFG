@@ -32,7 +32,7 @@ MonoBehaviour:
     objetivoEsElEquipo: 1
     mensaje: AplicarEfecto
     argumento: 1
-    animacionTrigger: 
+    animacionTrigger: IsAttack
     efectoSecundario: Paralizado
     costoMana: 0
     tipoCoste: 0
