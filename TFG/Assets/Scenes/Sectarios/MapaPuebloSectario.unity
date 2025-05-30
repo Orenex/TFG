@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: 
+  nodeID: Pelea_3.2
   zonas: {fileID: 195947156}
   nodosConectados:
   - {fileID: 1174717824}
@@ -395,14 +395,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: 
+  nodeID: Descanso_1.1
   zonas: {fileID: 368772092}
   nodosConectados:
   - {fileID: 1560286285}
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Descanso_Sectarios
   esUltimoNodo: 0
 --- !u!1 &512607203
 GameObject:
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: 
+  nodeID: Cofre_1
   zonas: {fileID: 512607205}
   nodosConectados: []
   caminosdesactivados: []
@@ -678,7 +678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: 
+  nodeID: Pelea_4.2
   zonas: {fileID: 545674507}
   nodosConectados:
   - {fileID: 1578342275}
@@ -1076,7 +1076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: 
+  nodeID: Pelea_2.1
   zonas: {fileID: 609548448}
   nodosConectados:
   - {fileID: 368772095}
@@ -1377,7 +1377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: 
+  nodeID: Cofre_2
   zonas: {fileID: 627251599}
   nodosConectados: []
   caminosdesactivados: []
@@ -1672,7 +1672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: 
+  nodeID: Pelea_3.1
   zonas: {fileID: 1078551425}
   nodosConectados:
   - {fileID: 1155919108}
@@ -1816,7 +1816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: 
+  nodeID: Pelea_3.1
   zonas: {fileID: 1155919105}
   nodosConectados:
   - {fileID: 609548451}
@@ -1959,7 +1959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: 
+  nodeID: Pelea_2.2
   zonas: {fileID: 1174717821}
   nodosConectados:
   - {fileID: 2004696482}
@@ -2260,14 +2260,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: 
+  nodeID: Boss_Sectarios
   zonas: {fileID: 1472635982}
   nodosConectados: []
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
   escena: 
-  esUltimoNodo: 0
+  esUltimoNodo: 1
 --- !u!1 &1485543970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2401,7 +2401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: 
+  nodeID: Pelea_3.2
   zonas: {fileID: 1485543972}
   nodosConectados:
   - {fileID: 195947159}
@@ -2545,7 +2545,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: 
+  nodeID: Pelea_4.1
   zonas: {fileID: 1560286282}
   nodosConectados:
   - {fileID: 1578342275}
@@ -2687,7 +2687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: 
+  nodeID: Pelea_5
   zonas: {fileID: 1578342272}
   nodosConectados:
   - {fileID: 1696159874}
@@ -2829,14 +2829,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: 
+  nodeID: Descanso_2
   zonas: {fileID: 1696159871}
   nodosConectados:
   - {fileID: 1472635985}
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Descanso_Sectarios
   esUltimoNodo: 0
 --- !u!1 &1839039495
 GameObject:
@@ -3017,14 +3017,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6327300a0b60cd147b99c123488a1f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: 
+  nodeID: Descanso_1.2
   zonas: {fileID: 2004696479}
   nodosConectados:
   - {fileID: 545674510}
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Descanso_Sectarios
   esUltimoNodo: 0
 --- !u!1 &2145582793
 GameObject:
