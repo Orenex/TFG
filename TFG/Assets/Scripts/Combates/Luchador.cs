@@ -85,22 +85,74 @@ public class Luchador : MonoBehaviour
                 EjecutarEfecto(sec, objetivoSec);
             }
         }
+        /*else
+         {
+             // Movimiento hacia el objetivo
+             Vector3 origen = transform.position;
+             transform.LookAt(objetivo.transform.position);
+             Vector3 offset = (transform.position - objetivo.transform.position).normalized * 1.5f;
+             Vector3 destino = objetivo.transform.position + offset;
+
+             nv.SetDestination(objetivo.transform.position);
+
+             while (Vector3.Distance(transform.position, objetivo.transform.position) > 1.5f)
+                 yield return null;
+
+             EjecutarEfecto(accion, objetivo);
+
+
+             if (accionSecundaria.HasValue)
+             {
+                 var sec = accionSecundaria.Value;
+                 Luchador objetivoSec = sec.objetivoEsElEquipo ? this : objetivo;
+                 EjecutarEfecto(sec, objetivoSec);
+             }
+
+             // Regresa a la posición original
+
+             transform.LookAt(origen);
+             nv.SetDestination(origen);
+
+             while (Vector3.Distance(transform.position, origen) > 0.1f)
+                 yield return null;
+
+             transform.eulerAngles = Vector3.zero;
+         }*/
         else
         {
-            // Movimiento hacia el objetivo
+            // Guardar posición original
             Vector3 origen = transform.position;
             transform.LookAt(objetivo.transform.position);
-            Vector3 offset = (transform.position - objetivo.transform.position).normalized * 1.5f;
-            Vector3 destino = objetivo.transform.position + offset;
 
-            nv.SetDestination(objetivo.transform.position);
+            // Calcular posición frente al objetivo
+            Vector3 offset = (objetivo.transform.position - transform.position).normalized * 1.5f;
+            Vector3 destino = objetivo.transform.position - offset;
 
-            while (Vector3.Distance(transform.position, objetivo.transform.position) > 1.5f)
+            // Mover hacia el enemigo
+            nv.SetDestination(destino);
+
+            // Esperar a llegar al destino
+            while (Vector3.Distance(transform.position, destino) > 0.5f)
                 yield return null;
 
+            // Asegurar que esté mirando al objetivo
+            transform.LookAt(objetivo.transform.position);
+
+            // Esperar 0.1s por seguridad de sincronización
+            yield return new WaitForSeconds(0.1f);
+
+            // Ejecutar animación si corresponde
+            if (!string.IsNullOrEmpty(accion.animacionTrigger))
+            {
+                anim.SetTrigger(accion.animacionTrigger);
+
+                // Esperar a que termine la animación
+                yield return new WaitUntil(() => anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f && !anim.IsInTransition(0));
+            }
+
+            // Ejecutar efecto
             EjecutarEfecto(accion, objetivo);
 
-            
             if (accionSecundaria.HasValue)
             {
                 var sec = accionSecundaria.Value;
@@ -108,16 +160,18 @@ public class Luchador : MonoBehaviour
                 EjecutarEfecto(sec, objetivoSec);
             }
 
-            // Regresa a la posición original
-            //yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
+            // Volver a posición original
             transform.LookAt(origen);
             nv.SetDestination(origen);
 
             while (Vector3.Distance(transform.position, origen) > 0.1f)
                 yield return null;
 
+            // Resetear rotación si es necesario
             transform.eulerAngles = Vector3.zero;
         }
+
 
 
     }
