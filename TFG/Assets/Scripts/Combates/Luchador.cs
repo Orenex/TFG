@@ -46,7 +46,9 @@ public class Luchador : MonoBehaviour
     public bool saltarSiguienteTurno = false;
     public EfectoActivo.FuriaFocalizada furiaFocalizada;
 
-
+    [Header("Animaciones Personalizadas")]
+    public string animacionRecibirDaño;
+    public string animacionMuerte;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -85,39 +87,6 @@ public class Luchador : MonoBehaviour
                 EjecutarEfecto(sec, objetivoSec);
             }
         }
-        /*else
-        {
-             // Movimiento hacia el objetivo
-             Vector3 origen = transform.position;
-             transform.LookAt(objetivo.transform.position);
-             Vector3 offset = (transform.position - objetivo.transform.position).normalized * 1.5f;
-             Vector3 destino = objetivo.transform.position + offset;
-
-             nv.SetDestination(objetivo.transform.position);
-
-             while (Vector3.Distance(transform.position, objetivo.transform.position) > 1.5f)
-                 yield return null;
-
-             EjecutarEfecto(accion, objetivo);
-
-
-             if (accionSecundaria.HasValue)
-             {
-                 var sec = accionSecundaria.Value;
-                 Luchador objetivoSec = sec.objetivoEsElEquipo ? this : objetivo;
-                 EjecutarEfecto(sec, objetivoSec);
-             }
-
-             // Regresa a la posición original
-
-             transform.LookAt(origen);
-             nv.SetDestination(origen);
-
-             while (Vector3.Distance(transform.position, origen) > 0.1f)
-                 yield return null;
-
-             transform.eulerAngles = Vector3.zero;
-        }*/
         else
         {
             // Guardar posición original
@@ -364,12 +333,6 @@ public class Luchador : MonoBehaviour
 
     public void CambiarVida(int cantidad)
     {
-        if (estadoEspecial.Asqueado && cantidad > 0)
-        {
-            Debug.Log($"{nombre} no puede curarse por asqueado.");
-            return;
-        }
-
         if (cantidad < 0 && estadoEspecial.FuriaRecibidaExtra > 0)
             cantidad -= estadoEspecial.FuriaRecibidaExtra;
 
@@ -386,6 +349,9 @@ public class Luchador : MonoBehaviour
                 Debug.Log($"{nombre} hizo un CRÍTICO!");
             }
         }
+        
+        if (cantidad < 0 && anim != null && !string.IsNullOrEmpty(animacionRecibirDaño))
+            anim.SetTrigger(animacionRecibirDaño);
 
         vida += cantidad;
 
@@ -406,7 +372,7 @@ public class Luchador : MonoBehaviour
             else
             {
                 sigueVivo = false;
-                gameObject.SetActive(false);
+                anim.SetTrigger(animacionMuerte);
                 Debug.Log($"{nombre} ha sido derrotado.");
             }
         }
