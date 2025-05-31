@@ -568,7 +568,7 @@ GameObject:
   - component: {fileID: 482132120}
   - component: {fileID: 482132119}
   m_Layer: 0
-  m_Name: inventarioJugador
+  m_Name: InventarioJugador
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Catacumbas/Boss_Catacumbas.unity
     guid: fd0491227e2c9f24f903a4d6b26de36a
   - enabled: 1
-    path: Assets/Scenes/Catacumbas/Combate_Catacumbas.unity
+    path: Assets/Scenes/Catacumbas/Combate_Catacumbas_GlenSolo.unity
     guid: 021cc4dff668fcc44a211f7401ad1f47
   - enabled: 1
     path: Assets/Scenes/Catacumbas/Descanso_Catacumbas.unity

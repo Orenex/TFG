@@ -482,7 +482,7 @@ MonoBehaviour:
   - {fileID: 1264878152}
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Catacumbas_GlenSolo
   esUltimoNodo: 0
 --- !u!1 &519893906
 GameObject:
@@ -1265,7 +1265,7 @@ MonoBehaviour:
   - {fileID: 336663976}
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Catacumbas_GlenSolo
   esUltimoNodo: 0
 --- !u!1 &1267564182
 GameObject:
@@ -2119,7 +2119,7 @@ MonoBehaviour:
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Catacumbas_GlenSolo
   esUltimoNodo: 0
 --- !u!1 &1626073629
 GameObject:
@@ -2691,7 +2691,7 @@ MonoBehaviour:
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Catacumbas_GlenSolo
   esUltimoNodo: 0
 --- !u!114 &2064182270
 MonoBehaviour:

@@ -73,7 +73,7 @@ public class SeleccionDeObjetivo : MonoBehaviour
             Destroy(marcadorInstanciado);
 
         marcadorInstanciado = Instantiate(marcadorPrefab, objetivo.transform);
-        marcadorInstanciado.transform.localPosition = Vector3.up * 2.5f; // Coloca el marcador sobre el objetivo
+        marcadorInstanciado.transform.localPosition = Vector3.up * 0.07f; // Coloca el marcador sobre el objetivo
 
         Debug.Log($"Objetivo seleccionado: {objetivo.nombre}");
     }

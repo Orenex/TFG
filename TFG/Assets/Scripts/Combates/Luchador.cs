@@ -86,7 +86,7 @@ public class Luchador : MonoBehaviour
             }
         }
         /*else
-         {
+        {
              // Movimiento hacia el objetivo
              Vector3 origen = transform.position;
              transform.LookAt(objetivo.transform.position);
@@ -117,11 +117,12 @@ public class Luchador : MonoBehaviour
                  yield return null;
 
              transform.eulerAngles = Vector3.zero;
-         }*/
+        }*/
         else
         {
             // Guardar posición original
             Vector3 origen = transform.position;
+            Quaternion rotacionOriginal = transform.rotation;
             transform.LookAt(objetivo.transform.position);
 
             // Calcular posición frente al objetivo
@@ -161,6 +162,7 @@ public class Luchador : MonoBehaviour
             }
 
             yield return new WaitForSeconds(1f);
+
             // Volver a posición original
             transform.LookAt(origen);
             nv.SetDestination(origen);
@@ -168,8 +170,8 @@ public class Luchador : MonoBehaviour
             while (Vector3.Distance(transform.position, origen) > 0.1f)
                 yield return null;
 
-            // Resetear rotación si es necesario
-            transform.eulerAngles = Vector3.zero;
+            
+            transform.rotation = rotacionOriginal;
         }
 
 
