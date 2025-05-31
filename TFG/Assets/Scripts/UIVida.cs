@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Maneja la interfaz visual de vida, sanidad y estados alterados del luchador
 public class UIVida : MonoBehaviour
 {
     public Image Paralisis;
@@ -14,19 +15,17 @@ public class UIVida : MonoBehaviour
     public TextMeshProUGUI textoVida;
     public TextMeshProUGUI textoSanidad;
 
+    public Luchador luchador; // Referencia al luchador asociado
 
-    public Luchador luchador;
     void Start()
     {
+        // Oculta todos los íconos de efectos al iniciar
         Paralisis.gameObject.SetActive(false);
         Furia.gameObject.SetActive(false);
         Asqueado.gameObject.SetActive(false);
         Sangrado.gameObject.SetActive(false);
         CompartirDanio.gameObject.SetActive(false);
-
-        
     }
-
 
     void Update()
     {
@@ -34,25 +33,23 @@ public class UIVida : MonoBehaviour
         ActualizarEfectosActivos();
     }
 
-
+    // Actualiza las barras y textos de vida y sanidad
     public void ActualizarUI()
     {
         if (luchador == null) return;
 
-        // Actualiza la barra y texto de vida
         float porcentajeVida = (float)luchador.vida / luchador.vidaMaxima;
         Vida.fillAmount = porcentajeVida;
         textoVida.text = $"{luchador.vida}/{luchador.vidaMaxima}";
 
-        // Actualiza la barra y texto de sanidad
         float porcentajeSanidad = (float)luchador.sanidad / luchador.sanidadMaxima;
         Sanidad.fillAmount = porcentajeSanidad;
         textoSanidad.text = $"{luchador.sanidad}/{luchador.sanidadMaxima}";
     }
 
+    // Activa los íconos de estados alterados activos del luchador
     public void ActualizarEfectosActivos()
     {
-        // Primero, desactiva todos
         Paralisis.gameObject.SetActive(false);
         Furia.gameObject.SetActive(false);
         Asqueado.gameObject.SetActive(false);
@@ -78,9 +75,9 @@ public class UIVida : MonoBehaviour
                 case TipoEfecto.CompartirDaño:
                     CompartirDanio.gameObject.SetActive(true);
                     break;
-                    // Agrega otros efectos si es necesario
             }
         }
     }
-
 }
+
+// Este script debe asignarse a un prefab de UI para mostrar la salud y estados activos en combate
