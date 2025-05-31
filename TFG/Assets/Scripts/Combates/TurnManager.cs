@@ -8,6 +8,9 @@ public class TurnManager : MonoBehaviour
     public static TurnManager Instance { get; private set; }
 
     [SerializeField] private List<Luchador> luchadoresEnCombate; // Todos los luchadores en escena
+    [SerializeField] private GameObject[] prefabsDeEnemigos;     // Prefabs de enemigos disponibles
+    [SerializeField] private Transform[] puntosDeSpawn;          // Puntos de aparición de enemigos
+
     private Queue<Luchador> ordenTurnos = new(); // Cola de turnos a ejecutar
     private Luchador actual; // Luchador cuyo turno está activo
 
@@ -21,8 +24,29 @@ public class TurnManager : MonoBehaviour
 
     private void Start()
     {
-        InicializarTurnos(); // Carga los luchadores al inicio
+        InstanciarEnemigosEnPuntos();  // NUEVO: Instanciar enemigos aleatorios al inicio
+        InicializarTurnos();           // Carga los luchadores al inicio
         StartCoroutine(GestionarTurnos()); // Inicia el ciclo de turnos
+    }
+
+    // NUEVO: Instancia enemigos aleatorios en los puntos de spawn
+    private void InstanciarEnemigosEnPuntos()
+    {
+        foreach (Transform punto in puntosDeSpawn)
+        {
+            // Elige un prefab aleatorio
+            GameObject prefab = prefabsDeEnemigos[Random.Range(0, prefabsDeEnemigos.Length)];
+
+            // Instancia el enemigo en el punto con su rotación
+            GameObject enemigoGO = Instantiate(prefab, punto.position, prefab.transform.rotation);
+
+            // Obtiene el componente Luchador
+            Luchador enemigo = enemigoGO.GetComponent<Luchador>();
+
+            // Añade al listado de luchadores
+            if (enemigo != null)
+                luchadoresEnCombate.Add(enemigo);
+        }
     }
 
     // Inicializa la cola de turnos con luchadores vivos
