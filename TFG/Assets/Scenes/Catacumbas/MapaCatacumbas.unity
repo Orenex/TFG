@@ -1453,7 +1453,7 @@ MonoBehaviour:
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Catacumbas_Equipo
   esUltimoNodo: 0
 --- !u!1 &1276196434
 GameObject:
@@ -1596,7 +1596,7 @@ MonoBehaviour:
   - {fileID: 2060195208}
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Catacumbas_Equipo
   esUltimoNodo: 0
 --- !u!1 &1375144553
 GameObject:
@@ -1739,7 +1739,7 @@ MonoBehaviour:
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Catacumbas_Equipo
   esUltimoNodo: 0
 --- !u!1 &1409642631
 GameObject:
@@ -2592,7 +2592,7 @@ MonoBehaviour:
   - {fileID: 1276196439}
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Catacumbas_Equipo
   esUltimoNodo: 0
 --- !u!1 &2064182264
 GameObject:

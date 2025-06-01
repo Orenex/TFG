@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 
 // Clase que permite al jugador cambiar de escena al entrar en una zona
 public class PasoDeEscenas : MonoBehaviour
