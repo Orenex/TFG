@@ -60,6 +60,8 @@ public class Luchador : MonoBehaviour
         // Evita colisiones entre luchadores
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Luchadores"), LayerMask.NameToLayer("Luchadores"), true);
         nv.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+
+        RestaurarEstadoDesdePersistencia();
     }
 
     // Corrutina que ejecuta la acción de combate sobre un objetivo
@@ -403,4 +405,21 @@ public class Luchador : MonoBehaviour
         return new List<Luchador>(FindObjectsOfType<Luchador>())
             .FindAll(l => l.Aliado != this.Aliado && l.sigueVivo);
     }
+
+    private void RestaurarEstadoDesdePersistencia()
+    {
+        if (!Aliado || EstadoAliados.Instancia == null) return;
+
+        var datos = EstadoAliados.Instancia.estados.Find(e => e.nombre == nombre);
+        if (datos != null)
+        {
+            vida = datos.vida;
+            sanidad = datos.sanidad;
+            sigueVivo = datos.sigueVivo;
+            gameObject.SetActive(sigueVivo);
+
+            Debug.Log($"[{nombre}] restaurado desde persistencia: Vida={vida}, Sanidad={sanidad}, Vivo={sigueVivo}");
+        }
+    }
+
 }

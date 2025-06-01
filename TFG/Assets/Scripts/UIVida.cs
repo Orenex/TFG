@@ -63,7 +63,7 @@ public class UIVida : MonoBehaviour
                 case TipoEfecto.Paralizado:
                     Paralisis.gameObject.SetActive(true);
                     break;
-                case TipoEfecto.FuriaSanidad:
+                case TipoEfecto.Furia:
                     Furia.gameObject.SetActive(true);
                     break;
                 case TipoEfecto.Asqueado:

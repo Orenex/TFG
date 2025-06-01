@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Clase que se encarga de ejecutar las acciones de combate, tanto del jugador como de la IA
 public class CombatManager : MonoBehaviour
@@ -92,6 +94,8 @@ public class CombatManager : MonoBehaviour
             PlayerInputController.TerminarTurno();
         else
             EnemyAIController.TurnoFinalizado = true;
+
+        ComprobarFinCombate();
     }
 
     // Verifica si el luchador tiene suficiente recurso para usar la acción
@@ -99,4 +103,28 @@ public class CombatManager : MonoBehaviour
     {
         return lanzador.sanidad >= accion.costoMana;
     }
+
+    private void ComprobarFinCombate()
+    {
+        var enemigosVivos = FindObjectsOfType<Luchador>().Where(l => !l.Aliado && l.sigueVivo).ToList();
+
+        if (enemigosVivos.Count == 0)
+        {
+            Debug.Log("¡Combate finalizado!");
+
+            // Guardar estado de aliados antes de cambiar de escena
+            var aliados = FindObjectsOfType<Luchador>().Where(l => l.Aliado).ToList();
+            EstadoAliados.Instancia.GuardarEstado(aliados);
+
+            // Cambiar de escena tras pequeña pausa
+            StartCoroutine(CambiarEscenaTrasDemora("MapaCatacumbas"));
+        }
+    }
+
+    private IEnumerator CambiarEscenaTrasDemora(string nombreEscena)
+    {
+    yield return new WaitForSeconds(2f); // Tiempo para que se vea el final del combate
+    SceneManager.LoadScene(nombreEscena);
+    }
+
 }

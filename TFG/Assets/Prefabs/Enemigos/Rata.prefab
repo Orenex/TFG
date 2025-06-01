@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 6721312748183560994}
   - component: {fileID: 6219910603596904552}
   - component: {fileID: 2596900990888766497}
+  - component: {fileID: 7156322277252271010}
   m_Layer: 7
   m_Name: Rata
   m_TagString: Enemigo
@@ -207,8 +208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: Rata
-  vida: 30
-  vidaMaxima: 30
+  vida: 15
+  vidaMaxima: 15
   sanidad: 100
   sanidadMaxima: 0
   "bonusDa\xF1o": 0
@@ -230,6 +231,30 @@ MonoBehaviour:
     Sangrado: 0
   nv: {fileID: 6219910603596904552}
   saltarSiguienteTurno: 0
+  "animacionRecibirDa\xF1o": 
+  animacionMuerte: IsDead
+--- !u!95 &7156322277252271010
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4576806451229937731}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 94017d8f067cea645b236b6252303fa6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7835877571278799781
 GameObject:
   m_ObjectHideFlags: 0
