@@ -326,9 +326,16 @@ public class Luchador : MonoBehaviour
                     Debug.Log($"{nombre} pierde {efecto.bonusFuriaSanidad} de Furia Sanidad al expirar el efecto.");
                 }
 
+                if (efecto.tipo == TipoEfecto.Furia && efecto.aplicado)
+                {
+                    bonusDaño -= efecto.modificador;
+                    Debug.Log($"{nombre} pierde el bonus de Furia (+{efecto.modificador}).");
+                }
+
                 efectosActivos.RemoveAt(i);
                 Debug.Log($"{nombre} pierde el efecto: {efecto.nombre}");
             }
+
 
         }
     }

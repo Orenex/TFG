@@ -10,6 +10,7 @@ public class EfectoActivo
     public int modificador;                  // Valor adicional que influye en el efecto
     public Luchador lanzador;                // Quién aplicó el efecto
     public int bonusFuriaSanidad = 0;
+    public bool aplicado = false;
 
     // Método que aplica el efecto al objetivo cada turno
     public void AplicarEfectoPorTurno(Luchador objetivo, Luchador lanzadorIgnorado = null)
@@ -26,23 +27,19 @@ public class EfectoActivo
                 break;
 
             case TipoEfecto.Furia:
-                objetivo.bonusDaño += modificador;
-                objetivo.estadoEspecial.FuriaRecibidaExtra = modificador;
+                if (!aplicado)
+                {
+                    objetivo.bonusDaño += modificador;
+                    objetivo.estadoEspecial.FuriaRecibidaExtra = modificador;
+                    aplicado = true;
+                    Debug.Log($"{objetivo.nombre} gana +{modificador} de daño por Furia.");
+                }
                 break;
+
 
             case TipoEfecto.Asqueado:
                 Debug.Log($"{objetivo.nombre} vomita del asco.");
                 objetivo.estadoEspecial.Asqueado = true;
-                break;
-
-            case TipoEfecto.FuriaFocalizada:
-                if (objetivo.furiaFocalizada == null)
-                {
-                    objetivo.furiaFocalizada = new FuriaFocalizada();
-                    objetivo.furiaFocalizada.objetivo = SeleccionDeObjetivo.Instance.ObtenerObjetivoActual();
-                    objetivo.furiaFocalizada.bonusDaño = modificador;
-                    objetivo.furiaFocalizada.turnosRestantes = 3;
-                }
                 break;
 
             case TipoEfecto.Paralizado:
