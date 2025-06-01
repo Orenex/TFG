@@ -271,6 +271,7 @@ MonoBehaviour:
   sanidad: 100
   sanidadMaxima: 100
   "bonusDa\xF1o": 0
+  ReflejoUnicoActivo: 0
   Aliado: 1
   sigueVivo: 1
   cartasDisponibles: {fileID: 11400000, guid: 5a6eaaaf4d6a9d44e8a3ce76178f50db, type: 2}
@@ -1450,6 +1451,7 @@ MonoBehaviour:
   sanidad: 100
   sanidadMaxima: 100
   "bonusDa\xF1o": 0
+  ReflejoUnicoActivo: 0
   Aliado: 1
   sigueVivo: 1
   cartasDisponibles: {fileID: 11400000, guid: 2319e50be4c1a8a4bb900846185489d5, type: 2}
@@ -1650,6 +1652,7 @@ MonoBehaviour:
   sanidad: 100
   sanidadMaxima: 0
   "bonusDa\xF1o": 0
+  ReflejoUnicoActivo: 0
   Aliado: 0
   sigueVivo: 1
   cartasDisponibles: {fileID: 11400000, guid: a5788ed090ed391409f87e703541c110, type: 2}
@@ -1894,6 +1897,7 @@ MonoBehaviour:
   sanidad: 100
   sanidadMaxima: 0
   "bonusDa\xF1o": 0
+  ReflejoUnicoActivo: 0
   Aliado: 0
   sigueVivo: 1
   cartasDisponibles: {fileID: 11400000, guid: a5788ed090ed391409f87e703541c110, type: 2}
@@ -2977,6 +2981,7 @@ MonoBehaviour:
   sanidad: 100
   sanidadMaxima: 0
   "bonusDa\xF1o": 0
+  ReflejoUnicoActivo: 0
   Aliado: 0
   sigueVivo: 1
   cartasDisponibles: {fileID: 11400000, guid: a5788ed090ed391409f87e703541c110, type: 2}
@@ -3400,6 +3405,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6698518551605128606, guid: 79fbf976d3163b744ba34bab36014d10, type: 3}
+      propertyPath: sigueVivo
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6698518551605128606, guid: 79fbf976d3163b744ba34bab36014d10, type: 3}
       propertyPath: sanidadMaxima
       value: 100

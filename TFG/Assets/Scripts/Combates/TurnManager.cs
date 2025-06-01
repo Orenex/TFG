@@ -24,7 +24,7 @@ public class TurnManager : MonoBehaviour
 
     private void Start()
     {
-        InstanciarEnemigosEnPuntos();  // NUEVO: Instanciar enemigos aleatorios al inicio
+        InstanciarEnemigosEnPuntos();  //Instanciar enemigos aleatorios al inicio
         InicializarTurnos();           // Carga los luchadores al inicio
         StartCoroutine(GestionarTurnos()); // Inicia el ciclo de turnos
     }
@@ -94,7 +94,6 @@ public class TurnManager : MonoBehaviour
             // Turno del jugador humano
             if (actual.Aliado)
             {
-                Debug.Log(actual.nombre);
                 CombatUI.Instance.MostrarCartas(actual.cartasDisponibles);
                 EnemyAIController.Instance.ReiniciarMemoriaDeObjetivos();
                 PlayerInputController.Instance.PrepararTurno();

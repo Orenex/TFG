@@ -20,7 +20,7 @@ MonoBehaviour:
     nombre: DiscoElysium
     estatico: 1
     objetivoEsElEquipo: 1
-    mensaje: AplicarEfecto
+    mensaje: ReflejarDanio
     argumento: 0
     animacionTrigger: 
     efectoSecundario: 

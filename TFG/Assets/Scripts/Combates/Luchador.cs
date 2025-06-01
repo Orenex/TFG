@@ -31,6 +31,7 @@ public class Luchador : MonoBehaviour
     public int sanidad;
     public int sanidadMaxima;
     public int bonusDaño = 0;
+    public bool ReflejoUnicoActivo = false;
 
     public bool Aliado;                   // Si es parte del equipo del jugador
     public bool sigueVivo = true;
@@ -65,7 +66,7 @@ public class Luchador : MonoBehaviour
     }
 
     // Corrutina que ejecuta la acción de combate sobre un objetivo
-    public IEnumerator EjecutarAccion(Accion accion, Luchador objetivo, Accion? accionSecundaria = null)
+    public IEnumerator EjecutarAccion(Accion accion, Luchador objetivo, Accion? accionSecundaria = null, Luchador atacante = null)
     {
         Debug.Log($"[{nombre}] ejecuta {accion.nombre} sobre {objetivo.nombre}");
 
@@ -123,7 +124,7 @@ public class Luchador : MonoBehaviour
             }
 
             // Ejecutar efecto
-            EjecutarEfecto(accion, objetivo);
+            EjecutarEfecto(accion, objetivo, atacante);
 
             if (accionSecundaria.HasValue)
             {
@@ -150,12 +151,31 @@ public class Luchador : MonoBehaviour
     }
 
     // Ejecuta el efecto de una acción en el objetivo
-    private void EjecutarEfecto(Accion accion, Luchador objetivo)
+    private void EjecutarEfecto(Accion accion, Luchador objetivo, Luchador atacante = null)
     {
         switch (accion.mensaje)
         {
             case "CambiarVida":
-                objetivo.CambiarVida(accion.argumento + bonusDaño);
+                if (atacante != null)
+                {
+                    Debug.Log(atacante.name);
+                    if (objetivo.ReflejoUnicoActivo == true)
+                    {
+                        atacante.CambiarVida(accion.argumento + bonusDaño);
+                        objetivo.ReflejoUnicoActivo = false;
+                    }
+                    else
+                    {
+                        objetivo.CambiarVida(accion.argumento + bonusDaño);
+                    }
+                }
+                else
+                {
+                    objetivo.CambiarVida(accion.argumento + bonusDaño);
+                }
+                
+
+
                 break;
 
             case "CambiarVidaAleatorio":
@@ -257,7 +277,6 @@ public class Luchador : MonoBehaviour
                     return;
                 }
 
-
                 var nuevoEfecto = new EfectoActivo
                 {
                     nombre = tipo.ToString(),
@@ -289,7 +308,11 @@ public class Luchador : MonoBehaviour
 
                 Debug.Log($"{objetivo.nombre} fue curado y todos sus efectos negativos fueron eliminados.");
                 break;
+            case "ReflejarDanio":
 
+                objetivo.ReflejoUnicoActivo = true;
+
+                break;
 
         }
 

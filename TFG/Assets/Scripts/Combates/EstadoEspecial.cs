@@ -14,6 +14,8 @@ public class EstadoEspecial
     public bool Confusion = false;         // Puede atacar a aliados
     public Luchador ReflejarDanioA = null; // Enlace para reflejar daño recibido
     public bool Sangrado;                  // Pierde vida por turno
+    
+
 
     // Reinicia todos los estados al inicio de un nuevo turno
     public void Reiniciar()
@@ -27,5 +29,6 @@ public class EstadoEspecial
         CondicionPerfecta = false;
         Confusion = false;
         Sangrado = false;
+
     }
 }

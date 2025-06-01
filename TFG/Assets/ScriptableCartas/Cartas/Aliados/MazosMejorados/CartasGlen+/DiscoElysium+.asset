@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: DiscoElysium+
   m_EditorClassIdentifier: 
   nombreCarta: Disco Elysium+
-  descripcion: Te pones en posicion defensiva por un turno
+  descripcion: 'Te pones en posicion defensiva '
   efecto: 
   tipo: 2
   accion:
     nombre: DiscoElysium
     estatico: 1
     objetivoEsElEquipo: 1
-    mensaje: 
+    mensaje: ReflejarDanio
     argumento: 0
     animacionTrigger: 
     efectoSecundario: 

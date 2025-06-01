@@ -14,5 +14,7 @@ public enum TipoEfecto
     ResucitarUnaVez,      // Revive una vez automáticamente al morir
     Confusion,            // Puede atacar a aliados si está activo
     FuriaSanidad,         // Aumenta daño en función de sanidad perdida
-    DanioEnArea           // Afecta a múltiples objetivos a la vez
+    DanioEnArea,          // Afecta a múltiples objetivos a la vez
+
+
 }

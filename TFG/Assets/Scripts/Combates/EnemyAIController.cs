@@ -147,7 +147,11 @@ public class EnemyAIController : MonoBehaviour
     // Ejecuta la acción seleccionada con una corrutina
     private IEnumerator EjecutarAccion(Accion accion, Luchador lanzador, Luchador objetivo)
     {
-        yield return lanzador.EjecutarAccion(accion, objetivo);
+        if (lanzador != null)
+        {
+            Debug.Log(lanzador.name);
+        }
+        yield return lanzador.EjecutarAccion(accion, objetivo, null, lanzador);
         TurnoFinalizado = true;
     }
 
