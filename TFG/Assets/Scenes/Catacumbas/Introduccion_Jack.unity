@@ -557,7 +557,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 451673018}
   typingSpeed: 0.05
-  sentences: []
+  sentences:
+  - Te encuentras con un loco dentro de una celda, te aproximas a el y empieza a
+    gritar
+  - '"Oye tu sacame de aqui y te ayudare con lo que sea que estes haciendo"'
+  - Te ha convencido, decides sacarle
+  - '"Mi nombre es Jack"'
+  - Jack se ha unido al grupo
   arrowIndicator: {fileID: 271726838}
   siguienteEscena: Descanso_Catacumbas
 --- !u!4 &1435475451

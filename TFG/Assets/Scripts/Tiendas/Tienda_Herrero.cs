@@ -3,70 +3,77 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
-// Sistema de tienda del herrero para vender armas y armaduras
 public class Tienda_Herrero : MonoBehaviour
 {
     [System.Serializable]
-    public class ObjetoTienda
+    public class ArmaduraTienda
     {
-        public string nombre;     // Nombre del objeto
-        public int precio;        // Precio en oro
-        public Sprite icono;      // Icono para la interfaz
+        public string id;
+        public string nombre;
+        public int precio;
+        public int vidaExtra;
+        public Sprite icono;
     }
 
-    public GameObject panelItems;             // Panel que contiene los items
-    public GameObject itemPrefab;             // Prefab para instanciar cada item
-    public Transform contenidoScroll;         // Contenedor del scroll de items
-    public TextMeshProUGUI goldText;          // Texto que muestra el oro actual
-    public int gold = 100;                    // Oro del jugador
+    public GameObject panelItems;
+    public GameObject itemPrefab;
+    public Transform contenidoScroll;
+    public TextMeshProUGUI goldText;
 
-    public List<ObjetoTienda> armas;          // Lista de armas disponibles
-    public List<ObjetoTienda> armaduras;      // Lista de armaduras disponibles
+    public List<ArmaduraTienda> armaduras;
 
-    // Muestra los objetos de la categoría seleccionada (armas o armaduras)
-    public void MostrarCategoria(string categoria)
+    private void Start()
+    {
+        goldText.text = "Gold: " + InventarioJugador.Instance.ObtenerOro();
+        MostrarArmaduras();
+    }
+
+    public void MostrarArmaduras()
     {
         LimpiarScroll();
-        List<ObjetoTienda> objetos = null;
 
-        switch (categoria)
-        {
-            case "Armas": objetos = armas; break;
-            case "Armaduras": objetos = armaduras; break;
-        }
-
-        foreach (var obj in objetos)
+        foreach (var armadura in armaduras)
         {
             GameObject nuevo = Instantiate(itemPrefab, contenidoScroll);
-            nuevo.transform.Find("Nombre").GetComponent<TextMeshProUGUI>().text = obj.nombre;
-            nuevo.transform.Find("Precio").GetComponent<TextMeshProUGUI>().text = obj.precio + " G";
-            nuevo.transform.Find("Icono").GetComponent<Image>().sprite = obj.icono;
+            nuevo.transform.Find("Nombre").GetComponent<TextMeshProUGUI>().text = armadura.nombre;
+            nuevo.transform.Find("Precio").GetComponent<TextMeshProUGUI>().text = armadura.precio + " G";
+            nuevo.transform.Find("Icono").GetComponent<Image>().sprite = armadura.icono;
 
             Button boton = nuevo.transform.Find("BotonComprar").GetComponent<Button>();
-            boton.onClick.AddListener(() => Comprar(obj));
+            TextMeshProUGUI textoBoton = boton.GetComponentInChildren<TextMeshProUGUI>();
+
+            if (InventarioJugador.Instance.EsArmaduraComprada(armadura.id))
+            {
+                textoBoton.text = "Comprado";
+                boton.interactable = false;
+            }
+            else
+            {
+                textoBoton.text = "Comprar";
+                boton.onClick.AddListener(() =>
+                {
+                    ComprarArmadura(armadura);
+                    MostrarArmaduras();
+                });
+            }
         }
 
         panelItems.SetActive(true);
     }
 
-    // Limpia los objetos del scroll actual
     void LimpiarScroll()
     {
         foreach (Transform hijo in contenidoScroll)
-        {
             Destroy(hijo.gameObject);
-        }
     }
 
-    // Realiza la compra del objeto seleccionado
-    void Comprar(ObjetoTienda obj)
+    void ComprarArmadura(ArmaduraTienda armadura)
     {
-        if (gold >= obj.precio)
-        {
-            gold -= obj.precio;
-            goldText.text = "Gold: " + gold;
-            Debug.Log("Compraste: " + obj.nombre);
-            // Aquí podrías añadir lógica para dar el objeto al jugador
-        }
+        if (!InventarioJugador.Instance.TieneOro(armadura.precio)) return;
+
+        InventarioJugador.Instance.GastarOro(armadura.precio);
+        InventarioJugador.Instance.GuardarArmaduraComprada(armadura.id, armadura.vidaExtra);
+        goldText.text = "Gold: " + InventarioJugador.Instance.ObtenerOro();
+        Debug.Log("Compraste armadura: " + armadura.nombre);
     }
 }

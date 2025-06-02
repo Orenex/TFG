@@ -7,7 +7,7 @@ public class InventarioJugador : MonoBehaviour
 
     public int oroActual = 100;
     public List<string> mazosMejorados = new();
-
+    public int vidaExtraArmadura = 0;
     private void Awake()
     {
         if (Instance != null)
@@ -19,7 +19,10 @@ public class InventarioJugador : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             CargarMazosMejorados();
+            vidaExtraArmadura = PlayerPrefs.GetInt("VidaExtraArmadura", 0);
         }
+        
+
     }
     //Esto hay que eliminarlo cuando se entregue
     void Update()
@@ -29,6 +32,9 @@ public class InventarioJugador : MonoBehaviour
             PlayerPrefs.DeleteAll();
             mazosMejorados.Clear();
             oroActual = 100; // o el valor inicial que uses
+            PlayerPrefs.DeleteKey("ArmaduraEquipadaID");
+            PlayerPrefs.DeleteKey("VidaExtraArmadura");
+            vidaExtraArmadura = 0;
             Debug.Log("Inventario reseteado");
         }
     }
@@ -94,5 +100,28 @@ public class InventarioJugador : MonoBehaviour
         oroActual += cantidad;
         Debug.Log($"Oro actual tras bonus: {oroActual}");
     }
+
+    public bool EsArmaduraComprada(string id)
+    {
+        return PlayerPrefs.GetInt("ArmaduraComprada_" + id, 0) == 1;
+    }
+
+    public void GuardarArmaduraComprada(string id, int vidaExtra)
+    {
+        if (!EsArmaduraComprada(id))
+        {
+            PlayerPrefs.SetInt("ArmaduraComprada_" + id, 1);
+        }
+
+        int vidaActual = PlayerPrefs.GetInt("VidaExtraArmadura", 0);
+        if (vidaExtra > vidaActual)
+        {
+            PlayerPrefs.SetString("ArmaduraEquipadaID", id);
+            PlayerPrefs.SetInt("VidaExtraArmadura", vidaExtra);
+            vidaExtraArmadura = vidaExtra;
+            Debug.Log("Armadura equipada: " + id + " con " + vidaExtra + " de vida extra.");
+        }
+    }
+
 
 }

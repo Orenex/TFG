@@ -53,6 +53,7 @@ public class Luchador : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         nv = GetComponent<NavMeshAgent>();
         nv.updateRotation = false;
         if (vidaMaxima <= 0)

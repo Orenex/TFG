@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25801a1cece40940bcc1bf836f20ec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: 
+  sceneToLoad: Entrada_Catacumbas
   messageUI: {fileID: 1784414882}
 --- !u!65 &10494008
 BoxCollider:
@@ -588,6 +588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oroActual: 100
   mazosMejorados: []
+  vidaExtraArmadura: 0
 --- !u!4 &482132120
 Transform:
   m_ObjectHideFlags: 0

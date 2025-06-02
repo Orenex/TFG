@@ -16,13 +16,41 @@ public class PreparadorDeCombate : MonoBehaviour
     public CardCollection pagliacciNormal;
     public CardCollection pagliacciPlus;
 
+    public Luchador marceau;
+    int vidaExtra = InventarioJugador.Instance.vidaExtraArmadura;
+  
     void Start()
     {
-        // Asigna el mazo adecuado a cada luchador según si fue mejorado
-        glen.cartasDisponibles = InventarioJugador.Instance.EsMazoMejorado("Glen") ? glenPlus : glenNormal;
-        jack.cartasDisponibles = InventarioJugador.Instance.EsMazoMejorado("Jack") ? jackPlus : jackNormal;
-        pagliacci.cartasDisponibles = InventarioJugador.Instance.EsMazoMejorado("Pagliacci") ? pagliacciPlus : pagliacciNormal;
+        int vidaExtra = InventarioJugador.Instance.vidaExtraArmadura;
+
+        // Detectar automáticamente todos los luchadores aliados en la escena
+        Luchador[] aliados = FindObjectsOfType<Luchador>();
+        foreach (var luchador in aliados)
+        {
+            if (!luchador.Aliado) continue;
+
+            // Asignar mazo según nombre y mejora
+            switch (luchador.nombre)
+            {
+                case "Glen":
+                    luchador.cartasDisponibles = InventarioJugador.Instance.EsMazoMejorado("Glen") ? glenPlus : glenNormal;
+                    break;
+
+                case "Jack":
+                    luchador.cartasDisponibles = InventarioJugador.Instance.EsMazoMejorado("Jack") ? jackPlus : jackNormal;
+                    break;
+
+                case "Pagliacci":
+                    luchador.cartasDisponibles = InventarioJugador.Instance.EsMazoMejorado("Pagliacci") ? pagliacciPlus : pagliacciNormal;
+                    break;
+            }
+
+            // Aplicar vida extra si hay
+            luchador.vidaMaxima += vidaExtra;
+            luchador.vida += vidaExtra;
+        }
     }
+
 }
 
 // Este script se ejecuta al inicio de la escena de combate y configura las cartas de cada personaje
