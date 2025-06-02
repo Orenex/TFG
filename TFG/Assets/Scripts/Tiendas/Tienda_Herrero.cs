@@ -58,7 +58,7 @@ public class Tienda_Herrero : MonoBehaviour
             }
         }
 
-        panelItems.SetActive(true);
+        
     }
 
     void LimpiarScroll()
@@ -75,5 +75,10 @@ public class Tienda_Herrero : MonoBehaviour
         InventarioJugador.Instance.GuardarArmaduraComprada(armadura.id, armadura.vidaExtra);
         goldText.text = "Gold: " + InventarioJugador.Instance.ObtenerOro();
         Debug.Log("Compraste armadura: " + armadura.nombre);
+    }
+
+    public void MostrarCategoria()
+    {
+        panelItems.SetActive(true);
     }
 }
