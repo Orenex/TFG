@@ -51,6 +51,21 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu_Inicio.unity
     guid: 50153ed5e6b6f1c4fb7d2f95f5a5cdab
   - enabled: 1
+    path: Assets/Scenes/Sectarios/Boss_Sectarios.unity
+    guid: 11ded54f64320e344ada1ad6c247dd83
+  - enabled: 1
+    path: Assets/Scenes/Sectarios/Combate_Sectarios_Zona_01.unity
+    guid: f10ec6421518f0141818b619625c4ca3
+  - enabled: 1
+    path: Assets/Scenes/Sectarios/Combate_Sectarios_Zona_02.unity
+    guid: f017ffa5a68c63b4f84374f2d02c8ce7
+  - enabled: 1
+    path: Assets/Scenes/Sectarios/Introduccion_Marceau.unity
+    guid: d7b023481a73df8439ceb7f46f5c5e3f
+  - enabled: 1
+    path: Assets/Scenes/Catacumbas/Introduccion_Jack.unity
+    guid: 45fdfc5a72931484198ba2a222d0635a
+  - enabled: 1
     path: Assets/Scenes/Catacumbas/CofreCatacumbas.unity
     guid: 9a1e98e9799171b4fb93b5c9056fefe4
   - enabled: 1

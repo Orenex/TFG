@@ -260,7 +260,7 @@ MonoBehaviour:
   - {fileID: 627251602}
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Sectarios_Zona_01
   esUltimoNodo: 0
 --- !u!1 &368772090
 GameObject:
@@ -402,7 +402,7 @@ MonoBehaviour:
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
-  escena: Descanso_Sectarios
+  escena: Introduccion_Marceau
   esUltimoNodo: 0
 --- !u!1 &512607203
 GameObject:
@@ -1084,7 +1084,7 @@ MonoBehaviour:
   - {fileID: 1078551428}
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Sectarios_Zona_01
   esUltimoNodo: 0
 --- !u!1 &609784106
 GameObject:
@@ -1242,7 +1242,7 @@ MonoBehaviour:
   - {fileID: 1457117052}
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Sectarios_Zona_01
   esUltimoNodo: 0
 --- !u!1 &627251597
 GameObject:
@@ -1681,7 +1681,7 @@ MonoBehaviour:
   - {fileID: 609548451}
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Sectarios_Zona_01
   esUltimoNodo: 0
 --- !u!1 &1155919103
 GameObject:
@@ -1824,7 +1824,7 @@ MonoBehaviour:
   - {fileID: 512607208}
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Sectarios_Zona_01
   esUltimoNodo: 0
 --- !u!1 &1174717819
 GameObject:
@@ -1967,7 +1967,7 @@ MonoBehaviour:
   - {fileID: 1485543975}
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Sectarios_Zona_01
   esUltimoNodo: 0
 --- !u!1 &1457117047
 GameObject:
@@ -2112,7 +2112,7 @@ MonoBehaviour:
   - {fileID: 609784112}
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Sectarios_Zona_01
   esUltimoNodo: 0
 --- !u!114 &1457117053
 MonoBehaviour:
@@ -2410,7 +2410,7 @@ MonoBehaviour:
   - {fileID: 1174717824}
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Sectarios_Zona_01
   esUltimoNodo: 0
 --- !u!1 &1560286280
 GameObject:
@@ -3024,7 +3024,7 @@ MonoBehaviour:
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
-  escena: Descanso_Sectarios
+  escena: Introduccion_Marceau
   esUltimoNodo: 0
 --- !u!1 &2145582793
 GameObject:

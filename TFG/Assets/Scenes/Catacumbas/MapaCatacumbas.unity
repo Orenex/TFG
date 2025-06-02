@@ -1167,7 +1167,7 @@ MonoBehaviour:
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
-  escena: Descanso_Catacumbas
+  escena: Introduccion_Jack
   esUltimoNodo: 0
 --- !u!1 &1264878147
 GameObject:
