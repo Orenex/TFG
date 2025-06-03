@@ -26,6 +26,7 @@ MonoBehaviour:
     efectoSecundario: Furia
     costoMana: 0
     tipoCoste: 0
+    tipoObjetivo: 2
   accionSecundaria:
     nombre: 
     estatico: 0
@@ -36,6 +37,7 @@ MonoBehaviour:
     efectoSecundario: 
     costoMana: 0
     tipoCoste: 0
+    tipoObjetivo: 0
   imagen: {fileID: 21300000, guid: ae64a0402521e93478347e89981645ba, type: 3}
   costoSanidad: 0
   tipoCoste: 0

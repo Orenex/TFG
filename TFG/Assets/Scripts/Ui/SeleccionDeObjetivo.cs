@@ -12,7 +12,7 @@ public class SeleccionDeObjetivo : MonoBehaviour
     private GameObject marcadorInstanciado; // Instancia activa del marcador visual
     private Luchador objetivoActual; // Luchador actualmente seleccionado como objetivo
 
-    private List<Luchador> enemigos = new(); // Lista de enemigos disponibles como objetivo
+    public List<Luchador> objetivosDisponibles = new();
     private int indiceSeleccionado = 0; // Índice actual en la lista de enemigos
 
     private void Awake()
@@ -23,60 +23,52 @@ public class SeleccionDeObjetivo : MonoBehaviour
 
     private void Start()
     {
-        // Inicializa la lista de enemigos válidos al comienzo del combate
-        enemigos = new List<Luchador>(FindObjectsOfType<Luchador>());
-        enemigos = enemigos.FindAll(e => !e.Aliado && e.sigueVivo);
-
-        if (enemigos.Count > 0)
+        if (objetivosDisponibles.Count > 0)
             SeleccionarPorIndice(0);
-    }
-
-    private void Update()
-    {
-        if (enemigos.Count == 0) return;
-
-        // Cambia de objetivo con teclas A y D
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            CambiarSeleccion(-1);
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            CambiarSeleccion(1);
-        }
     }
 
     // Cambia la selección de objetivo en la lista
     public void CambiarSeleccion(int direccion)
     {
-        if (enemigos.Count == 0) return;
+        if (objetivosDisponibles.Count == 0) return;
 
-        indiceSeleccionado = (indiceSeleccionado - direccion + enemigos.Count) % enemigos.Count;
+        indiceSeleccionado = (indiceSeleccionado + direccion + objetivosDisponibles.Count) % objetivosDisponibles.Count;
         SeleccionarPorIndice(indiceSeleccionado);
     }
+
 
     // Selecciona un enemigo basado en su posición en la lista
     private void SeleccionarPorIndice(int index)
     {
-        var objetivo = enemigos[index];
+        if (index < 0 || index >= objetivosDisponibles.Count)
+            return;
+
+        var objetivo = objetivosDisponibles[index];
         SeleccionarObjetivo(objetivo);
     }
+
 
     // Cambia el objetivo actual y coloca el marcador visual sobre él
     public void SeleccionarObjetivo(Luchador objetivo)
     {
         if (objetivo == null || !objetivo.sigueVivo) return;
 
+        if (objetivo == objetivoActual)
+            return;
+
         objetivoActual = objetivo;
 
-        if (marcadorInstanciado != null)
-            Destroy(marcadorInstanciado);
+        if (marcadorInstanciado == null)
+            marcadorInstanciado = Instantiate(marcadorPrefab);
 
-        marcadorInstanciado = Instantiate(marcadorPrefab, objetivo.transform);
-        marcadorInstanciado.transform.localPosition = Vector3.up * 2.5f; // Coloca el marcador sobre el objetivo
+        marcadorInstanciado.transform.SetParent(objetivo.transform);
+        marcadorInstanciado.transform.position = objetivo.transform.position + Vector3.up * 2f;
 
-        Debug.Log($"Objetivo seleccionado: {objetivo.nombre}");
+
+        Debug.Log($"[UI] Objetivo seleccionado: {objetivo.nombre}");
     }
+
+
 
     // Limpia la selección de objetivo actual y elimina el marcador
     public void LimpiarSeleccion()
@@ -95,4 +87,37 @@ public class SeleccionDeObjetivo : MonoBehaviour
     {
         return objetivoActual;
     }
+
+    public void PrepararSeleccion(TipoObjetivo tipo)
+    {
+        objetivosDisponibles.Clear();
+
+        var todos = new List<Luchador>(FindObjectsOfType<Luchador>());
+
+        switch (tipo)
+        {
+            case TipoObjetivo.Aliado:
+                objetivosDisponibles = todos.FindAll(l => l.Aliado && l.sigueVivo);
+                break;
+            case TipoObjetivo.Enemigo:
+                objetivosDisponibles = todos.FindAll(l => !l.Aliado && l.sigueVivo);
+                break;
+            case TipoObjetivo.Propio:
+                var actual = TurnManager.Instance.Actual;
+                if (actual != null && actual.sigueVivo)
+                    objetivosDisponibles.Add(actual);
+                break;
+        }
+
+        indiceSeleccionado = 0;
+
+        if (objetivosDisponibles.Count > 0)
+            SeleccionarPorIndice(0);
+        else
+            LimpiarSeleccion(); // Nada seleccionable
+    }
+
+
+
+
 }

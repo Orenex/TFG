@@ -1,59 +1,9 @@
 fileFormatVersion: 2
-guid: 9d352dad549f19845be8f3b798e991ba
+guid: 0cc9b7eccc61c064ba05c6f51cd60c96
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Bag
-    second: {fileID: 2100000, guid: cbfa4a8d0e2c5014ab9b69942166e66e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Body
-    second: {fileID: 2100000, guid: e53072fa36fcd954b9579cace5f0d21a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: GLEN2_Rosa1
-    second: {fileID: 2100000, guid: 6d6d1945b1475f143bc128e5958dafd2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: GlenFace1
-    second: {fileID: 2100000, guid: e03c7c66c2cc03e4198cc7d9f1a0da7f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Hair
-    second: {fileID: 2100000, guid: 31ed43c926d40e14d85d20bcdcd0dde7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Hands
-    second: {fileID: 2100000, guid: 6d6d1945b1475f143bc128e5958dafd2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Nose
-    second: {fileID: 2100000, guid: eeaa270e008d04f43a4c1a3b99cb4876, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pants
-    second: {fileID: 2100000, guid: 3c0e653dbac5f214bb3d9e50e6e58243, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Shoes1
-    second: {fileID: 2100000, guid: 53af7902905c4fc449637ed09dffa079, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Suspenders
-    second: {fileID: 2100000, guid: 6d6d1945b1475f143bc128e5958dafd2, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -81,18 +31,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: IdleGlen
+      name: DeathPagliacci
       takeName: Take 001
       internalID: 1827226128182048838
       firstFrame: 0
-      lastFrame: 40
+      lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

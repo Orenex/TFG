@@ -69,7 +69,16 @@ public class CardView : MonoBehaviour, IPointerClickHandler, IPointerEnterHandle
         Seleccionada = true;
         cartaSeleccionada = this;
         rect.localScale = escalaOriginal * escalaSeleccion;
+
+        // Iniciar selección de objetivo al seleccionar esta carta
+        if (Data != null)
+        {
+            SeleccionDeObjetivo.Instance.PrepararSeleccion(Data.accion.tipoObjetivo);
+            PlayerInputController.Instance.ActivarModoSeleccion();
+            Debug.Log("Selecciona un objetivo con A/D, ENTER para confirmar.");
+        }
     }
+
 
     // Quita la selección visual de la carta.
     public void Deseleccionar()

@@ -22,10 +22,11 @@ MonoBehaviour:
     objetivoEsElEquipo: 0
     mensaje: AplicarEfecto
     argumento: 1
-    animacionTrigger: 
+    animacionTrigger: IsAttacking
     efectoSecundario: Paralizado
     costoMana: 0
     tipoCoste: 0
+    tipoObjetivo: 0
   accionSecundaria:
     nombre: 
     estatico: 0
@@ -36,6 +37,7 @@ MonoBehaviour:
     efectoSecundario: 
     costoMana: 0
     tipoCoste: 0
+    tipoObjetivo: 0
   imagen: {fileID: 21300000, guid: 069a267a049d4f34aa028a1622ba421a, type: 3}
   costoSanidad: 0
   tipoCoste: 0

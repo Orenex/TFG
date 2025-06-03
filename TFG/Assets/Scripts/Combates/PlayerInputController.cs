@@ -33,29 +33,16 @@ public class PlayerInputController : MonoBehaviour
     private void Update()
     {
         if (!enSeleccionDeObjetivo)
-        {
-            // Si presiona ENTER y hay carta seleccionada, empieza la selección de objetivo
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                var carta = HandManager.Instance.ObtenerCartaSeleccionada();
-                if (carta != null)
-                {
-                    enSeleccionDeObjetivo = true;
-                    Debug.Log("Selecciona un objetivo con A/D, ENTER para confirmar.");
-                }
-            }
-        }
-        else
-        {
-            // Navega entre objetivos con A y D
-            if (Input.GetKeyDown(KeyCode.A))
-                SeleccionDeObjetivo.Instance.CambiarSeleccion(-1);
-            else if (Input.GetKeyDown(KeyCode.D))
-                SeleccionDeObjetivo.Instance.CambiarSeleccion(1);
-            else if (Input.GetKeyDown(KeyCode.Return))
-                ConfirmarUso(); // Confirma la acción sobre el objetivo
-        }
+            return;
+
+        if (Input.GetKeyDown(KeyCode.A))
+            SeleccionDeObjetivo.Instance.CambiarSeleccion(-1);
+        else if (Input.GetKeyDown(KeyCode.D))
+            SeleccionDeObjetivo.Instance.CambiarSeleccion(1);
+        else if (Input.GetKeyDown(KeyCode.Return))
+            ConfirmarUso();
     }
+
 
     // Confirma el uso de una carta sobre el objetivo seleccionado
     public void ConfirmarUso()
@@ -78,4 +65,10 @@ public class PlayerInputController : MonoBehaviour
         CardActionExecutor.Instance.EjecutarCarta(carta, objetivo);
         enSeleccionDeObjetivo = false;
     }
+
+    public void ActivarModoSeleccion()
+    {
+        enSeleccionDeObjetivo = true;
+    }
+
 }

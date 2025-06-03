@@ -7,6 +7,8 @@ using UnityEngine.AI;
 
 // Tipos de recursos que puede usar una carta (por ahora solo Sanidad)
 public enum RecursoCoste { Sanidad }
+public enum TipoObjetivo { Enemigo, Aliado, Propio}
+
 
 // Estructura que define una acción de combate
 [System.Serializable]
@@ -21,6 +23,7 @@ public struct Accion
     public string efectoSecundario;        // Efecto adicional a aplicar
     public int costoMana;                 // Costo en sanidad
     public RecursoCoste tipoCoste;        // Tipo de recurso utilizado
+    public TipoObjetivo tipoObjetivo;
 }
 
 public class Luchador : MonoBehaviour
