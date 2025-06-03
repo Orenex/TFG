@@ -19,14 +19,14 @@ MonoBehaviour:
   accion:
     nombre: ResurreccionUnica
     estatico: 1
-    objetivoEsElEquipo: 1
-    mensaje: AplicarEfecto
-    argumento: 1
+    objetivoEsElEquipo: 0
+    mensaje: AplicarResurreccionUnaVez
+    argumento: 3
     animacionTrigger: IsAttacking
-    efectoSecundario: ResucitarUnaVez
+    efectoSecundario: 
     costoMana: 0
     tipoCoste: 0
-    tipoObjetivo: 0
+    tipoObjetivo: 1
   accionSecundaria:
     nombre: 
     estatico: 0

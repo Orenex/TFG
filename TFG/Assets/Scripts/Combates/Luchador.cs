@@ -35,6 +35,8 @@ public class Luchador : MonoBehaviour
     public int sanidadMaxima;
     public int bonusDaño = 0;
     public bool ReflejoUnicoActivo = false;
+    private int turnosRestantesResurreccion = 0;
+
 
     public bool Aliado;                   // Si es parte del equipo del jugador
     public bool sigueVivo = true;
@@ -318,6 +320,11 @@ public class Luchador : MonoBehaviour
 
                 break;
 
+            case "AplicarResurreccionUnaVez":
+                objetivo.AplicarResurreccionTemporal(3); // o valor dinámico si lo pasas
+                break;
+
+
         }
 
         if (!string.IsNullOrEmpty(accion.animacionTrigger))
@@ -365,6 +372,17 @@ public class Luchador : MonoBehaviour
 
 
         }
+        if (estadoEspecial.ResucitarUnaVez)
+        {
+            turnosRestantesResurreccion--;
+            Debug.Log($"{nombre} tiene {turnosRestantesResurreccion} turnos restantes de resurrección.");
+
+            if (turnosRestantesResurreccion <= 0)
+            {
+                estadoEspecial.ResucitarUnaVez = false;
+                Debug.Log($"{nombre} ha perdido el efecto de resurrección.");
+            }
+        }
     }
 
     public void CambiarVida(int cantidad)
@@ -398,14 +416,16 @@ public class Luchador : MonoBehaviour
             Debug.Log($"{estadoEspecial.ReflejarDanioA.nombre} sufre {dañoReflejado} por reflejo de daño.");
         }
 
-        if (vida <= 0 && sigueVivo)
+        if (vida <= 0)
         {
-            if (estadoEspecial.ResucitarUnaVez)
+            if (sigueVivo && estadoEspecial.ResucitarUnaVez)
             {
                 estadoEspecial.ResucitarUnaVez = false;
-                Revivir(10);
+                Revivir(vidaMaxima / 2);
+                return;
             }
-            else
+
+            if (sigueVivo)
             {
                 sigueVivo = false;
                 anim.SetTrigger(animacionMuerte);
@@ -424,14 +444,13 @@ public class Luchador : MonoBehaviour
 
     public void Revivir(int cantidad)
     {
-        if (!sigueVivo)
-        {
-            vida = cantidad;
-            sigueVivo = true;
-            gameObject.SetActive(true);
-            Debug.Log($"{nombre} ha revivido con {cantidad} de vida.");
-        }
+        vida = Mathf.Max(1, cantidad); // evita revivir con 0
+        sigueVivo = true;
+        gameObject.SetActive(true);
+
+        Debug.Log($"{nombre} ha revivido con {vida} de vida.");
     }
+
 
     // Obtiene enemigos vivos para posibles efectos o acciones
     public List<Luchador> ObtenerEnemigosCercanos()
@@ -455,5 +474,13 @@ public class Luchador : MonoBehaviour
             Debug.Log($"[{nombre}] restaurado desde persistencia: Vida={vida}, Sanidad={sanidad}, Vivo={sigueVivo}");
         }
     }
+
+    public void AplicarResurreccionTemporal(int turnos = 3)
+    {
+        estadoEspecial.ResucitarUnaVez = true;
+        turnosRestantesResurreccion = turnos;
+        Debug.Log($"{nombre} ha sido marcado para resucitar durante {turnos} turnos.");
+    }
+
 
 }

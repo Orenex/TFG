@@ -1120,6 +1120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   marcadorPrefab: {fileID: 5629460174186588954, guid: 34f78ea709839de4893f909976511c41, type: 3}
+  objetivosDisponibles: []
 --- !u!4 &1364796339
 Transform:
   m_ObjectHideFlags: 0
@@ -1294,7 +1295,7 @@ MonoBehaviour:
   "bonusDa\xF1o": 0
   ReflejoUnicoActivo: 0
   Aliado: 1
-  sigueVivo: 1
+  sigueVivo: 0
   cartasDisponibles: {fileID: 11400000, guid: 2319e50be4c1a8a4bb900846185489d5, type: 2}
   Acciones: []
   efectosActivos: []
@@ -5933,6 +5934,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8246588459248228038, guid: 102a11ca3b3aca442a78903d359ed7cc, type: 3}
+      propertyPath: sigueVivo
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6960,7 +6965,7 @@ MonoBehaviour:
   "bonusDa\xF1o": 0
   ReflejoUnicoActivo: 0
   Aliado: 1
-  sigueVivo: 1
+  sigueVivo: 0
   cartasDisponibles: {fileID: 11400000, guid: cc76023cb8f267245ab7ea6e63097d6b, type: 2}
   Acciones: []
   efectosActivos: []

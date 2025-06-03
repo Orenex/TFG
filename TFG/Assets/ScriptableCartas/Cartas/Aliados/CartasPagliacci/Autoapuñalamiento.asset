@@ -26,7 +26,7 @@ MonoBehaviour:
     efectoSecundario: 
     costoMana: 0
     tipoCoste: 0
-    tipoObjetivo: 0
+    tipoObjetivo: 2
   accionSecundaria:
     nombre: 
     estatico: 0
