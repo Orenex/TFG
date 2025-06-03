@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class CombatManager : MonoBehaviour
 {
     public static CombatManager Instance { get; private set; }
+    public string escena;
 
     private void Awake()
     {
@@ -117,7 +118,7 @@ public class CombatManager : MonoBehaviour
             EstadoAliados.Instancia.GuardarEstado(aliados);
 
             // Cambiar de escena tras pequeña pausa
-            StartCoroutine(CambiarEscenaTrasDemora("MapaCatacumbas"));
+            StartCoroutine(CambiarEscenaTrasDemora(escena));
         }
     }
 

@@ -24610,6 +24610,63 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1001 &1846370082
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1683.9458
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 563.8932
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.156785
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4048355726027723545, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_Name
+      value: Canvas_Vidas
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
 --- !u!1 &1907921079
 GameObject:
   m_ObjectHideFlags: 0
@@ -39436,3 +39493,4 @@ SceneRoots:
   - {fileID: 598530343}
   - {fileID: 1963674233}
   - {fileID: 1397685471}
+  - {fileID: 1846370082}

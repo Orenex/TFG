@@ -1078,6 +1078,68 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2957583969054847459, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
   m_PrefabInstance: {fileID: 413619165}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &450431098
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1683.9458
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 563.8932
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.156785
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719209813874015228, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4048355726027723545, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_Name
+      value: Canvas_Vidas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5725504664728626005, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 7150656116871345434, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: da65f4c679f9348479ee0f4b4801649a, type: 3}
 --- !u!224 &685561644 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7106133563206581347, guid: 1f02a1fbaec8d7b48b57418f964a05ba, type: 3}
@@ -1592,6 +1654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f67c7da2248c5a49bdb3ca90225dcde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  escena: MapaPuebloSectario
 --- !u!4 &1874373180
 Transform:
   m_ObjectHideFlags: 0
@@ -16081,3 +16144,4 @@ SceneRoots:
   - {fileID: 1624763496}
   - {fileID: 29518765}
   - {fileID: 687181392}
+  - {fileID: 450431098}
