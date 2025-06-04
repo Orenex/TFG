@@ -1369,8 +1369,8 @@ MonoBehaviour:
     Sangrado: 0
   nv: {fileID: 2499054115105266736}
   saltarSiguienteTurno: 0
-  "animacionRecibirDa\xF1o": 
-  animacionMuerte: 
+  "animacionRecibirDa\xF1o": IsHurt
+  animacionMuerte: IsDead
 --- !u!1 &5157623380589460041
 GameObject:
   m_ObjectHideFlags: 0

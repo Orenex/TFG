@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803fab1b7bec4684cb5aa86fc2e46fba, type: 3}
   m_Name: Goon
   m_EditorClassIdentifier: 
-  CartasEnLaColeccion: []
+  CartasEnLaColeccion:
+  - {fileID: 11400000, guid: cf9e4aacf3a5a7f4a83c839addd27d4c, type: 2}

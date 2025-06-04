@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803fab1b7bec4684cb5aa86fc2e46fba, type: 3}
   m_Name: Crook
   m_EditorClassIdentifier: 
-  CartasEnLaColeccion: []
+  CartasEnLaColeccion:
+  - {fileID: 11400000, guid: 7d7a72b17136569489056c825df64a59, type: 2}
+  - {fileID: 11400000, guid: 6afe72adec1f4b049b9b44c7bb0ac856, type: 2}
