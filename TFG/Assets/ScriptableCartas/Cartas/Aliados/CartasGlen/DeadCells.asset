@@ -22,7 +22,7 @@ MonoBehaviour:
     objetivoEsElEquipo: 0
     mensaje: CurarYLimpiar
     argumento: 5
-    animacionTrigger: 
+    animacionTrigger: IsAttack
     efectoSecundario: 
     costoMana: 0
     tipoCoste: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
     objetivoEsElEquipo: 0
     mensaje: 
     argumento: 0
-    animacionTrigger: IsAttack
+    animacionTrigger: 
     efectoSecundario: 
     costoMana: 0
     tipoCoste: 0

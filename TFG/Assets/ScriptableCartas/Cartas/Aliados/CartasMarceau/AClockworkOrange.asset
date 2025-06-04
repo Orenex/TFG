@@ -25,7 +25,8 @@ MonoBehaviour:
     animacionTrigger: 
     efectoSecundario: Asqueado
     costoMana: 1
-    tipoCoste: 1
+    tipoCoste: 0
+    tipoObjetivo: 0
   accionSecundaria:
     nombre: 
     estatico: 0
@@ -36,6 +37,7 @@ MonoBehaviour:
     efectoSecundario: 
     costoMana: 0
     tipoCoste: 0
+    tipoObjetivo: 0
   imagen: {fileID: 21300000, guid: c15576f5a8d954b47a0eff044dab7017, type: 3}
   costoSanidad: 0
   tipoCoste: 1

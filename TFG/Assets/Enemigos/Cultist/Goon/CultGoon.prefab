@@ -363,7 +363,6 @@ GameObject:
   - component: {fileID: 8266680949190913801}
   - component: {fileID: 3726878739991233111}
   - component: {fileID: 7031388420383228575}
-  - component: {fileID: 4985519486804856260}
   m_Layer: 7
   m_Name: CultGoon
   m_TagString: Enemigo
@@ -498,28 +497,6 @@ MonoBehaviour:
   saltarSiguienteTurno: 0
   "animacionRecibirDa\xF1o": IsHurt
   animacionMuerte: IsDead
---- !u!95 &4985519486804856260
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1409724959195734764}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5e3437874cde40d4ab1135f4c0d35b61, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1416407427584215063
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,6 +1288,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6591763480599439344}
+  - component: {fileID: 3965590251287756425}
   m_Layer: 0
   m_Name: CultGoonIdle
   m_TagString: Untagged
@@ -1336,6 +1314,28 @@ Transform:
   - {fileID: 4994641000842281289}
   m_Father: {fileID: 8243719667806121871}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &3965590251287756425
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5336649165339561408}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5e3437874cde40d4ab1135f4c0d35b61, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5410720343935239252
 GameObject:
   m_ObjectHideFlags: 0

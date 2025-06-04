@@ -254,7 +254,7 @@ public class Luchador : MonoBehaviour
                         {
                             if (enemigo.Aliado != this.Aliado && enemigo.sigueVivo)
                             {
-                                enemigo.CambiarVida(-accion.argumento);
+                                enemigo.CambiarVida(-accion.argumento + bonusDaño);
                                 Debug.Log($"{enemigo.nombre} recibió {accion.argumento} de daño en área directamente.");
                             }
                         }
@@ -422,6 +422,7 @@ public class Luchador : MonoBehaviour
             {
                 estadoEspecial.ResucitarUnaVez = false;
                 Revivir(vidaMaxima / 2);
+                Revivir(sanidadMaxima / 2);
                 return;
             }
 
@@ -432,6 +433,7 @@ public class Luchador : MonoBehaviour
                 Debug.Log($"{nombre} ha sido derrotado.");
             }
         }
+        
     }
 
     public void CambiarSanidad(int cantidad)
