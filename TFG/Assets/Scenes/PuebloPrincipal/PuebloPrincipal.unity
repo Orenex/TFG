@@ -898,6 +898,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &792180126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 792180129}
+  - component: {fileID: 792180128}
+  - component: {fileID: 792180127}
+  m_Layer: 0
+  m_Name: Tienda_Bruja_Mejorada
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &792180127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792180126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f25801a1cece40940bcc1bf836f20ec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: TiendaBruja_Mejor
+  messageUI: {fileID: 175494843}
+--- !u!65 &792180128
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792180126}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.265314, y: 4.698002, z: 6.7130823}
+  m_Center: {x: 8.114577, y: 1.0735173, z: 3.2613778}
+--- !u!4 &792180129
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792180126}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 16.01, y: -2.08, z: -13.74}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &842272623
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,6 +1757,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Catacumbas: {fileID: 10494006}
   Sectarios: {fileID: 646857936}
+  BrujaNormal: {fileID: 1256058680}
+  BrujaMejorada: {fileID: 792180126}
 --- !u!4 &1686006247
 Transform:
   m_ObjectHideFlags: 0
@@ -16739,6 +16809,7 @@ SceneRoots:
   - {fileID: 10494009}
   - {fileID: 646857939}
   - {fileID: 1256058683}
+  - {fileID: 792180129}
   - {fileID: 1711671466}
   - {fileID: 175494847}
   - {fileID: 1784414886}

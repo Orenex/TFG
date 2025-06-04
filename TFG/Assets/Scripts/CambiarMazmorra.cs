@@ -4,10 +4,14 @@ public class CambiarMazmorra : MonoBehaviour
 {
     public GameObject Catacumbas;
     public GameObject Sectarios;
+    public GameObject BrujaNormal;
+    public GameObject BrujaMejorada;
     void Start()
     {
         Catacumbas.SetActive(false);
         Sectarios.SetActive(false);
+        BrujaNormal.SetActive(false);
+        BrujaMejorada.SetActive(false);
     }
 
     
@@ -21,11 +25,15 @@ public class CambiarMazmorra : MonoBehaviour
         {
             Catacumbas.SetActive(false);
             Sectarios.SetActive(true);
+            BrujaNormal.SetActive(false);
+            BrujaMejorada.SetActive(true);
         }
         else
         {
             Catacumbas.SetActive(true);
             Sectarios.SetActive(false);
+            BrujaNormal.SetActive(true);
+            BrujaMejorada.SetActive(false);
         }
     }
 }

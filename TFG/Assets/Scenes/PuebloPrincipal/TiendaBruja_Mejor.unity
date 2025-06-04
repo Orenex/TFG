@@ -1543,6 +1543,18 @@ MonoBehaviour:
     icono: {fileID: 21300000, guid: d8dac7f85d59dae429a79e2b3331cd0e, type: 3}
     mazoBase: {fileID: 11400000, guid: cc76023cb8f267245ab7ea6e63097d6b, type: 2}
     mazoMejorado: {fileID: 11400000, guid: 41763de9bf7da594e82631a01ed553a5, type: 2}
+  - id: Jack
+    nombre: Mazo Jack+
+    precio: 100
+    icono: {fileID: 21300000, guid: d8dac7f85d59dae429a79e2b3331cd0e, type: 3}
+    mazoBase: {fileID: 11400000, guid: 496045eaac342e74e9069427238eebb2, type: 2}
+    mazoMejorado: {fileID: 11400000, guid: b8d72b59e96d2c84585bf436005f69d8, type: 2}
+  - id: Pagliacci
+    nombre: Mazo Pagliacci+
+    precio: 100
+    icono: {fileID: 21300000, guid: d8dac7f85d59dae429a79e2b3331cd0e, type: 3}
+    mazoBase: {fileID: 11400000, guid: 5a6eaaaf4d6a9d44e8a3ce76178f50db, type: 2}
+    mazoMejorado: {fileID: 11400000, guid: 782455d7996754447a119150dea839c1, type: 2}
 --- !u!1 &1672979397
 GameObject:
   m_ObjectHideFlags: 0
