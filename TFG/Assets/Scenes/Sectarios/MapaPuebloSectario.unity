@@ -685,7 +685,7 @@ MonoBehaviour:
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Sectarios_Zona_02
   esUltimoNodo: 0
 --- !u!1 &565079120
 GameObject:
@@ -2266,7 +2266,7 @@ MonoBehaviour:
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Boss_Sectarios
   esUltimoNodo: 1
 --- !u!1 &1485543970
 GameObject:
@@ -2552,7 +2552,7 @@ MonoBehaviour:
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Sectarios_Zona_02
   esUltimoNodo: 0
 --- !u!1 &1578342270
 GameObject:
@@ -2694,7 +2694,7 @@ MonoBehaviour:
   caminosdesactivados: []
   isActive: 0
   isVisited: 0
-  escena: 
+  escena: Combate_Sectarios_Zona_02
   esUltimoNodo: 0
 --- !u!1 &1696159869
 GameObject:

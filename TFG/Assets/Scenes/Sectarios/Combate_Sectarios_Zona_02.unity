@@ -291,16 +291,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e86dd15dc370454881ff1cd1c71e6d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  glen: {fileID: 0}
+  glen: {fileID: 2135656521}
   glenNormal: {fileID: 11400000, guid: cc76023cb8f267245ab7ea6e63097d6b, type: 2}
   glenPlus: {fileID: 11400000, guid: 41763de9bf7da594e82631a01ed553a5, type: 2}
-  jack: {fileID: 0}
+  jack: {fileID: 678994514}
   jackNormal: {fileID: 11400000, guid: 496045eaac342e74e9069427238eebb2, type: 2}
   jackPlus: {fileID: 11400000, guid: b8d72b59e96d2c84585bf436005f69d8, type: 2}
-  pagliacci: {fileID: 0}
+  pagliacci: {fileID: 409092054}
   pagliacciNormal: {fileID: 11400000, guid: 5a6eaaaf4d6a9d44e8a3ce76178f50db, type: 2}
   pagliacciPlus: {fileID: 11400000, guid: 782455d7996754447a119150dea839c1, type: 2}
-  marceau: {fileID: 0}
+  marceau: {fileID: 1842130280}
 --- !u!4 &562766073
 Transform:
   m_ObjectHideFlags: 0
