@@ -26,6 +26,7 @@ MonoBehaviour:
     efectoSecundario: 
     costoMana: 0
     tipoCoste: 0
+    tipoObjetivo: 0
   accionSecundaria:
     nombre: 
     estatico: 0
@@ -36,6 +37,7 @@ MonoBehaviour:
     efectoSecundario: 
     costoMana: 0
     tipoCoste: 0
+    tipoObjetivo: 0
   imagen: {fileID: 0}
   costoSanidad: 0
   tipoCoste: 0

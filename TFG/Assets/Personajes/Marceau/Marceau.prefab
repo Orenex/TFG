@@ -440,8 +440,8 @@ MonoBehaviour:
     Sangrado: 0
   nv: {fileID: 8929568232612270459}
   saltarSiguienteTurno: 0
-  "animacionRecibirDa\xF1o": 
-  animacionMuerte: 
+  "animacionRecibirDa\xF1o": IsHurt
+  animacionMuerte: IsDead
 --- !u!1 &1372653044478629118
 GameObject:
   m_ObjectHideFlags: 0
@@ -3099,7 +3099,7 @@ GameObject:
   - component: {fileID: 19986017500812339}
   - component: {fileID: 1679176026226365657}
   m_Layer: 0
-  m_Name: MarceauIdle
+  m_Name: Marceau
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

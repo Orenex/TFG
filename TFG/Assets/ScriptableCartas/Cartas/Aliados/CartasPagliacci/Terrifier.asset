@@ -18,7 +18,7 @@ MonoBehaviour:
   tipo: 0
   accion:
     nombre: Terrifier
-    estatico: 0
+    estatico: 1
     objetivoEsElEquipo: 0
     mensaje: AplicarEfecto
     argumento: 1

@@ -18,7 +18,7 @@ MonoBehaviour:
   tipo: 0
   accion:
     nombre: RobarSalud
-    estatico: 0
+    estatico: 1
     objetivoEsElEquipo: 0
     mensaje: RobarSalud
     argumento: -4

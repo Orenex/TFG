@@ -18,7 +18,7 @@ MonoBehaviour:
   tipo: 0
   accion:
     nombre: 
-    estatico: 0
+    estatico: 1
     objetivoEsElEquipo: 0
     mensaje: CambiarVida
     argumento: -3
@@ -26,6 +26,7 @@ MonoBehaviour:
     efectoSecundario: 
     costoMana: 0
     tipoCoste: 0
+    tipoObjetivo: 0
   accionSecundaria:
     nombre: 
     estatico: 0
@@ -36,6 +37,7 @@ MonoBehaviour:
     efectoSecundario: 
     costoMana: 0
     tipoCoste: 0
+    tipoObjetivo: 0
   imagen: {fileID: 0}
   costoSanidad: 0
   tipoCoste: 0

@@ -18,7 +18,7 @@ MonoBehaviour:
   tipo: 0
   accion:
     nombre: AtaqueAleatorio
-    estatico: 0
+    estatico: 1
     objetivoEsElEquipo: 0
     mensaje: CambiarVidaAleatorio
     argumento: -3

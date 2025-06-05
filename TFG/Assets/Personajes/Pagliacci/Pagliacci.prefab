@@ -3038,10 +3038,10 @@ MonoBehaviour:
     Confusion: 0
     ReflejarDanioA: {fileID: 0}
     Sangrado: 0
-  nv: {fileID: 0}
+  nv: {fileID: 1305910520082097529}
   saltarSiguienteTurno: 0
-  "animacionRecibirDa\xF1o": 
-  animacionMuerte: 
+  "animacionRecibirDa\xF1o": IsHurt
+  animacionMuerte: IsDead
 --- !u!1 &5424877138454718300
 GameObject:
   m_ObjectHideFlags: 0
