@@ -560,7 +560,7 @@ MonoBehaviour:
   sentences:
   - Hola
   arrowIndicator: {fileID: 271726838}
-  siguienteEscena: 
+  siguienteEscena: PuebloPrincipal
 --- !u!4 &1435475451
 Transform:
   m_ObjectHideFlags: 0
