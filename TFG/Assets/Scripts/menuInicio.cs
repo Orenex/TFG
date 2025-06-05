@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Controla el menú principal del juego, con botones para iniciar, ajustes o salir
 public class menuInicio : MonoBehaviour
 {
-    public string escenaBtnIniciar;  // Nombre de la escena principal del juego
-    public string escenaBtnAjustes;  // (No se usa aquí, se carga la misma escena que Iniciar)
+    public string escenaBtnIniciar; 
+    public string escenaBtnAjustes;  
 
     // Método llamado al presionar el botón de Iniciar
     public void Iniciar()
@@ -26,5 +25,3 @@ public class menuInicio : MonoBehaviour
         Application.Quit();
     }
 }
-
-// Este script se asigna a los botones del menú inicial

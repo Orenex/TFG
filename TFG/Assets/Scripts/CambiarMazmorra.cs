@@ -23,6 +23,7 @@ public class CambiarMazmorra : MonoBehaviour
     {
         if (ConfirmarFinCatacumbas.mazmorra1Completada == true)
         {
+            // Si la primera mazmorra fue completada, activa los nuevos enemigos y zonas
             Catacumbas.SetActive(false);
             Sectarios.SetActive(true);
             BrujaNormal.SetActive(false);
@@ -30,6 +31,7 @@ public class CambiarMazmorra : MonoBehaviour
         }
         else
         {
+            // Si no fue completada, se mantiene en la primera zona
             Catacumbas.SetActive(true);
             Sectarios.SetActive(false);
             BrujaNormal.SetActive(true);

@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
+// Script que controla la tienda del herrero, donde el jugador puede comprar armaduras.
+// Muestra las armaduras disponibles, actualiza la UI, y gestiona el oro y la bonificación de vida.
 public class Tienda_Herrero : MonoBehaviour
 {
     [System.Serializable]
@@ -24,10 +26,12 @@ public class Tienda_Herrero : MonoBehaviour
 
     private void Start()
     {
+        // Muestra el oro inicial y carga la lista de armaduras
         goldText.text = "Gold: " + InventarioJugador.Instance.ObtenerOro();
         MostrarArmaduras();
     }
 
+    // Crea visualmente cada armadura en la tienda
     public void MostrarArmaduras()
     {
         LimpiarScroll();
@@ -53,7 +57,7 @@ public class Tienda_Herrero : MonoBehaviour
                 boton.onClick.AddListener(() =>
                 {
                     ComprarArmadura(armadura);
-                    MostrarArmaduras();
+                    MostrarArmaduras();// Recarga lista tras la compra
                 });
             }
         }
@@ -61,12 +65,14 @@ public class Tienda_Herrero : MonoBehaviour
         
     }
 
+    // Elimina los objetos del scroll para actualizar la lista visualmente
     void LimpiarScroll()
     {
         foreach (Transform hijo in contenidoScroll)
             Destroy(hijo.gameObject);
     }
 
+    // Procesa la compra de una armadura
     void ComprarArmadura(ArmaduraTienda armadura)
     {
         if (!InventarioJugador.Instance.TieneOro(armadura.precio)) return;
@@ -77,6 +83,7 @@ public class Tienda_Herrero : MonoBehaviour
         Debug.Log("Compraste armadura: " + armadura.nombre);
     }
 
+    // Activa visualmente el panel de categoría (aunque solo hay una)
     public void MostrarCategoria()
     {
         panelItems.SetActive(true);

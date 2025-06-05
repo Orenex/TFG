@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
+// Script que maneja la tienda de la bruja, donde se pueden comprar mazos mejorados.
+// Muestra los mazos disponibles, actualiza la UI y controla las compras del jugador.
 public class TiendaBruja : MonoBehaviour
 {
     [System.Serializable]
@@ -32,12 +34,14 @@ public class TiendaBruja : MonoBehaviour
 
     private void Start()
     {
+        // Muestra el oro actual del jugador al iniciar
         goldText.text = "Gold: " + InventarioJugador.Instance.ObtenerOro();
     }
 
+    // Muestra la categoría seleccionada de la tienda
     public void MostrarCategoria(string categoria)
     {
-        LimpiarScroll();
+        LimpiarScroll(); // Limpia UI previa
 
         switch (categoria)
         {
@@ -67,7 +71,7 @@ public class TiendaBruja : MonoBehaviour
                         boton.onClick.AddListener(() =>
                         {
                             ComprarMazo(mazo);
-                            Invoke(nameof(RefrescarMazos), 0.1f); // pequeña pausa
+                            Invoke(nameof(RefrescarMazos), 0.1f); // Refresca tras pequeña pausa
                         });
                     }
                 }
@@ -77,11 +81,13 @@ public class TiendaBruja : MonoBehaviour
         panelItems.SetActive(true);
     }
 
+    // Recarga la lista de mazos
     void RefrescarMazos()
     {
         MostrarCategoria("Mazos");
     }
 
+    // Elimina todos los objetos hijos del scroll para actualizar la UI
     void LimpiarScroll()
     {
         foreach (Transform hijo in contenidoScroll)
@@ -90,15 +96,7 @@ public class TiendaBruja : MonoBehaviour
         }
     }
 
-    void Comprar(ObjetoTienda obj)
-    {
-        if (InventarioJugador.Instance.TieneOro(obj.precio))
-        {
-            InventarioJugador.Instance.GastarOro(obj.precio);
-            goldText.text = "Gold: " + InventarioJugador.Instance.ObtenerOro();
-        }
-    }
-
+    // Compra de un mazo específico
     void ComprarMazo(MazoTienda mazo)
     {
         Debug.Log("ComprarMazo fue llamado para ID: " + mazo.id);

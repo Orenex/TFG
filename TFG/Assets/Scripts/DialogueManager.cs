@@ -4,8 +4,6 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-// Maneja el sistema de diálogos del juego, mostrando frases una por una con efecto de tipeo
-// Al finalizar, permite pasar a la siguiente escena
 public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI dialogueText;    // Texto del diálogo
@@ -32,6 +30,7 @@ public class DialogueManager : MonoBehaviour
                 StopAllCoroutines();
                 dialogueText.text = sentences[index]; // Muestra texto completo instantáneamente
                 isTyping = false;
+                arrowIndicator.SetActive(true);
             }
             else
             {

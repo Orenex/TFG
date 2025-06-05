@@ -105,6 +105,7 @@ public class CombatManager : MonoBehaviour
         return lanzador.sanidad >= accion.costoMana;
     }
 
+    // Comprueba si el combate ha terminado (sin enemigos)
     private void ComprobarFinCombate()
     {
         var enemigosVivos = FindObjectsOfType<Luchador>().Where(l => !l.Aliado && l.sigueVivo).ToList();

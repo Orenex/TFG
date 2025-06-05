@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Esta clase gestiona el inventario del jugador
 public class InventarioJugador : MonoBehaviour
 {
     public static InventarioJugador Instance;
@@ -39,16 +40,19 @@ public class InventarioJugador : MonoBehaviour
         }
     }
 
+    // Verifica si el jugador tiene oro suficiente
     public bool TieneOro(int cantidad) => oroActual >= cantidad;
 
+    // Resta oro del inventario
     public void GastarOro(int cantidad)
     {
         oroActual -= cantidad;
         Debug.Log("Oro restante: " + oroActual);
     }
-
+    // Devuelve el oro actual
     public int ObtenerOro() => oroActual;
 
+    // Marca un mazo como mejorado (y lo guarda en PlayerPrefs)
     public void MarcarMazoComoMejorado(string id)
     {
         Debug.Log("Intentando marcar como comprado: '" + id + "'");
@@ -65,6 +69,7 @@ public class InventarioJugador : MonoBehaviour
         }
     }
 
+    // Verifica si un mazo ya fue mejorado
     public bool EsMazoMejorado(string id)
     {
         bool resultado = mazosMejorados.Contains(id);
@@ -72,6 +77,7 @@ public class InventarioJugador : MonoBehaviour
         return resultado;
     }
 
+    // Carga los mazos mejorados desde PlayerPrefs
     public void CargarMazosMejorados()
     {
         string[] ids = new[] { "Glen", "Jack", "Pagliacci" };
@@ -86,6 +92,7 @@ public class InventarioJugador : MonoBehaviour
         }
     }
 
+    // Muestra en consola los mazos mejorados actuales
     public void DebugMazosComprados()
     {
         Debug.Log("Mazos mejorados actuales:");
@@ -95,17 +102,20 @@ public class InventarioJugador : MonoBehaviour
         }
     }
 
+    // Agrega oro al jugador (puede usarse como recompensa)
     public void AgregarOro(int cantidad)
     {
         oroActual += cantidad;
         Debug.Log($"Oro actual tras bonus: {oroActual}");
     }
 
+    // Verifica si una armadura fue comprada
     public bool EsArmaduraComprada(string id)
     {
         return PlayerPrefs.GetInt("ArmaduraComprada_" + id, 0) == 1;
     }
 
+    // Guarda la armadura como comprada y la equipa si otorga más vida que la actual
     public void GuardarArmaduraComprada(string id, int vidaExtra)
     {
         if (!EsArmaduraComprada(id))

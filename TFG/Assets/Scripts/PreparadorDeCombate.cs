@@ -17,8 +17,8 @@ public class PreparadorDeCombate : MonoBehaviour
     public CardCollection pagliacciPlus;
 
     public Luchador marceau;
-    int vidaExtra = InventarioJugador.Instance.vidaExtraArmadura;
-  
+    int vidaExtra = InventarioJugador.Instance.vidaExtraArmadura; // Vida extra del inventario del jugador
+
     void Start()
     {
         int vidaExtra = InventarioJugador.Instance.vidaExtraArmadura;
@@ -52,5 +52,3 @@ public class PreparadorDeCombate : MonoBehaviour
     }
 
 }
-
-// Este script se ejecuta al inicio de la escena de combate y configura las cartas de cada personaje

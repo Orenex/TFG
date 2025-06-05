@@ -14,6 +14,7 @@ public class Descanso : MonoBehaviour
 
     private void Update()
     {
+        // Si el jugador está dentro y presiona 'E', se restauran todos los aliados
         if (isPlayerInside && Input.GetKeyDown(KeyCode.E))
         {
             EstadoAliados.Instancia.RestaurarTodos();
@@ -21,6 +22,7 @@ public class Descanso : MonoBehaviour
         }
     }
 
+    // Detecta si el jugador entra en el área de descanso
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -31,6 +33,8 @@ public class Descanso : MonoBehaviour
                 messageUI.SetActive(true);
         }
     }
+
+    // Detecta si el jugador sale del área de descanso
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))

@@ -88,6 +88,7 @@ public class SeleccionDeObjetivo : MonoBehaviour
         return objetivoActual;
     }
 
+    // Busca la lista de perosnajes en donde colocar el marcador
     public void PrepararSeleccion(TipoObjetivo tipo)
     {
         objetivosDisponibles.Clear();

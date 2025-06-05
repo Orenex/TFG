@@ -14,10 +14,11 @@ public class EstadoAliados : MonoBehaviour
         public bool sigueVivo;
     }
 
-    public List<EstadoLuchador> estados = new();
+    public List<EstadoLuchador> estados = new(); // Lista que guarda los estados de los luchadores
 
     private void Awake()
     {
+        // Asegura que solo haya una instancia del objeto y que no se destruya al cambiar de escena
         if (Instancia != null && Instancia != this)
         {
             Destroy(gameObject);
@@ -27,6 +28,7 @@ public class EstadoAliados : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    // Guarda el estado actual de los aliados en la lista
     public void GuardarEstado(List<Luchador> aliados)
     {
         estados.Clear();
@@ -42,6 +44,7 @@ public class EstadoAliados : MonoBehaviour
         }
     }
 
+    // Restaura el estado guardado a cada luchador
     public void RestaurarEstado(List<Luchador> aliados)
     {
         foreach (var luchador in aliados)
@@ -57,11 +60,12 @@ public class EstadoAliados : MonoBehaviour
         }
     }
 
+    // Restaura completamente a todos los aliados (vida y sanidad al 100)
     public void RestaurarTodos()
     {
         foreach (var estado in estados)
         {
-            estado.vida = 100; // O usa un valor guardado de vidaMaxima
+            estado.vida = 100;
             estado.sanidad = 100;
             estado.sigueVivo = true;
         }
