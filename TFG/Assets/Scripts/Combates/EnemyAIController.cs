@@ -151,9 +151,15 @@ public class EnemyAIController : MonoBehaviour
         {
             Debug.Log(lanzador.name);
         }
+
         yield return lanzador.EjecutarAccion(accion, objetivo, null, lanzador);
+
+        // Espera breve para que se note el final de la animación antes de avanzar
+        yield return new WaitForSeconds(2.5f); // ajusta el tiempo a tu gusto
+
         TurnoFinalizado = true;
     }
+
 
     // Limpia la memoria de objetivos para evitar repeticiones entre turnos
     public void ReiniciarMemoriaDeObjetivos()
