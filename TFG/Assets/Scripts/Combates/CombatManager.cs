@@ -109,17 +109,24 @@ public class CombatManager : MonoBehaviour
     private void ComprobarFinCombate()
     {
         var enemigosVivos = FindObjectsOfType<Luchador>().Where(l => !l.Aliado && l.sigueVivo).ToList();
+        var aliadosVivos = FindObjectsOfType<Luchador>().Where(l => l.Aliado && l.sigueVivo).ToList();
 
         if (enemigosVivos.Count == 0)
         {
-            Debug.Log("¡Combate finalizado!");
+            Debug.Log("¡Combate finalizado! Has ganado.");
 
-            // Guardar estado de aliados antes de cambiar de escena
+            // Solo se guarda el estado si los aliados ganan
             var aliados = FindObjectsOfType<Luchador>().Where(l => l.Aliado).ToList();
             EstadoAliados.Instancia.GuardarEstado(aliados);
 
-            // Cambiar de escena tras pequeña pausa
-            StartCoroutine(CambiarEscenaTrasDemora(escena));
+            StartCoroutine(CambiarEscenaTrasDemora(escena)); // Escena de victoria
+        }
+        else if (aliadosVivos.Count == 0)
+        {
+            Debug.Log("¡Todos los aliados han sido derrotados! Game Over.");
+
+            // No se guarda el estado si es Game Over
+            StartCoroutine(CambiarEscenaTrasDemora("GameOver")); // Escena de derrota
         }
     }
 
