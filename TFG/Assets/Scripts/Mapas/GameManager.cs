@@ -1,18 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Clase principal que mantiene el estado general del juego entre escenas
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance; // Instancia singleton para acceso global
+    public static GameManager Instance;
 
-    public string lastScene = "";         // Nombre de la última escena activa
-    public string lastNodeID = "";        // ID del último nodo del mapa visitado
-    public Dictionary<string, NodeState> nodeStates = new(); // Estado de todos los nodos visitados/activados
+    public string lastScene = "";
+    public string lastNodeID = "";
+    public string escenaCombateActual = ""; // NUEVO
+    public List<string> enemigosActuales = new(); // NUEVO
+    public Dictionary<string, NodeState> nodeStates = new();
 
     void Awake()
     {
-        // Asegura que solo exista una instancia y persista entre escenas
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -20,14 +20,13 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject); // No destruir al cambiar de escena
+        DontDestroyOnLoad(gameObject);
     }
 
-    // Clase interna que representa el estado de un nodo en el mapa
     [System.Serializable]
     public class NodeState
     {
-        public bool isActive;   // Si el nodo está activo y puede ser visitado
-        public bool isVisited;  // Si ya ha sido visitado anteriormente
+        public bool isActive;
+        public bool isVisited;
     }
 }

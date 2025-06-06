@@ -72,13 +72,16 @@ public class NodosMapas : MonoBehaviour
             {
                 GameManager.Instance.lastScene = SceneManager.GetActiveScene().name;
 
+                //Limpiar enemigos actuales para forzar randomización
+                GameManager.Instance.enemigosActuales.Clear();
+
                 // Elimina GameManager si se llega al final del camino
                 if (esUltimoNodo)
                 {
                     Destroy(GameManager.Instance.gameObject);
                 }
             }
-
+            GameManager.Instance.escenaCombateActual = escena;
             SceneManager.LoadScene(escena);
         }
     }

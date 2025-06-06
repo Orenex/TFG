@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 // Clase que gestiona el flujo de turnos entre los luchadores en combate
@@ -32,22 +33,33 @@ public class TurnManager : MonoBehaviour
     // NUEVO: Instancia enemigos aleatorios en los puntos de spawn
     private void InstanciarEnemigosEnPuntos()
     {
-        foreach (Transform punto in puntosDeSpawn)
+        bool usarEnemigosGuardados = GameManager.Instance.enemigosActuales != null
+                                    && GameManager.Instance.enemigosActuales.Count > 0;
+
+        for (int i = 0; i < puntosDeSpawn.Length; i++)
         {
-            // Elige un prefab aleatorio
-            GameObject prefab = prefabsDeEnemigos[Random.Range(0, prefabsDeEnemigos.Length)];
+            GameObject prefab;
+            if (usarEnemigosGuardados && i < GameManager.Instance.enemigosActuales.Count)
+            {
+                string nombre = GameManager.Instance.enemigosActuales[i];
+                prefab = prefabsDeEnemigos.FirstOrDefault(p => p.name == nombre);
+            }
+            else
+            {
+                prefab = prefabsDeEnemigos[Random.Range(0, prefabsDeEnemigos.Length)];
+            }
 
-            // Instancia el enemigo en el punto con su rotación
-            GameObject enemigoGO = Instantiate(prefab, punto.position, prefab.transform.rotation);
-
-            // Obtiene el componente Luchador
+            GameObject enemigoGO = Instantiate(prefab, puntosDeSpawn[i].position, prefab.transform.rotation);
             Luchador enemigo = enemigoGO.GetComponent<Luchador>();
-
-            // Añade al listado de luchadores
             if (enemigo != null)
+            {
                 luchadoresEnCombate.Add(enemigo);
+                if (!usarEnemigosGuardados)
+                    GameManager.Instance.enemigosActuales.Add(prefab.name); // Guardar enemigos si es primera vez
+            }
         }
     }
+
 
     // Inicializa la cola de turnos con luchadores vivos
     private void InicializarTurnos()

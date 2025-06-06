@@ -431,6 +431,8 @@ public class Luchador : MonoBehaviour
                 sigueVivo = false;
                 anim.SetTrigger(animacionMuerte);
                 Debug.Log($"{nombre} ha sido derrotado.");
+
+                CombatManager.Instance?.SendMessage("ComprobarFinCombate", SendMessageOptions.DontRequireReceiver);
             }
         }
         
