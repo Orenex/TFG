@@ -40,6 +40,7 @@ public class CombatManager : MonoBehaviour
         {
             Debug.LogWarning($"{lanzador.nombre} está sangrando");
             objetivo.CambiarVida(-1);
+            PlayerInputController.TerminarTurno();
             return;
         }
 

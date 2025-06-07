@@ -24,6 +24,7 @@ public class EfectoActivo
             case TipoEfecto.Sangrado:
                 Debug.Log($"{objetivo.nombre} sufre sangrado permanente.");
                 objetivo.estadoEspecial.Sangrado = true;
+                objetivo.CambiarVida(-1);
                 break;
 
             case TipoEfecto.Furia:
