@@ -14936,7 +14936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f67c7da2248c5a49bdb3ca90225dcde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  escena: MapaPuebloSectario
+  escena: Final
 --- !u!4 &601418083
 Transform:
   m_ObjectHideFlags: 0
