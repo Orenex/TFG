@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 803fab1b7bec4684cb5aa86fc2e46fba, type: 3}
+  m_Name: Boss
+  m_EditorClassIdentifier: 
+  CartasEnLaColeccion:
+  - {fileID: 11400000, guid: 3a829a70612a49f4fb574147741e8d25, type: 2}
+  - {fileID: 11400000, guid: 3a829a70612a49f4fb574147741e8d25, type: 2}
+  - {fileID: 11400000, guid: 3a829a70612a49f4fb574147741e8d25, type: 2}
+  - {fileID: 11400000, guid: 3a829a70612a49f4fb574147741e8d25, type: 2}
+  - {fileID: 11400000, guid: 3a829a70612a49f4fb574147741e8d25, type: 2}
+  - {fileID: 11400000, guid: 3a829a70612a49f4fb574147741e8d25, type: 2}
+  - {fileID: 11400000, guid: debeb8ad1bf33e14ca7866ae74fd2065, type: 2}
+  - {fileID: 11400000, guid: d4c1e564447e3004c89f8453a6c3d2ed, type: 2}
+  - {fileID: 11400000, guid: d4c1e564447e3004c89f8453a6c3d2ed, type: 2}
+  - {fileID: 11400000, guid: 13e0a3ee034163a46a6f1994b9032017, type: 2}
+  - {fileID: 11400000, guid: 13e0a3ee034163a46a6f1994b9032017, type: 2}

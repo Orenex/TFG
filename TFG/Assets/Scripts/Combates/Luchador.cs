@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
+using System.Linq;
 
 // Tipos de recursos que puede usar una carta (por ahora solo Sanidad)
 public enum RecursoCoste { Sanidad }
@@ -49,6 +50,7 @@ public class Luchador : MonoBehaviour
     public CardCollection cartasDisponibles; // Cartas que puede usar este luchador
     public List<Accion> Acciones;
     public List<EfectoActivo> efectosActivos = new();
+    public Dictionary<TipoEfecto, int> turnosDesdeUltimoEfecto = new();
     public EstadoEspecial estadoEspecial = new();
 
     private Animator anim;
@@ -324,6 +326,8 @@ public class Luchador : MonoBehaviour
 
                 Debug.Log($"Añadiendo efecto {nuevoEfecto.nombre}");
                 objetivo.efectosActivos.Add(nuevoEfecto);
+                objetivo.turnosDesdeUltimoEfecto[tipo] = 0;
+
                 break;
 
             case "CurarYLimpiar":
@@ -391,7 +395,8 @@ public class Luchador : MonoBehaviour
                 efectosActivos.RemoveAt(i);
                 Debug.Log($"{nombre} pierde el efecto: {efecto.nombre}");
             }
-
+            foreach (var key in turnosDesdeUltimoEfecto.Keys.ToList())
+                turnosDesdeUltimoEfecto[key]++;
 
         }
         if (estadoEspecial.ResucitarUnaVez)

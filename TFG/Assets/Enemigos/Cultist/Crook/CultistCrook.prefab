@@ -1354,7 +1354,7 @@ MonoBehaviour:
   vidaUIPrefab: {fileID: 239801654271073278, guid: df03e3938a8407c4cbc7d689bac13254, type: 3}
   Aliado: 0
   sigueVivo: 1
-  cartasDisponibles: {fileID: 11400000, guid: a5788ed090ed391409f87e703541c110, type: 2}
+  cartasDisponibles: {fileID: 11400000, guid: 294971da256d50042969d76399e5e280, type: 2}
   Acciones: []
   efectosActivos: []
   estadoEspecial:

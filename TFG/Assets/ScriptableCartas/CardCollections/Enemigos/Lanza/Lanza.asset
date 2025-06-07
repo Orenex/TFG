@@ -12,4 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803fab1b7bec4684cb5aa86fc2e46fba, type: 3}
   m_Name: Lanza
   m_EditorClassIdentifier: 
-  CartasEnLaColeccion: []
+  CartasEnLaColeccion:
+  - {fileID: 11400000, guid: f52e4c657895a51428c58e694eb49551, type: 2}
+  - {fileID: 11400000, guid: f52e4c657895a51428c58e694eb49551, type: 2}
+  - {fileID: 11400000, guid: f52e4c657895a51428c58e694eb49551, type: 2}
+  - {fileID: 11400000, guid: f52e4c657895a51428c58e694eb49551, type: 2}
+  - {fileID: 11400000, guid: f52e4c657895a51428c58e694eb49551, type: 2}
+  - {fileID: 11400000, guid: f52e4c657895a51428c58e694eb49551, type: 2}
+  - {fileID: 11400000, guid: f52e4c657895a51428c58e694eb49551, type: 2}
+  - {fileID: 11400000, guid: 442b7cac957b9994a9b5b4279b582c82, type: 2}
+  - {fileID: 11400000, guid: 442b7cac957b9994a9b5b4279b582c82, type: 2}

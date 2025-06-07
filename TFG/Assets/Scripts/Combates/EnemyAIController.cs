@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 // Controlador de inteligencia artificial para enemigos durante el combate
@@ -67,22 +68,69 @@ public class EnemyAIController : MonoBehaviour
         }
     }
 
-    // Estrategia de elección de carta (prioriza curación si tiene poca vida)
     private ScriptableCartas ElegirCarta(List<ScriptableCartas> cartas, Luchador lanzador)
     {
-        if (lanzador.vida <= 10)
+        var enemigos = lanzador.ObtenerEnemigosCercanos();
+        float vidaRatio = (float)lanzador.vida / lanzador.vidaMaxima;
+
+        // 1. Curarse si está bajo de vida (35% o menos)
+        if (vidaRatio <= 0.35f)
         {
-            var curativas = cartas.FindAll(c => c.accion.mensaje == "CambiarVida" && c.accion.argumento > 0);
-            if (curativas.Count > 0)
-                return curativas[Random.Range(0, curativas.Count)];
+            var curacion = cartas.FindAll(c =>
+                c.accion.mensaje == "CambiarVida" && c.accion.argumento > 0);
+
+            if (curacion.Count > 0)
+                return curacion[Random.Range(0, curacion.Count)];
         }
 
-        var ofensivas = cartas.FindAll(c => c.accion.mensaje == "CambiarVida" && c.accion.argumento < 0);
+        // 2. Usar buff si no está activo aún
+        var buffs = cartas.FindAll(c =>
+            c.tipo == TipoCarta.Buff &&
+            !lanzador.efectosActivos.Exists(e => e.nombre == c.accion.efectoSecundario));
+
+        if (buffs.Count > 0 && Random.value < 0.5f)
+            return buffs[Random.Range(0, buffs.Count)];
+
+        // 3. Usar debuffs si hay enemigos sin el efecto
+        var debuffs = cartas.FindAll(c =>
+        {
+            if (c.tipo != TipoCarta.Debuff)
+                return false;
+
+            if (!System.Enum.TryParse<TipoEfecto>(c.accion.efectoSecundario, out TipoEfecto tipoEfecto))
+                return false;
+
+            // Evita lanzar si *alguien ya está paralizado*
+            if (tipoEfecto == TipoEfecto.Paralizado &&
+                enemigos.Any(e => e.efectosActivos.Exists(ef => ef.tipo == TipoEfecto.Paralizado)))
+            {
+                return false;
+            }
+
+            // Solo enemigos que no tengan ese efecto ni lo hayan sufrido recientemente
+            return enemigos.Any(e =>
+                !e.efectosActivos.Exists(ef => ef.tipo == tipoEfecto) &&
+                (!e.turnosDesdeUltimoEfecto.ContainsKey(tipoEfecto) || e.turnosDesdeUltimoEfecto[tipoEfecto] >= 2));
+        });
+
+
+        if (debuffs.Count > 0 && Random.value < 0.6f)
+            return debuffs[Random.Range(0, debuffs.Count)];
+
+
+        // 4. Ataques ofensivos, incluyendo ataque en área
+        var ofensivas = cartas.FindAll(c =>
+            (c.accion.mensaje == "CambiarVida" && c.accion.argumento < 0) ||
+            c.accion.mensaje == "RobarSalud" ||
+            c.accion.mensaje == "AplicarEfectoGlobal");
+
         if (ofensivas.Count > 0)
             return ofensivas[Random.Range(0, ofensivas.Count)];
 
+        // 5. Último recurso: carta aleatoria
         return cartas[Random.Range(0, cartas.Count)];
     }
+
 
     // Estrategia de selección de objetivo
     private Luchador ElegirObjetivo(ScriptableCartas carta, Luchador lanzador)
