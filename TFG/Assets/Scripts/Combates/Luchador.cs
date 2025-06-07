@@ -181,15 +181,16 @@ public class Luchador : MonoBehaviour
                 if (atacante != null)
                 {
                     Debug.Log(atacante.name);
-                    if (objetivo.ReflejoUnicoActivo == true)
+                    int danio = accion.argumento + bonusDaño;
+                    objetivo.CambiarVida(danio);
+
+                    if (objetivo.ReflejoUnicoActivo && danio < 0)
                     {
-                        atacante.CambiarVida(accion.argumento + bonusDaño);
+                        atacante?.CambiarVida(danio);
+                        Debug.Log($"{atacante?.nombre} recibe {Mathf.Abs(danio)} por reflejo de daño.");
                         objetivo.ReflejoUnicoActivo = false;
                     }
-                    else
-                    {
-                        objetivo.CambiarVida(accion.argumento + bonusDaño);
-                    }
+
                 }
                 else
                 {
@@ -430,19 +431,31 @@ public class Luchador : MonoBehaviour
                 Debug.Log($"{nombre} hizo un CRÍTICO!");
             }
         }
-        
+
+        if (ReflejoUnicoActivo && cantidad < 0 && TurnManager.Instance?.Actual != this)
+        {
+            var atacante = TurnManager.Instance.Actual;
+            atacante?.CambiarVida(cantidad);
+            ReflejoUnicoActivo = false;
+            Debug.Log($"{atacante?.nombre} recibió {Mathf.Abs(cantidad)} de reflejo de daño.");
+
+
+            return;
+        }
+
+        // Animación de daño
         if (cantidad < 0 && anim != null && !string.IsNullOrEmpty(animacionRecibirDaño))
             anim.SetTrigger(animacionRecibirDaño);
 
+
         vida += cantidad;
         ActualizarTextoVida();
-
 
         if (estadoEspecial.ReflejarDanioA != null && cantidad < 0)
         {
             int dañoReflejado = Mathf.CeilToInt(Mathf.Abs(cantidad));
             estadoEspecial.ReflejarDanioA.CambiarVida(-dañoReflejado);
-            Debug.Log($"{estadoEspecial.ReflejarDanioA.nombre} sufre {dañoReflejado} por reflejo de daño.");
+            Debug.Log($"{estadoEspecial.ReflejarDanioA.nombre} sufre {dañoReflejado} por reflejo de daño (efecto CompartirDaño).");
         }
 
         if (vida <= 0)
@@ -464,8 +477,8 @@ public class Luchador : MonoBehaviour
                 CombatManager.Instance?.SendMessage("ComprobarFinCombate", SendMessageOptions.DontRequireReceiver);
             }
         }
-        
     }
+
 
     public void CambiarSanidad(int cantidad)
     {

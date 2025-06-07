@@ -155,8 +155,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: Rata
-  vida: 30
-  vidaMaxima: 30
+  vida: 10
+  vidaMaxima: 10
   sanidad: 100
   sanidadMaxima: 0
   "bonusDa\xF1o": 0

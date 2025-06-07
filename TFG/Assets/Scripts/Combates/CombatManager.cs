@@ -89,7 +89,7 @@ public class CombatManager : MonoBehaviour
         }
 
         // Ejecuta la acción principal (y secundaria si la hay)
-        yield return lanzador.EjecutarAccion(accion, objetivo, accionSecundaria);
+        yield return lanzador.EjecutarAccion(accion, objetivo, accionSecundaria, lanzador);
 
         // Marca el fin del turno correspondiente
         if (jugador)

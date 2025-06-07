@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: Entrada_Catacumbas
-  messageUI: {fileID: 0}
+  messageUI: {fileID: 981560996}
 --- !u!65 &10494008
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -658,7 +658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: Entrada_Sectarios
-  messageUI: {fileID: 0}
+  messageUI: {fileID: 981560996}
 --- !u!65 &646857938
 BoxCollider:
   m_ObjectHideFlags: 0

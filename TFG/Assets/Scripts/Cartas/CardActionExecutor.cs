@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 // Clase encargada de ejecutar el efecto de una carta seleccionada durante el combate.
@@ -41,8 +42,14 @@ public class CardActionExecutor : MonoBehaviour
             return;
         }
 
-        // Llama al CombatManager para ejecutar la acción principal y secundaria de la carta
+        // Ejecuta la acción principal y secundaria sobre el objetivo
         CombatManager.Instance.EjecutarAccionJugador(carta.Data.accion, objetivo, carta.Data.accionSecundaria);
+
+        // Oculta la UI del enemigo tras un pequeño retraso
+        if (!objetivo.Aliado)
+        {
+            StartCoroutine(OcultarUITrasDelay(objetivo, 0.8f));
+        }
 
         // Finaliza el uso de la carta
         FinalizarCarta(carta);
@@ -59,5 +66,16 @@ public class CardActionExecutor : MonoBehaviour
 
         // Desactiva visualmente la carta en la interfaz
         carta.gameObject.SetActive(false);
+    }
+
+    // Corrutina para ocultar la UI del enemigo tras un pequeño delay
+    private IEnumerator OcultarUITrasDelay(Luchador enemigo, float delay = 0.8f)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (enemigo != null && !enemigo.Aliado)
+        {
+            enemigo.MostrarVidaUI(false);
+        }
     }
 }
