@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 // Tipos de recursos que puede usar una carta (por ahora solo Sanidad)
 public enum RecursoCoste { Sanidad }
@@ -37,6 +38,10 @@ public class Luchador : MonoBehaviour
     public bool ReflejoUnicoActivo = false;
     private int turnosRestantesResurreccion = 0;
 
+    [SerializeField] private GameObject vidaUIPrefab;
+    private TextMeshProUGUI textoVidaUI;
+    private GameObject instanciaUI;
+
 
     public bool Aliado;                   // Si es parte del equipo del jugador
     public bool sigueVivo = true;
@@ -63,6 +68,15 @@ public class Luchador : MonoBehaviour
         nv.updateRotation = false;
         if (vidaMaxima <= 0)
             vidaMaxima = vida;
+
+        if (!Aliado && vidaUIPrefab != null)
+        {
+            instanciaUI = Instantiate(vidaUIPrefab, transform); // UI como hijo del enemigo
+            instanciaUI.transform.localPosition = new Vector3(0, 2.2f, 0); // posición sobre la cabeza
+            textoVidaUI = instanciaUI.GetComponentInChildren<TextMeshProUGUI>();
+            instanciaUI.SetActive(false); // se oculta hasta ser seleccionado
+            ActualizarTextoVida();
+        }
 
         // Evita colisiones entre luchadores
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Luchadores"), LayerMask.NameToLayer("Luchadores"), true);
@@ -283,12 +297,20 @@ public class Luchador : MonoBehaviour
                     return;
                 }
 
+                int duracion = 3;
+
+                // Si me estoy aplicando el efecto a mí mismo, y es Paralizado, que dure solo 1 turno
+                if (objetivo == this && tipo == TipoEfecto.Paralizado)
+                {
+                    duracion = 1;
+                }
+
                 var nuevoEfecto = new EfectoActivo
                 {
                     nombre = tipo.ToString(),
                     tipo = tipo,
                     modificador = accion.argumento,
-                    duracionTurnos = 3,
+                    duracionTurnos = duracion,
                     lanzador = this
                 };
 
@@ -408,6 +430,8 @@ public class Luchador : MonoBehaviour
             anim.SetTrigger(animacionRecibirDaño);
 
         vida += cantidad;
+        ActualizarTextoVida();
+
 
         if (estadoEspecial.ReflejarDanioA != null && cantidad < 0)
         {
@@ -484,6 +508,18 @@ public class Luchador : MonoBehaviour
         estadoEspecial.ResucitarUnaVez = true;
         turnosRestantesResurreccion = turnos;
         Debug.Log($"{nombre} ha sido marcado para resucitar durante {turnos} turnos.");
+    }
+
+    public void ActualizarTextoVida()
+    {
+        if (textoVidaUI != null)
+            textoVidaUI.text = $"{vida} / {vidaMaxima}";
+    }
+
+    public void MostrarVidaUI(bool mostrar)
+    {
+        if (instanciaUI != null)
+            instanciaUI.SetActive(mostrar);
     }
 
 

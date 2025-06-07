@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62b6d4f9b96275b419ac724268a707ee, type: 3}
+  m_Name: AtaqueEnArea
+  m_EditorClassIdentifier: 
+  nombreCarta: Ataque en area
+  descripcion: Ataca a todos los enemigos
+  efecto: -5 HP
+  tipo: 0
+  accion:
+    nombre: AtaqueEnArea
+    estatico: 1
+    objetivoEsElEquipo: 0
+    mensaje: AplicarEfectoGlobal
+    argumento: 5
+    animacionTrigger: IsAttack
+    efectoSecundario: DanioEnArea
+    costoMana: 1
+    tipoCoste: 0
+    tipoObjetivo: 0
+  accionSecundaria:
+    nombre: 
+    estatico: 0
+    objetivoEsElEquipo: 0
+    mensaje: 
+    argumento: 0
+    animacionTrigger: 
+    efectoSecundario: 
+    costoMana: 0
+    tipoCoste: 0
+    tipoObjetivo: 0
+  imagen: {fileID: 0}
+  costoSanidad: 1
+  tipoCoste: 0

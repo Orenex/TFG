@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b6d4f9b96275b419ac724268a707ee, type: 3}
   m_Name: Asustar
   m_EditorClassIdentifier: 
-  nombreCarta: Grim Fandango
+  nombreCarta: Asustar
   descripcion: Intimidas al enemigo pero te inmovilizas
   efecto: 
   tipo: 3

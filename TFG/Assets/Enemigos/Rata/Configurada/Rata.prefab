@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 5392899498885710613}
   - component: {fileID: 5843886272096041872}
   - component: {fileID: 6726689895809671111}
+  - component: {fileID: 241079048590324352}
   m_Layer: 7
   m_Name: Rata
   m_TagString: Enemigo
@@ -159,6 +160,8 @@ MonoBehaviour:
   sanidad: 100
   sanidadMaxima: 0
   "bonusDa\xF1o": 0
+  ReflejoUnicoActivo: 0
+  vidaUIPrefab: {fileID: 239801654271073278, guid: df03e3938a8407c4cbc7d689bac13254, type: 3}
   Aliado: 0
   sigueVivo: 1
   cartasDisponibles: {fileID: 11400000, guid: a5788ed090ed391409f87e703541c110, type: 2}
@@ -177,6 +180,30 @@ MonoBehaviour:
     Sangrado: 0
   nv: {fileID: 5843886272096041872}
   saltarSiguienteTurno: 0
+  "animacionRecibirDa\xF1o": 
+  animacionMuerte: 
+--- !u!95 &241079048590324352
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764255353460643207}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 94017d8f067cea645b236b6252303fa6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6615018125159994548
 GameObject:
   m_ObjectHideFlags: 0

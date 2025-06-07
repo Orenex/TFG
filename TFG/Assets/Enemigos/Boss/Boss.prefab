@@ -544,6 +544,7 @@ MonoBehaviour:
   sanidadMaxima: 100
   "bonusDa\xF1o": 0
   ReflejoUnicoActivo: 0
+  vidaUIPrefab: {fileID: 239801654271073278, guid: df03e3938a8407c4cbc7d689bac13254, type: 3}
   Aliado: 0
   sigueVivo: 1
   cartasDisponibles: {fileID: 11400000, guid: a5788ed090ed391409f87e703541c110, type: 2}
@@ -562,8 +563,8 @@ MonoBehaviour:
     Sangrado: 0
   nv: {fileID: 4910688045714049033}
   saltarSiguienteTurno: 0
-  "animacionRecibirDa\xF1o": 
-  animacionMuerte: 
+  "animacionRecibirDa\xF1o": IsHurt
+  animacionMuerte: IsDead
 --- !u!1 &753214199516508451
 GameObject:
   m_ObjectHideFlags: 0

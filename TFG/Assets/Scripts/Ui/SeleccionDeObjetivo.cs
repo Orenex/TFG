@@ -56,6 +56,9 @@ public class SeleccionDeObjetivo : MonoBehaviour
         if (objetivo == objetivoActual)
             return;
 
+        if (objetivoActual != null)
+            objetivoActual.MostrarVidaUI(false); // oculta vida del objetivo anterior
+
         objetivoActual = objetivo;
 
         if (marcadorInstanciado == null)
@@ -64,8 +67,10 @@ public class SeleccionDeObjetivo : MonoBehaviour
         marcadorInstanciado.transform.SetParent(objetivo.transform);
         marcadorInstanciado.transform.position = objetivo.transform.position + Vector3.up * 2f;
 
+        objetivo.MostrarVidaUI(true); // muestra vida del nuevo objetivo
 
         Debug.Log($"[UI] Objetivo seleccionado: {objetivo.nombre}");
+
     }
 
 
@@ -80,6 +85,9 @@ public class SeleccionDeObjetivo : MonoBehaviour
             Destroy(marcadorInstanciado);
             marcadorInstanciado = null;
         }
+
+        if (objetivoActual != null)
+            objetivoActual.MostrarVidaUI(false);
     }
 
     // Devuelve el objetivo actualmente seleccionado

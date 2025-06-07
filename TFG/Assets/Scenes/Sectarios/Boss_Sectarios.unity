@@ -20183,6 +20183,10 @@ PrefabInstance:
       propertyPath: m_Height
       value: 2.91
       objectReference: {fileID: 0}
+    - target: {fileID: 4910688045714049033, guid: 484916809afdf28418994aee16a9421f, type: 3}
+      propertyPath: m_BaseOffset
+      value: 2.36
+      objectReference: {fileID: 0}
     - target: {fileID: 5639318812670307080, guid: 484916809afdf28418994aee16a9421f, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7
@@ -20249,7 +20253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8973693292259908895, guid: 484916809afdf28418994aee16a9421f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1
+      value: -0.06
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

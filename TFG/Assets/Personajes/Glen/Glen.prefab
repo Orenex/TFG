@@ -1594,7 +1594,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 50495925aaa13fe439df6ae6287bf53f, type: 3}
+  - {fileID: 2100000, guid: 73362ab57321bdc40a7f454d8c67ae22, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1743,6 +1743,7 @@ MonoBehaviour:
   sanidadMaxima: 100
   "bonusDa\xF1o": 0
   ReflejoUnicoActivo: 0
+  vidaUIPrefab: {fileID: 0}
   Aliado: 1
   sigueVivo: 1
   cartasDisponibles: {fileID: 11400000, guid: cc76023cb8f267245ab7ea6e63097d6b, type: 2}
