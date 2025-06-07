@@ -557,7 +557,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 451673018}
   typingSpeed: 0.05
-  sentences: []
+  sentences:
+  - "El Se\xF1or del culto es derrotado, pronto, vuestra fama se hace notable en
+    todo el reino."
+  - "Pero todav\xEDa no es suficiente. Para conseguir el deseo del Rey, a\xFAn queda
+    un importante camino..."
   arrowIndicator: {fileID: 271726838}
   siguienteEscena: Continuara
 --- !u!4 &1435475451

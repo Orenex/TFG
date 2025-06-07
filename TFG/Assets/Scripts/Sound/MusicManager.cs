@@ -75,6 +75,7 @@ public class MusicManager : MonoBehaviour
                 break;
             case "Descanso_Catacumbas":
             case "Descanso_Sectarios":
+            case "Creditos":
                 changeMusic(5);
                 break;
             case "Introduccion_Jack":
@@ -87,6 +88,7 @@ public class MusicManager : MonoBehaviour
                 changeMusic(8);
                 break;
             case "Entrada_Sectarios":
+            case "Final":
                 changeMusic(9);
                 break;
             case "MapaPuebloSectario":
@@ -113,6 +115,7 @@ public class MusicManager : MonoBehaviour
                 changeMusic(11);
                 break;
             case "GameOver":
+            case "Continuara":
                 changeMusic(13);
                 break;
 
