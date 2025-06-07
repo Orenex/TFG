@@ -111,6 +111,8 @@ public class TurnManager : MonoBehaviour
                 PlayerInputController.Instance.PrepararTurno();
 
                 yield return new WaitUntil(() => PlayerInputController.TurnoFinalizado);
+
+                yield return new WaitForSeconds(2f);
             }
             else // Turno de enemigo controlado por IA
             {

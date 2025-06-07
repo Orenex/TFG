@@ -180,8 +180,8 @@ MonoBehaviour:
     Sangrado: 0
   nv: {fileID: 5843886272096041872}
   saltarSiguienteTurno: 0
-  "animacionRecibirDa\xF1o": 
-  animacionMuerte: 
+  "animacionRecibirDa\xF1o": IsHurt
+  animacionMuerte: IsDead
 --- !u!95 &241079048590324352
 Animator:
   serializedVersion: 7
