@@ -46,7 +46,6 @@ public class MusicManager : MonoBehaviour
                 changeMusic(1);
                 break;
             case "PuebloPrincipal":
-            case "Introduccion_Marceau":
                 changeMusic(2);
                 break;
             case "TiendaBruja":
@@ -94,6 +93,7 @@ public class MusicManager : MonoBehaviour
             case "Combate_Sectarios_Zona_01":
             case "Combate_Sectarios_Zona_02":
             case "CofreSectarios":
+            case "Introduccion_Marceau":
 
                 //necesito que no se resetee la musica entre estas escenas
                 //primero cambiamos musica y hacemos dontstop true, que evitara que

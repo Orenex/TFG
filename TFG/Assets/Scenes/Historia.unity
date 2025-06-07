@@ -232,7 +232,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: AS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -341,6 +341,7 @@ GameObject:
   - component: {fileID: 470756622}
   - component: {fileID: 470756621}
   - component: {fileID: 470756620}
+  - component: {fileID: 470756623}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -422,6 +423,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &470756623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470756619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &1151079651
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,7 +603,27 @@ MonoBehaviour:
   dialogueText: {fileID: 451673018}
   typingSpeed: 0.05
   sentences:
-  - Hola
+  - En la cultura popular, se dice que las almas que no andan en paz consigo mismas
+    acaban varados en los lejanos Bosques de Vegvisir.
+  - "Ahuyentados de sus demonios primarios, los desafortunados que por aqu\xED vagan
+    se enfrentan a la comedia de una civilizaci\xF3n donde el poder y la fama est\xE1n
+    atados por hilos invisibles. Para huir, la \xFAnica esperanza de los perdidos
+    es encontrarse cara a cara con el gran rey de los bosques: el Rey Vegvisir."
+  - "Tal honor es solo ofrecido por las voces de los locales, quienes escoger\xE1n
+    con sus meras ideas a aquellos que m\xE1s popularidad re\xFAnan. Sobre lo m\xE1s
+    alto de la brillante carpa que es su castillo, el Rey Vegvisir conceder\xE1 un
+    deseo al importante afortunado. Aquellos con un coraz\xF3n limpi\xF3 y renovado
+    son los que mostrar\xE1n el deseo de partir de los bosques para siempre."
+  - "Un hombre de mediana edad se encuentra vagando en medio del bosque oscuro acompa\xF1ado
+    de su bolsa y unos curiosos ropajes. Agotado por lo que sus ojos ven, para a
+    descansar en un humilde pueblo entre las colinas."
+  - Los locales le informan sobre la posibilidad de pedirle un deseo al Rey en caso
+    de ganar la suficiente popularidad. Y de la presencia de una misteriosa sombra
+    que vaga en las viejas catacumbas degollando a todo ser que encuentre. La cual
+    debe estar tratando de ganar fama en base a su leyenda.
+  - "Glen sabe que, de desenmascarar esta leyenda, ser\xEDa capaz de ganar popularidad
+    \xE9l mismo, y de esta forma, se propone ir a las olvidadas mazmorras con un
+    hacha en mano y un objetivo en mente."
   arrowIndicator: {fileID: 271726838}
   siguienteEscena: PuebloPrincipal
 --- !u!4 &1435475451

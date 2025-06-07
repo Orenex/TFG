@@ -557,7 +557,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 451673018}
   typingSpeed: 0.05
-  sentences: []
+  sentences:
+  - "Entre los \xE1rboles y la niebla del bosque, encontr\xE1is a una mujer con camisa
+    a rayas que tambi\xE9n pelea contra sectarios, parece cansada, pues debe de ser
+    una gran tarea pasar por aqu\xED en solitario. Se os muestra agresiva cuando
+    vuestros caminos se cruzan, y os amenaza con su alabarda. "
+  - "\u201CVosotros no sois cultistas, \xBFQu\xE9 tramais?\u201D Su semblante se
+    torna a uno de pura repugnancia cuando os observa detenidamente. "
+  - "\u201CVamos a por el l\xEDder del culto. Igual podr\xEDamos beneficiarnos mutuamente.
+    \xBFCu\xE1l es tu objetivo aqu\xED?\u201D "
+  - "\u201C\xBFYo? Solo quiero matar a estos cabrones. Tienen secuestrado a mi novio.\u201D "
+  - "Pagliacci interviene: \u201C\xBFDesde cuando esta organizaci\xF3n secuestra
+    a hombres con mal gusto?\u201D"
+  - "\u201C\xA1\xA1Callate!!\u201D exige la mujer de verde \u201CHombres es lo que
+    sois, tengo suficiente experiencia como para saber que no se puede confiar en
+    tres\u2026 Tres\u2026 \xA1Payasos!\u201D Justo ahora es que nota vuestros ropajes. "
+  - "\u201CPues estos tres payasos te triplican\u201D dices, \u201Cas\xED que si
+    quieres aumentar tus probabilidades de sobrevivir, mejor que nos dejes a nosotros
+    enfrentarnos al l\xEDder.\u201D"
+  - "\u201CS\xED, ya. \xA1Mucho me gustar\xEDa ver como os las apa\xF1ais para lograr
+    arruinarlo todo y morir! Sin la ayuda de alguien que piense no ten\xE9is oportunidad.\u201D "
+  - "\u201CPues acomp\xE1\xF1anos y demuestra lo mucho que te necesitamos\u201D "
+  - "\u201C\xA1Tsk!\u201D La mujer escupe desde\xF1osa, pero decide acompa\xF1aros.
+    Jack parece particularmente alegre con la inclusi\xF3n al equipo, y marcha hacia
+    delante vitoreando \u201C\xA1Cuatro contra uno!\u201D. "
+  - 'Marceau se ha unido al grupo. '
   arrowIndicator: {fileID: 271726838}
   siguienteEscena: Descanso_Sectarios
 --- !u!4 &1435475451

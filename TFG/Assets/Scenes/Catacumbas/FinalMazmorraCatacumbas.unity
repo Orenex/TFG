@@ -496,7 +496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4121bb1c842ea41933519991c85bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazmorra1Completada: 0
 --- !u!4 &1096126642
 Transform:
   m_ObjectHideFlags: 0
@@ -648,7 +647,32 @@ MonoBehaviour:
   dialogueText: {fileID: 451673018}
   typingSpeed: 0.05
   sentences:
-  - Prueba
+  - "El extra\xF1o payaso amarillo, que se present\xF3 a si mismo como \u201CEl Gran
+    Pagliacci\u201D yace muerto en el piso. No por mucho, ya que tan pronto como
+    le dais la espalda, este vuelve a levantarse. Te queda entonces claro el por
+    qu\xE9 de su gusto por clavarse su propio cuchillo. El pierrot es, de alg\xFAn
+    modo, inmune a la muerte."
+  - "\u201C\xA1\xA1Esperad!!\u201D chilla con extra\xF1o j\xFAbilo. \u201CVosotros
+    sois fuertes. \xA1Muy fuertes!\u201D \u201CSi os unierais a m\xED, \xA1podr\xEDa
+    usaros para alcanzar mi ansiada venganza!\u201D "
+  - "\u201CCre\xEDa que quer\xEDas volverte popular para pedirle un deseo al Rey\u201D "
+  - "\u201C\xA1Y una mierda! Lo \xFAnico que quiero es destripar a los cabronazos
+    de mis viejos compa\xF1eros de culto. \xA1Me echaron de la sociedad por, seg\xFAn
+    ellos, \u201Caterrorizar civiles llamando atenci\xF3n negativa hacia la sociedad\u201D
+    o por \u201Cdesacralizar los libros de vud\xFA sagrados para volverme inmortal
+    con un hechizo\u201D. \xBFQu\xE9 co\xF1o significa eso?\u201D "
+  - "\u201CEste culto\u2026 \xBFes famoso?\u201D Piensas que esta podr\xEDa ser una
+    gran oportunidad para ganar fama propia. "
+  - "\u201CYa te digo. Pero son unos in\xFAtiles, podemos con ellos. \xA1Y una vez
+    desaparezca su sociedad crear\xE9 mi propio culto de seguidores del Gran Pagliacci!
+    Y luego alcanzaremos al venerado Vegvisir, \xA1y podr\xE9 pedir el deseo de volver
+    a ser mortal, para ir al cielo de una vez por todas junto a todos mis seguidores!\u201D"
+  - "\u201CAs\xED que s\xED que quieres conocer al Rey.\u201D "
+  - "\u201CDigamos que s\xED.\u201D Parece avergonzarse de ello. "
+  - "\u201CVale, puedes venir. Pero bajo la condici\xF3n de que, si vas a seguir
+    clav\xE1ndote el cuchillito, no puedes gemir de placer mientras lo haces.\u201D "
+  - "\u201C\xA1JA! Buena.\u201D"
+  - Pagliacci se ha unido al grupo.
   arrowIndicator: {fileID: 271726838}
   siguienteEscena: PuebloPrincipal
 --- !u!4 &1435475451

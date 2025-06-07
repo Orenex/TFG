@@ -558,12 +558,30 @@ MonoBehaviour:
   dialogueText: {fileID: 451673018}
   typingSpeed: 0.05
   sentences:
-  - Te encuentras con un loco dentro de una celda, te aproximas a el y empieza a
-    gritar
-  - '"Oye tu sacame de aqui y te ayudare con lo que sea que estes haciendo"'
-  - Te ha convencido, decides sacarle
-  - '"Mi nombre es Jack"'
-  - Jack se ha unido al grupo
+  - "En una de las salas de la mazmorra, una figura joven y delgada resopla desnutrida.
+    Una de sus manos est\xE1 libre, agarrada por una cadena cobalto rota, su otra
+    mano no corre la misma suerte y contin\xFAa clavada al muro por el grillete.
+    Poco se aleja la imagen del extra\xF1o buf\xF3n a la de un perro atado, pues
+    parece que fuera a darle un mordisco a quien se acerque. "
+  - "Te alza la voz como desquiciado. A pesar de todo, es extra\xF1o la formalidad
+    en sus palabras: \u201CPerdone, se\xF1or, \xBFle importar\xEDa usar ese hacha
+    que tiene ah\xED para liberarme de mis ataduras? \xA1Tan solo rompa la cadena
+    que me ata a esta vil mazmorra antes de que me torturen m\xE1s!\u201D "
+  - "\u201C\xBFPor qu\xE9 deber\xEDa?\u201D respondes \u201CEstar\xE1s encerrado
+    por algo, \xBFno? \xBFY c\xF3mo es que una de las cadenas est\xE1 rota?\u201D "
+  - "\u201C\xA1Esa la romp\xED a mordiscos, se\xF1or!\u201D "
+  - "\u201CPues hazlo con la otra.\" "
+  - "\u201C\xA1\xA1Pero es que ya no tengo hambre, se\xF1or!!\u201D "
+  - "El tipo parece inofensivo y muy, muy est\xFApido. Decides liberarle como \xE9l
+    pide. "
+  - "Te habl\xE1 de s\xED mismo, su nombre es Jack, y antiguamente era la mano derecha
+    del Rey Vegvisir. En el momento en que comentas tus objetivos de encontrarte
+    con el Rey, \xE9l decide serte de ayuda en tu empresa con la esperanza de volver
+    a ver a su viejo maestro. Hasta entonces, te establece a t\xED como su maestro
+    temporal, y asegura ir a cumplir cualquier orden que le pidas como un buen siervo."
+  - "No sabes muy bien si habla en serio o si sus palabras ser\xE1n solo los delirios
+    de un loco, pero aceptas la muy necesitada ayuda."
+  - Jack se ha unido al grupo.
   arrowIndicator: {fileID: 271726838}
   siguienteEscena: Descanso_Catacumbas
 --- !u!4 &1435475451
