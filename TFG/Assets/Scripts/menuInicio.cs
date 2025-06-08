@@ -8,6 +8,13 @@ public class menuInicio : MonoBehaviour
     private void Start()
     {
         InventarioJugador.Instance?.ReiniciarInventario();
+        ConfirmarFinCatacumbas.mazmorra1Completada = false;
+
+        if (GameManager.Instance != null)
+        {
+            Destroy(GameManager.Instance.gameObject);
+            GameManager.Instance = null;
+        }
     }
     // Método llamado al presionar el botón de Iniciar
     public void Iniciar()
