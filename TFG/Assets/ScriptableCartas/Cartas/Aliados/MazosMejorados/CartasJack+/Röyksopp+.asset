@@ -22,7 +22,7 @@ MonoBehaviour:
     objetivoEsElEquipo: 0
     mensaje: AplicarEfecto
     argumento: 2
-    animacionTrigger: 
+    animacionTrigger: IsAttacking
     efectoSecundario: GlitchRandom
     costoMana: 0
     tipoCoste: 0

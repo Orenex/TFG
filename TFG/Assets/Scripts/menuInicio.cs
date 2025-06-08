@@ -3,17 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class menuInicio : MonoBehaviour
 {
-    public string escenaBtnIniciar; 
-    public string escenaBtnAjustes;  
+    public string escenaBtnIniciar;
 
+    private void Start()
+    {
+       
+    }
     // Método llamado al presionar el botón de Iniciar
     public void Iniciar()
-    {
-        SceneManager.LoadScene(escenaBtnIniciar);
-    }
-
-    // Método para ir a ajustes (actualmente carga la misma escena que iniciar)
-    public void Ajustes()
     {
         SceneManager.LoadScene(escenaBtnIniciar);
     }

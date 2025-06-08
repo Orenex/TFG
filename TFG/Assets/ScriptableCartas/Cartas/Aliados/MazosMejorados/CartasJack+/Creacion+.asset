@@ -22,7 +22,7 @@ MonoBehaviour:
     objetivoEsElEquipo: 0
     mensaje: CambiarVidaAleatorio
     argumento: -3
-    animacionTrigger: 
+    animacionTrigger: IsAttacking
     efectoSecundario: -6
     costoMana: 0
     tipoCoste: 0

@@ -28,7 +28,7 @@ public class InventarioJugador : MonoBehaviour
     //Esto hay que eliminarlo cuando se entregue
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        /*if (Input.GetKeyDown(KeyCode.R))
         {
             PlayerPrefs.DeleteAll();
             mazosMejorados.Clear();
@@ -37,7 +37,7 @@ public class InventarioJugador : MonoBehaviour
             PlayerPrefs.DeleteKey("VidaExtraArmadura");
             vidaExtraArmadura = 0;
             Debug.Log("Inventario reseteado");
-        }
+        }*/
     }
 
     // Verifica si el jugador tiene oro suficiente

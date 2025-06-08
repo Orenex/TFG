@@ -22,7 +22,7 @@ MonoBehaviour:
     objetivoEsElEquipo: 0
     mensaje: AplicarEfecto
     argumento: 999
-    animacionTrigger: 
+    animacionTrigger: IsAttacking
     efectoSecundario: Critico
     costoMana: 0
     tipoCoste: 0

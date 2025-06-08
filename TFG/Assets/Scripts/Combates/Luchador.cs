@@ -259,12 +259,13 @@ public class Luchador : MonoBehaviour
                 {
                     if (enemigo.Aliado != this.Aliado && enemigo.sigueVivo)
                     {
+                        int duracionGlobal = (efectoGlobal == TipoEfecto.Confusion) ? 1 : 3;
                         var efecto = new EfectoActivo
                         {
                             nombre = efectoGlobal.ToString(),
                             tipo = efectoGlobal,
                             modificador = accion.argumento,
-                            duracionTurnos = 3,
+                            duracionTurnos = duracionGlobal,
                             lanzador = this //¡Esto es lo que faltaba!
                         };
                         if (efectoGlobal == TipoEfecto.DanioEnArea)

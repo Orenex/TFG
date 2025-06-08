@@ -21,7 +21,7 @@ MonoBehaviour:
     estatico: 1
     objetivoEsElEquipo: 0
     mensaje: AplicarEfecto
-    argumento: 1
+    argumento: 0
     animacionTrigger: IsAttacking
     efectoSecundario: 'Sangrado '
     costoMana: 0

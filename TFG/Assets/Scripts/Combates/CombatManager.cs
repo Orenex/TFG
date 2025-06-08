@@ -36,13 +36,11 @@ public class CombatManager : MonoBehaviour
         }
 
         // Sangrado hace que pierda vida y no ejecute acción
-        if (lanzador.estadoEspecial.Sangrado)
+       /* if (lanzador.estadoEspecial.Sangrado)
         {
             Debug.LogWarning($"{lanzador.nombre} está sangrando");
-            objetivo.CambiarVida(-1);
-            PlayerInputController.TerminarTurno();
-            return;
-        }
+            lanzador.CambiarVida(-1);
+        }*/
 
         // Asqueado provoca una pérdida mayor de vida
         if (lanzador.estadoEspecial.Asqueado)

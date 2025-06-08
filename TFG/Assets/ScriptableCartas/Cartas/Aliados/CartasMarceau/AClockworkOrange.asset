@@ -22,7 +22,7 @@ MonoBehaviour:
     objetivoEsElEquipo: 0
     mensaje: AplicarEfectoGlobal
     argumento: 3
-    animacionTrigger: 
+    animacionTrigger: IsAttacking
     efectoSecundario: Asqueado
     costoMana: 1
     tipoCoste: 0

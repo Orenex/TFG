@@ -22,7 +22,7 @@ MonoBehaviour:
     objetivoEsElEquipo: 0
     mensaje: AplicarEfectoGlobal
     argumento: 1
-    animacionTrigger: 
+    animacionTrigger: IsAttacking
     efectoSecundario: Confusion
     costoMana: 1
     tipoCoste: 0

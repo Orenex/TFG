@@ -1345,8 +1345,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: Dummy1
-  vida: 30
-  vidaMaxima: 30
+  vida: 35
+  vidaMaxima: 35
   sanidad: 100
   sanidadMaxima: 0
   "bonusDa\xF1o": 0

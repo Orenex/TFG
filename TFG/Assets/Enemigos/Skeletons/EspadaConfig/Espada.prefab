@@ -2731,8 +2731,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: Espada
-  vida: 30
-  vidaMaxima: 30
+  vida: 15
+  vidaMaxima: 15
   sanidad: 100
   sanidadMaxima: 0
   "bonusDa\xF1o": 0

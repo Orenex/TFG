@@ -1109,8 +1109,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: Lanza
-  vida: 30
-  vidaMaxima: 30
+  vida: 20
+  vidaMaxima: 20
   sanidad: 100
   sanidadMaxima: 0
   "bonusDa\xF1o": 0
