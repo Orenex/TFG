@@ -64,7 +64,7 @@ public class EfectoActivo
                 break;
 
             case TipoEfecto.CompartirDaño:
-                if (lanzador != null && lanzador != objetivo)
+                if (lanzador != null)
                 {
                     lanzador.estadoEspecial.ReflejarDanioA = objetivo;
                     Debug.Log($"{lanzador.nombre} marcará a {objetivo.nombre} para recibir el daño que él reciba.");

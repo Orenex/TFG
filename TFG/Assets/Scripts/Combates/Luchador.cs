@@ -449,6 +449,7 @@ public class Luchador : MonoBehaviour
 
 
         vida += cantidad;
+        vida = Mathf.Clamp(vida, 0, vidaMaxima);
         ActualizarTextoVida();
 
         if (estadoEspecial.ReflejarDanioA != null && cantidad < 0)
