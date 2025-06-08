@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b6d4f9b96275b419ac724268a707ee, type: 3}
   m_Name: ThePictureofDorianGrey
   m_EditorClassIdentifier: 
-  nombreCarta: ' The Picture of Dorian Grey'
+  nombreCarta: Dorian Grey
   descripcion: Restaura vida
   efecto: 
   tipo: 2

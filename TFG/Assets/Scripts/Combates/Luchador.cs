@@ -301,7 +301,7 @@ public class Luchador : MonoBehaviour
                     return;
                 }
 
-                int duracion = 3;
+                int duracion = (tipo == TipoEfecto.Paralizado) ? 1 : 3;
 
                 // Si me estoy aplicando el efecto a mí mismo, y es Paralizado, que dure solo 1 turno
                 if (objetivo == this && tipo == TipoEfecto.Paralizado)
@@ -318,12 +318,19 @@ public class Luchador : MonoBehaviour
                     lanzador = this
                 };
 
+
                 if (tipo == TipoEfecto.FuriaSanidad)
                 {
                     int sanidadPerdida = objetivo.sanidadMaxima - objetivo.sanidad;
                     nuevoEfecto.bonusFuriaSanidad = sanidadPerdida;
                     objetivo.bonusDaño += sanidadPerdida;
                     Debug.Log($"{objetivo.nombre} obtiene {sanidadPerdida} de daño por Furia Sanidad (aplicado una vez).");
+                }
+
+                if (tipo == TipoEfecto.Paralizado && objetivo.efectosActivos.Any(e => e.tipo == TipoEfecto.Paralizado && !e.Expirado))
+                {
+                    Debug.Log($"{objetivo.nombre} ya está paralizado. No se aplica de nuevo.");
+                    return;
                 }
 
                 Debug.Log($"Añadiendo efecto {nuevoEfecto.nombre}");
@@ -453,7 +460,7 @@ public class Luchador : MonoBehaviour
         vida = Mathf.Clamp(vida, 0, vidaMaxima);
         ActualizarTextoVida();
 
-        if (estadoEspecial.ReflejarDanioA != null && cantidad < 0)
+        if (estadoEspecial.ReflejarDanioA != null && cantidad < 0 && TurnManager.Instance?.Actual != estadoEspecial.ReflejarDanioA)
         {
             int dañoReflejado = Mathf.CeilToInt(Mathf.Abs(cantidad));
             estadoEspecial.ReflejarDanioA.CambiarVida(-dañoReflejado);

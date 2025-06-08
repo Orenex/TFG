@@ -3016,10 +3016,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: Pagliacci
-  vida: 100
-  vidaMaxima: 100
-  sanidad: 100
-  sanidadMaxima: 100
+  vida: 30
+  vidaMaxima: 30
+  sanidad: 6
+  sanidadMaxima: 6
   "bonusDa\xF1o": 0
   ReflejoUnicoActivo: 0
   vidaUIPrefab: {fileID: 0}

@@ -22,7 +22,7 @@ MonoBehaviour:
     objetivoEsElEquipo: 0
     mensaje: AplicarEfectoGlobal
     argumento: 7
-    animacionTrigger: IsAttacking
+    animacionTrigger: IsAttack
     efectoSecundario: DanioEnArea
     costoMana: 1
     tipoCoste: 0

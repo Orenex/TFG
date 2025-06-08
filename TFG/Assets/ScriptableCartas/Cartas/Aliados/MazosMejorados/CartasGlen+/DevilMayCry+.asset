@@ -22,7 +22,7 @@ MonoBehaviour:
     objetivoEsElEquipo: 1
     mensaje: AplicarEfecto
     argumento: -6
-    animacionTrigger: IsAttacking
+    animacionTrigger: IsAttack
     efectoSecundario: Furia
     costoMana: 0
     tipoCoste: 0

@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/BattleSampleScene.unity
-    guid: c9d8b66d9dbcd544080506f67860ab2f
+    path: Assets/Scenes/Menu_Inicio.unity
+    guid: 50153ed5e6b6f1c4fb7d2f95f5a5cdab
   - enabled: 1
     path: Assets/Scenes/Catacumbas/MapaCatacumbas.unity
     guid: 199db005c97ada24f932ad37a38763df
@@ -65,9 +65,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Historia.unity
     guid: 9a6e24add62971f4c948b8417946e86f
-  - enabled: 1
-    path: Assets/Scenes/Menu_Inicio.unity
-    guid: 50153ed5e6b6f1c4fb7d2f95f5a5cdab
   - enabled: 1
     path: Assets/Scenes/Sectarios/Boss_Sectarios.unity
     guid: 11ded54f64320e344ada1ad6c247dd83

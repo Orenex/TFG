@@ -11,6 +11,8 @@ public class EstadoAliados : MonoBehaviour
         public string nombre;
         public int vida;
         public int sanidad;
+        public int vidamaxima;
+        public int sanidadmaxima;
         public bool sigueVivo;
     }
 
@@ -39,6 +41,8 @@ public class EstadoAliados : MonoBehaviour
                 nombre = luchador.nombre,
                 vida = luchador.vida,
                 sanidad = luchador.sanidad,
+                sanidadmaxima = luchador.sanidadMaxima,
+                vidamaxima = luchador.vidaMaxima,
                 sigueVivo = luchador.sigueVivo
             });
         }
@@ -65,8 +69,8 @@ public class EstadoAliados : MonoBehaviour
     {
         foreach (var estado in estados)
         {
-            estado.vida = 100;
-            estado.sanidad = 100;
+            estado.vida = estado.vidamaxima;
+            estado.sanidad = estado.sanidadmaxima;
             estado.sigueVivo = true;
         }
     }

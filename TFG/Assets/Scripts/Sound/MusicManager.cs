@@ -16,6 +16,20 @@ public class MusicManager : MonoBehaviour
 
     private bool dontStop;
 
+    public static MusicManager Instance;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject); // Elimina duplicados
+        }
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
 
     void Start()
     {

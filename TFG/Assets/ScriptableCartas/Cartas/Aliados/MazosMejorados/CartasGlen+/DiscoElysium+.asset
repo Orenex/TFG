@@ -22,7 +22,7 @@ MonoBehaviour:
     objetivoEsElEquipo: 1
     mensaje: ReflejarDanio
     argumento: 0
-    animacionTrigger: IsAttacking
+    animacionTrigger: IsAttack
     efectoSecundario: 
     costoMana: 0
     tipoCoste: 0

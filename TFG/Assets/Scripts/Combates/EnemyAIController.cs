@@ -11,6 +11,9 @@ public class EnemyAIController : MonoBehaviour
 
     private Dictionary<Luchador, Luchador> memoriaDeObjetivos = new(); // Guarda el objetivo anterior de cada enemigo
 
+    private Dictionary<Luchador, ScriptableCartas> ultimaCartaUsada = new();
+
+
     private void Awake()
     {
         if (Instance != null) Destroy(gameObject);
@@ -60,6 +63,11 @@ public class EnemyAIController : MonoBehaviour
         if (objetivo != null)
         {
             StartCoroutine(EjecutarAccion(carta.accion, enemigo, objetivo));
+            if (ultimaCartaUsada.ContainsKey(enemigo))
+                ultimaCartaUsada[enemigo] = carta;
+            else
+                ultimaCartaUsada.Add(enemigo, carta);
+
         }
         else
         {
@@ -77,11 +85,18 @@ public class EnemyAIController : MonoBehaviour
         if (vidaRatio <= 0.35f)
         {
             var curacion = cartas.FindAll(c =>
-                c.accion.mensaje == "CambiarVida" && c.accion.argumento > 0);
+                c.accion.mensaje == "CambiarVida" &&
+                c.accion.argumento > 0 &&
+                (!ultimaCartaUsada.ContainsKey(lanzador) || ultimaCartaUsada[lanzador] != c)); // No repetir curación
 
             if (curacion.Count > 0)
-                return curacion[Random.Range(0, curacion.Count)];
+            {
+                var seleccionada = curacion[Random.Range(0, curacion.Count)];
+                ultimaCartaUsada[lanzador] = seleccionada;
+                return seleccionada;
+            }
         }
+
 
         // 2. Usar buff si no está activo aún
         var buffs = cartas.FindAll(c =>
