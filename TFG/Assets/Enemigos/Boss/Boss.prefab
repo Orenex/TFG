@@ -538,8 +538,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: Boss
-  vida: 100
-  vidaMaxima: 100
+  vida: 300
+  vidaMaxima: 300
   sanidad: 100
   sanidadMaxima: 100
   "bonusDa\xF1o": 0

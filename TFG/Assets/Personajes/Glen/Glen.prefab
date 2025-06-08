@@ -1737,8 +1737,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: Glen
-  vida: 30
-  vidaMaxima: 30
+  vida: 40
+  vidaMaxima: 40
   sanidad: 6
   sanidadMaxima: 6
   "bonusDa\xF1o": 0

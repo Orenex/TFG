@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62b6d4f9b96275b419ac724268a707ee, type: 3}
-  m_Name: DevilMayCry
+  m_Name: "Autoapu\xF1alamientoBoss"
   m_EditorClassIdentifier: 
-  nombreCarta: Devil May Cry
-  descripcion: Grito que te llena de furia
-  efecto: 
-  tipo: 2
+  nombreCarta: "Autopu\xF1alamiento"
+  descripcion: "Te infliges da\xF1o"
+  efecto: -5 HP
+  tipo: 0
   accion:
-    nombre: DevilMayCryBase
+    nombre: "Autoda\xF1o"
     estatico: 1
     objetivoEsElEquipo: 1
-    mensaje: AplicarEfecto
-    argumento: -3
-    animacionTrigger: IsAttack
-    efectoSecundario: Furia
+    mensaje: CambiarVida
+    argumento: -7
+    animacionTrigger: IsAutoStabing
+    efectoSecundario: 
     costoMana: 0
     tipoCoste: 0
     tipoObjetivo: 2
@@ -38,6 +38,6 @@ MonoBehaviour:
     costoMana: 0
     tipoCoste: 0
     tipoObjetivo: 0
-  imagen: {fileID: 21300000, guid: ae64a0402521e93478347e89981645ba, type: 3}
+  imagen: {fileID: 21300000, guid: 069a267a049d4f34aa028a1622ba421a, type: 3}
   costoSanidad: 0
   tipoCoste: 0

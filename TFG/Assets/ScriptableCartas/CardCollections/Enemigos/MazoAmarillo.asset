@@ -13,23 +13,24 @@ MonoBehaviour:
   m_Name: MazoAmarillo
   m_EditorClassIdentifier: 
   CartasEnLaColeccion:
-  - {fileID: 11400000, guid: dad780bbedcdefe4787ca4e6d55bc5c8, type: 2}
-  - {fileID: 11400000, guid: dad780bbedcdefe4787ca4e6d55bc5c8, type: 2}
-  - {fileID: 11400000, guid: dad780bbedcdefe4787ca4e6d55bc5c8, type: 2}
-  - {fileID: 11400000, guid: dad780bbedcdefe4787ca4e6d55bc5c8, type: 2}
-  - {fileID: 11400000, guid: dad780bbedcdefe4787ca4e6d55bc5c8, type: 2}
-  - {fileID: 11400000, guid: 090ba6158b87ad645b567def37bdcd39, type: 2}
-  - {fileID: 11400000, guid: 090ba6158b87ad645b567def37bdcd39, type: 2}
-  - {fileID: 11400000, guid: 090ba6158b87ad645b567def37bdcd39, type: 2}
-  - {fileID: 11400000, guid: 090ba6158b87ad645b567def37bdcd39, type: 2}
-  - {fileID: 11400000, guid: 090ba6158b87ad645b567def37bdcd39, type: 2}
-  - {fileID: 11400000, guid: fc034681c8b86fc48a996af2dc1198c2, type: 2}
-  - {fileID: 11400000, guid: fc034681c8b86fc48a996af2dc1198c2, type: 2}
-  - {fileID: 11400000, guid: cd5eabe70f8676a478cf6b9c21273b1f, type: 2}
-  - {fileID: 11400000, guid: 094d6a9f48294f04a894079f4b81465b, type: 2}
-  - {fileID: 11400000, guid: 094d6a9f48294f04a894079f4b81465b, type: 2}
-  - {fileID: 11400000, guid: cd5eabe70f8676a478cf6b9c21273b1f, type: 2}
-  - {fileID: 11400000, guid: cd5eabe70f8676a478cf6b9c21273b1f, type: 2}
-  - {fileID: 11400000, guid: cd5eabe70f8676a478cf6b9c21273b1f, type: 2}
-  - {fileID: 11400000, guid: cd5eabe70f8676a478cf6b9c21273b1f, type: 2}
   - {fileID: 11400000, guid: 075761e5db0006a4a80d2ab87ecfcfef, type: 2}
+  - {fileID: 11400000, guid: 2d5400b866e9b7041aeba1fda8a430ff, type: 2}
+  - {fileID: 11400000, guid: 2d5400b866e9b7041aeba1fda8a430ff, type: 2}
+  - {fileID: 11400000, guid: 2a4d4ba910d58ab418883e1ff199c788, type: 2}
+  - {fileID: 11400000, guid: 2a4d4ba910d58ab418883e1ff199c788, type: 2}
+  - {fileID: 11400000, guid: 2a4d4ba910d58ab418883e1ff199c788, type: 2}
+  - {fileID: 11400000, guid: 2a4d4ba910d58ab418883e1ff199c788, type: 2}
+  - {fileID: 11400000, guid: 2a4d4ba910d58ab418883e1ff199c788, type: 2}
+  - {fileID: 11400000, guid: 2a4d4ba910d58ab418883e1ff199c788, type: 2}
+  - {fileID: 11400000, guid: 2a4d4ba910d58ab418883e1ff199c788, type: 2}
+  - {fileID: 11400000, guid: f9ae5aea6f3eeab488e634ab0ca6882e, type: 2}
+  - {fileID: 11400000, guid: f9ae5aea6f3eeab488e634ab0ca6882e, type: 2}
+  - {fileID: 11400000, guid: 810f2ab268dbbdd459b08981e46560ea, type: 2}
+  - {fileID: 11400000, guid: 810f2ab268dbbdd459b08981e46560ea, type: 2}
+  - {fileID: 11400000, guid: 810f2ab268dbbdd459b08981e46560ea, type: 2}
+  - {fileID: 11400000, guid: 810f2ab268dbbdd459b08981e46560ea, type: 2}
+  - {fileID: 11400000, guid: 1fe9c82b739ff154a9f2eb2b231945d4, type: 2}
+  - {fileID: 11400000, guid: 1fe9c82b739ff154a9f2eb2b231945d4, type: 2}
+  - {fileID: 11400000, guid: 1fe9c82b739ff154a9f2eb2b231945d4, type: 2}
+  - {fileID: 11400000, guid: 1fe9c82b739ff154a9f2eb2b231945d4, type: 2}
+  - {fileID: 11400000, guid: 1fe9c82b739ff154a9f2eb2b231945d4, type: 2}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Terrifier
   m_EditorClassIdentifier: 
   nombreCarta: Terrifier
-  descripcion: Ataca al enemigo y mete miedo
+  descripcion: Ataca al enemigo y aplica miedo
   efecto: -3 HP
   tipo: 0
   accion:

@@ -375,8 +375,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: Jack
-  vida: 30
-  vidaMaxima: 30
+  vida: 25
+  vidaMaxima: 25
   sanidad: 6
   sanidadMaxima: 6
   "bonusDa\xF1o": 0

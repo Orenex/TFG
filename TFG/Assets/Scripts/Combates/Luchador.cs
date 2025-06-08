@@ -38,6 +38,8 @@ public class Luchador : MonoBehaviour
     public int bonusDaño = 0;
     public bool ReflejoUnicoActivo = false;
     private int turnosRestantesResurreccion = 0;
+    public bool CompartiendoseDanio = false;
+
 
     [SerializeField] private GameObject vidaUIPrefab;
     private TextMeshProUGUI textoVidaUI;
@@ -460,12 +462,16 @@ public class Luchador : MonoBehaviour
         vida = Mathf.Clamp(vida, 0, vidaMaxima);
         ActualizarTextoVida();
 
-        if (estadoEspecial.ReflejarDanioA != null && cantidad < 0 && TurnManager.Instance?.Actual != estadoEspecial.ReflejarDanioA)
+        // Evitar reflejo si ya se está compartiendo daño
+        if (estadoEspecial.ReflejarDanioA != null && cantidad < 0 && TurnManager.Instance?.Actual != estadoEspecial.ReflejarDanioA && !CompartiendoseDanio)
         {
+            CompartiendoseDanio = true;
             int dañoReflejado = Mathf.CeilToInt(Mathf.Abs(cantidad));
             estadoEspecial.ReflejarDanioA.CambiarVida(-dañoReflejado);
+            CompartiendoseDanio = false;
             Debug.Log($"{estadoEspecial.ReflejarDanioA.nombre} sufre {dañoReflejado} por reflejo de daño (efecto CompartirDaño).");
         }
+
 
         if (vida <= 0)
         {

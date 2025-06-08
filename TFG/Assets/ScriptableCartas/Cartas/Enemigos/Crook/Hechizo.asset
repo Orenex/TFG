@@ -21,7 +21,7 @@ MonoBehaviour:
     estatico: 1
     objetivoEsElEquipo: 0
     mensaje: CambiarVida
-    argumento: -3
+    argumento: -5
     animacionTrigger: IsAttacking
     efectoSecundario: 
     costoMana: 0
