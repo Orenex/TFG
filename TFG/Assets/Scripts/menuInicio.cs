@@ -7,7 +7,7 @@ public class menuInicio : MonoBehaviour
 
     private void Start()
     {
-       
+        InventarioJugador.Instance?.ReiniciarInventario();
     }
     // Método llamado al presionar el botón de Iniciar
     public void Iniciar()

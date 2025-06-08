@@ -28,16 +28,7 @@ public class InventarioJugador : MonoBehaviour
     //Esto hay que eliminarlo cuando se entregue
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.R))
-        {
-            PlayerPrefs.DeleteAll();
-            mazosMejorados.Clear();
-            oroActual = 100; // o el valor inicial que uses
-            PlayerPrefs.DeleteKey("ArmaduraEquipadaID");
-            PlayerPrefs.DeleteKey("VidaExtraArmadura");
-            vidaExtraArmadura = 0;
-            Debug.Log("Inventario reseteado");
-        }*/
+   
     }
 
     // Verifica si el jugador tiene oro suficiente
@@ -131,6 +122,16 @@ public class InventarioJugador : MonoBehaviour
             vidaExtraArmadura = vidaExtra;
             Debug.Log("Armadura equipada: " + id + " con " + vidaExtra + " de vida extra.");
         }
+    }
+    public void ReiniciarInventario()
+    {
+        PlayerPrefs.DeleteAll();
+        mazosMejorados.Clear();
+        oroActual = 100;
+        PlayerPrefs.DeleteKey("ArmaduraEquipadaID");
+        PlayerPrefs.DeleteKey("VidaExtraArmadura");
+        vidaExtraArmadura = 0;
+        Debug.Log("Inventario reseteado");
     }
 
 

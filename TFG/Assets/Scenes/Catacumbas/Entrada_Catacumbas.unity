@@ -891,7 +891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25801a1cece40940bcc1bf836f20ec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: 
+  sceneToLoad: PuebloPrincipal
   messageUI: {fileID: 1332337894}
 --- !u!1 &433574622
 GameObject:

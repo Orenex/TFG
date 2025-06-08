@@ -1240,6 +1240,7 @@ MonoBehaviour:
   - {fileID: 1485543975}
   caminosdesactivados:
   - {fileID: 1457117052}
+  - {fileID: 195947159}
   isActive: 0
   isVisited: 0
   escena: Combate_Sectarios_Zona_01
@@ -2110,6 +2111,7 @@ MonoBehaviour:
   - {fileID: 1078551428}
   caminosdesactivados:
   - {fileID: 609784112}
+  - {fileID: 1155919108}
   isActive: 0
   isVisited: 0
   escena: Combate_Sectarios_Zona_01
@@ -2869,6 +2871,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lastScene: 
   lastNodeID: 
+  escenaCombateActual: 
+  enemigosActuales: []
 --- !u!4 &1839039497
 Transform:
   m_ObjectHideFlags: 0
